@@ -1,0 +1,29 @@
+Package: ChineseNames
+Type: Package
+Title: Chinese Names Database 1930-2008
+Version: 0.1.0
+Authors@R: as.person(c(
+  "Han-Wu-Shuang Bao <baohws@psych.ac.cn> [aut, cre]",
+  "Jun (Zhi-Heng) Chen <jimc@qimingtong.com> [cph]"
+  ))
+Author: Han-Wu-Shuang Bao [aut, cre], Jun (Zhi-Heng) Chen [cph]
+Maintainer: Han-Wu-Shuang Bao <baohws@psych.ac.cn>
+Description: A database of Han Chinese names provided by Beijing Meiming 
+  Technology Company (http://www.qimingtong.com/). This package contains: 
+  a) 1,806 Chinese surnames and 2,614 Chinese given-name characters, 
+  with their naming frequencies in the whole Han Chinese population 
+  (1.2 billion) alive in 2008; 
+  b) some key variables (e.g., name gender, name uniqueness, meaning 
+  positivity) of these names; 
+  c) the most common names used in 31 Chinese mainland provinces and 
+  in 6 birth cohorts.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/psychbruce/ChineseNames
+BugReports: https://github.com/psychbruce/ChineseNames/issues
+Imports: dplyr (>= 0.7.5),
+         data.table (>= 1.11.0),
+         stringr (>= 1.3.0)
+Suggests: bruceR
+RoxygenNote: 6.1.1
