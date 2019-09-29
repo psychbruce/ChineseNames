@@ -5,7 +5,7 @@ Chinese Names Database 1930-2008
 ![](https://img.shields.io/badge/R-package-success)
 ![](https://img.shields.io/badge/Version-0.1.0-success)
 ![](https://img.shields.io/github/license/psychbruce/bruceR?label=License&color=success)
-[![](https://img.shields.io/github/stars/psychbruce/bruceR?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
+[![](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
 
 [![](https://img.shields.io/badge/Follow%20me%20on-Zhihu-blue)](https://www.zhihu.com/people/psychbruce/ "Personal profile on Zhihu.com")
 
