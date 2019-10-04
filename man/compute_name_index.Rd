@@ -5,19 +5,20 @@
 \title{Compute indexes of given names and surnames}
 \usage{
 compute_name_index(data = NULL, var.fullname = NULL,
-  var.birthyear = NULL, index = c("NLen", "NU", "CCU", "NV", "NG",
-  "SNU", "SNI"), return.namechar = FALSE)
+  var.birthyear = NULL, name = NA, birth = NA, index = c("NLen",
+  "NU", "CCU", "NV", "NG", "SNU", "SNI"), return.namechar = TRUE,
+  return.all = FALSE)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{data.table}.}
 
-\item{var.fullname}{A variable (name) of full Chinese names.}
+\item{var.fullname}{Variable name of full Chinese names in your data (e.g., \code{"name"}).}
 
-\item{var.birthyear}{[Optional] A variable (name) of birth year.}
+\item{var.birthyear}{[Optional] Variable name of birth year in your data (e.g., \code{"birth"}).}
 
 \item{index}{[Optional] Which indexes to compute?
 
-By default, it will compute all available variables.
+By default, it will compute all the available variables.
 \itemize{
   \item NLen: full-name length (2~4).
   \item NU: given-name uniqueness (1~6).
@@ -28,10 +29,12 @@ By default, it will compute all available variables.
   \item SNI: surname initial (alphabetical order; 1~26).
 }}
 
-\item{return.namechar}{Whether to return name characters. Default is \code{FALSE}.}
+\item{return.namechar}{Whether to return separate name characters. Default is \code{TRUE}.}
+
+\item{return.all}{Whether to return all the in-process variables that are used to compute the final variables. Default is \code{FALSE}.}
 }
 \value{
-A \code{data.frame} or \code{data.table} with a series of name indexes appended.
+An appended \code{data.frame} or \code{data.table} with a series of name indexes added.
 }
 \description{
 Compute indexes of given names and surnames
@@ -40,5 +43,9 @@ Compute indexes of given names and surnames
 demodata
 compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
 compute_name_index(demodata, "name")  # no controlling for birth cohort
-compute_name_index(demodata, "name", return.namechar=T)  # return name chars
+compute_name_index(demodata, "name", return.all=T)  # return all in-process variables
+
+myname=demodata[1, "name"]
+mybirth=1995
+compute_name_index(name=myname, birth=mybirth, index="NU")
 }

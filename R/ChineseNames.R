@@ -58,11 +58,11 @@ NULL
 #' @import data.table
 #' @import stringr
 #' @param data \code{data.frame} or \code{data.table}.
-#' @param var.fullname A variable (name) of full Chinese names.
-#' @param var.birthyear [Optional] A variable (name) of birth year.
+#' @param var.fullname Variable name of full Chinese names in your data (e.g., \code{"name"}).
+#' @param var.birthyear [Optional] Variable name of birth year in your data (e.g., \code{"birth"}).
 #' @param index [Optional] Which indexes to compute?
 #'
-#' By default, it will compute all available variables.
+#' By default, it will compute all the available variables.
 #' \itemize{
 #'   \item NLen: full-name length (2~4).
 #'   \item NU: given-name uniqueness (1~6).
@@ -72,19 +72,31 @@ NULL
 #'   \item SNU: surname uniqueness (1~6).
 #'   \item SNI: surname initial (alphabetical order; 1~26).
 #' }
-#' @param return.namechar Whether to return name characters. Default is \code{FALSE}.
-#' @return A \code{data.frame} or \code{data.table} with a series of name indexes appended.
+#' @param return.namechar Whether to return separate name characters. Default is \code{TRUE}.
+#' @param return.all Whether to return all the in-process variables that are used to compute the final variables. Default is \code{FALSE}.
+#' @return An appended \code{data.frame} or \code{data.table} with a series of name indexes added.
 #' @examples
 #' demodata
 #' compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
 #' compute_name_index(demodata, "name")  # no controlling for birth cohort
-#' compute_name_index(demodata, "name", return.namechar=T)  # return name chars
+#' compute_name_index(demodata, "name", return.all=T)  # return all in-process variables
+#'
+#' myname=demodata[1, "name"]
+#' mybirth=1995
+#' compute_name_index(name=myname, birth=mybirth, index="NU")
 #' @export
 compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,
+                            name=NA, birth=NA,
                             index=c("NLen",
                                     "NU", "CCU", "NV", "NG",
                                     "SNU", "SNI"),
-                            return.namechar=FALSE) {
+                            return.namechar=TRUE,
+                            return.all=FALSE) {
+  if(is.na(name)==FALSE) {
+    data=data.frame(name=name, birth=birth)
+    var.fullname="name"
+    var.birthyear="birth"
+  }
   if(is.null(data)) stop("Please input your data.")
   if(is.null(var.fullname)) stop("Please input a variable of full names.")
 
@@ -102,14 +114,14 @@ compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,
   d[,name1:=str_sub(name, ifelse(fx, 3, 2), ifelse(fx, 3, 2))]
   d[,name2:=str_sub(name, ifelse(fx, 4, 3), ifelse(fx, 4, 3))]
   d[,name3:=str_sub(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4))]
-  d[,name1:=ifelse(name1=="", NA, name1)]
-  d[,name2:=ifelse(name2=="", NA, name2)]
-  d[,name3:=ifelse(name3=="", NA, name3)]
+  d[,name1:=ifelse(name1=="", NA, name1) %>% as.character()]
+  d[,name2:=ifelse(name2=="", NA, name2) %>% as.character()]
+  d[,name3:=ifelse(name3=="", NA, name3) %>% as.character()]
 
   if("NU" %in% index) {
-    d[,":="(nu1=mapply(compute_NU, name1, year),
-            nu2=mapply(compute_NU, name2, year),
-            nu3=mapply(compute_NU, name3, year)
+    d[,":="(nu1=mapply(compute_NU_char, name1, year),
+            nu2=mapply(compute_NU_char, name2, year),
+            nu3=mapply(compute_NU_char, name3, year)
             )]
     d[,NU:=MEAN(d, "nu", 1:3)]
   }
@@ -149,11 +161,15 @@ compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,
   if(return.namechar) data=cbind(data, as.data.frame(d)[c("name0", "name1", "name2", "name3")])
   data.new=cbind(data, as.data.frame(d)[index])
   if(is.data.table(data)) data.new=as.data.table(data.new)
-  return(data.new)
+  if(is.data.frame(data)) d=as.data.frame(d)
+  if(return.all)
+    return(d)
+  else
+    return(data.new)
 }
 
 
-compute_NU=function(char, year=NA) {
+compute_NU_char=function(char, year=NA) {
   if(is.na(char))
     ppm="NA"
   else if(is.na(year) | year<1930)
@@ -179,4 +195,68 @@ compute_NU=function(char, year=NA) {
   if(is.na(ppm)) ppm=0
   if(ppm=="NA") ppm=NA
   return(as.numeric( -log10((ppm+1)/10^6) ))
+}
+
+
+#' Baby-naming APP (with reports and suggestions)
+#' @param name Full name.
+#' @param sex \code{0} = unknown, \code{-1} = female, \code{1} = male.
+#' @param birth Birth year or \code{NA}.
+#' @return This function will output a list of results and "invisibly" return a final score (0-100).
+#' @examples
+#' testname=demodata[1, "name"]
+#' sex=1  # 0 = unknown, -1 = female, 1 = male
+#' baby_naming_app(testname, sex, 1995)
+#' @export
+baby_naming_app=function(name, sex=0, birth=NA) {
+  rs=compute_name_index(name=name, birth=birth)
+  # sex=RECODE(sex, "2=-1; 1=1; 0=0; else=NA")
+
+  sg.NLen=switch(as.character(rs$NLen),
+                 "2"="过短，易重名，三字姓名为宜",
+                 "3"="-",
+                 "4"="四字姓名较难起好，请三思")
+
+  ## Evaluation: NLen, NU, NV, NG
+  sc=c(0, 0, 0, 0)  # raw score
+  wt=c(1, 3, 3, 3)  # weight
+  sc[1]=RECODE(rs$NLen, "2=70; 3=90; 4=80; else=50")
+  sc[2]=100*(1-(rs$NU-4.5)^2/3.5^2)
+  sc[3]=RESCALE(rs$NV, 1:5, 20:100)
+  sc[4]=100*ifelse(sex==1, 1-(rs$NG-0.3)^2/2,
+                   ifelse(sex==-1, 1-(rs$NG+0.3)^2/2, 1-rs$NG^2/4))
+  # d=data.table(x=seq(1, 6, 0.2)); d[,y:=100*(1-(x-4.5)^2/3.5^2)]; plot(d)
+  # d=data.table(x=seq(1, 5, 0.2)); d[,y:=RESCALE(x, 1:5, 20:100)]; plot(d)
+  # d=data.table(x=seq(-1, 1, 0.1)); d[,y:=100*(1-(x-0.3)^2/2)]; plot(d)
+  # d=data.table(x=seq(-1, 1, 0.1)); d[,y:=100*(1-x^2/4)]; plot(d)
+  score=sum(sc*wt)/sum(wt)
+
+  Print("
+  <<bold
+  <<magenta {rep_char('=', 15)} Baby-Naming APP (0.1.0) {rep_char('=', 15)}>>
+
+  全名：\t\t{name}
+  全名长度：\t{rs$NLen}\t<<blue （2~4；建议长度：3）>>
+
+  姓氏：\t\t{rs$name0}
+  姓氏独特性：\t{formatF(rs$SNU, 3)}\t<<blue （1~6；建议范围：无）>>
+
+  名字：\t\t{gsub(rs$name0, '', name)}
+  名字独特性：\t{formatF(rs$NU, 3)}\t<<blue （1~6；建议范围：3.0~5.5）>>
+  寓意积极性：\t{formatF(rs$NV, 3)}\t<<blue （1~5；建议范围：3.5~5.0）>>
+  性别倾向：\t{formatF(rs$NG, 3)}\t<<blue （-1~1；建议范围：-0.3~0.3）>>
+
+  综合评分：\t<<red {formatF(score, 2)}>>
+  1）全名长度：\t{formatF(sc[1], 2)}（10%）
+  2）名字独特性：\t{formatF(sc[2], 2)}（30%）
+  3）寓意积极性：\t{formatF(sc[3], 2)}（30%）
+  4）性别倾向：\t{formatF(sc[4], 2)}（30%）
+
+  建议：
+  <<red {sg.NLen}>>
+
+  <<magenta {rep_char('=', 15)} Copyright (c) Bruce Bao {rep_char('=', 15)}>>
+  >>
+  ")
+  invisible(score)
 }
