@@ -32,10 +32,10 @@ It consists of nationwide statistics for almost all surnames and given-name char
 
 The `ChineseNames` package includes five datasets (`data.frame` in R):
 - **`familyname`**: 1,806 Chinese surnames with their proportions in the Han Chinese population
-  + overall proportions regardless of gender and birth cohort
+  + overall counts and proportions regardless of gender and birth cohort
 - **`givenname`**: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
-  + separately for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
-  + considering all kinds of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
+  + separate counts and proportions for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
+  + considering all situations of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
 - **`top1000name.prov`**: Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
 - **`top100name.year`**: Top 100 given names (character combinations) for 6 birth cohorts
 - **`top50char.year`**: Top 50 given-name characters for 6 birth cohorts
@@ -47,7 +47,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
 - **NLen: full-name length**
   + 2~4
   + A Chinese given name can be any Chinese character or any combination of two characters (rarely three characters).
-  + A Chinese surname usually consists of 1 character (rarely two characters [“compound surname”, 复姓]).
+  + A Chinese surname usually consists of one character (rarely two characters [“compound surname”, 复姓]).
 - **NU: given-name uniqueness (character level)**
   + 1~6
   + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
@@ -65,9 +65,9 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + 1~5
   + Six raters evaluated the valence (1 = *strongly negative*, 5 = *strongly positive*) of all the 2,614 characters in the Chinese given-name list (interrater reliability ICC = 0.884).
 - **NG: given-name gender (difference in proportions of a character used by males vs. females)**
-  + -1~1
+  + –1~1
   + NG = P<sub>male</sub> – P<sub>female</sub>
-  + NG ranges from –1 (completely feminine; 100% used by females) through 0 (gender-neutral; half by females and half by males) to 1 (completely masculine; 100% used by males).
+    + NG ranges from –1 (completely feminine; 100% used by females) through 0 (gender-neutral; half by females and half by males) to 1 (completely masculine; 100% used by males).
 - **SNU: surname uniqueness**
   + 1~6
   + SNU = –log<sub>10</sub>(P<sub>surname</sub> + 10<sup>–6</sup>)
@@ -80,7 +80,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
 
 ### Functions in `ChineseNames`
 - **`compute_name_index()`**
-  + It can easily compute variables of given names and surnames ready for scientific research. Just input a data frame and it will output a new data frame with all name variables appended.
+  + With this function, users can easily compute variables of given names and surnames ready for scientific research. Just input a data frame and it will output a new data frame with all name variables appended.
   + It can handle millions of cases in seconds.
   + We strongly recommend using this function given its convenience and optimized computation efficiency. Otherwise, users have to spend much time on basic work such as transforming and merging different datasets.
   + Example:
