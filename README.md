@@ -3,7 +3,7 @@
 Chinese Names Database 1930-2008
 
 ![](https://img.shields.io/badge/R-package-success)
-![](https://img.shields.io/badge/Version-0.2.0-success)
+![](https://img.shields.io/badge/Version-0.3.0-success)
 ![](https://img.shields.io/github/license/psychbruce/ChineseNames?label=License&color=success)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
@@ -35,21 +35,25 @@ The given-name and surname lists cover 96.8% of Han Chinese population born from
 The `ChineseNames` package includes six datasets (`data.frame` in R):
 1.	`familyname`: 1,806 Chinese surnames with their proportions in the Han Chinese population
 2.	`givenname`: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
+  - [x] separately for each gender and each birth cohort
+  - [x] considering all kinds of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
 3. `population`: Population for name databases
-4. `top1000name.prov`: Top 1000 given names across 31 Chinese mainland provinces
-5. `top100name.year`: Top 100 given names across 6 birth cohorts (pre-1960s to 2008)
-6. `top50char.year`: Top 50 given-name characters across 6 birth cohorts (pre-1960s to 2008)
+4. `top1000name.prov`: Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
+5. `top100name.year`: Top 100 given names (character combinations) for 6 birth cohorts
+6. `top50char.year`: Top 50 given-name characters for 6 birth cohorts
 
-Note: "ppm" in the variable names of these datasets means "parts per million" (百万分率; 1/10<sup>6</sup>).
+*Note*. The “ppm” in variable names of these datasets means “parts per million (百万分率)” (e.g., ppm = 1 means a proportion of 1/10<sup>6</sup>).
 
 
 ### Name Variables
 - NLen: full-name length
   + 2~4
-- NU: given-name uniqueness
+  + A Chinese given name can be any Chinese character or any combination of two characters (rarely three characters [just like the package author's name]). A Chinese surname usually consists of 1 character (rarely two characters [“compound surname”, 复姓]).
+- NU: given-name uniqueness (character level)
   + 1~6
   + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
-    + P<sub>given-name</sub> = percentage of a character used among the Han Chinese population specific to a person's birth cohort (all kinds of usage in either single-character or multi-character given names; e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
+    + P<sub>given-name</sub> = percentage of a character used in either single-character or multi-character given names among the Han Chinese population within a specific birth cohort
+    + The distribution of P<sub>given-name</sub> was highly skewed, so we log-transform and reverse it to get an index of uniqueness easy to be interpreted.
     + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero frequency (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
     + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
 - CCU: character uniqueness in daily corpus
@@ -77,7 +81,23 @@ Note: "ppm" in the variable names of these datasets means "parts per million" (�
 
 ### Functions in `ChineseNames`
 - `compute_name_index()`
-  + Easily compute variables of given names and surnames for scientific research
+  + It can easily compute variables of given names and surnames ready for scientific research. Just input a data frame and it will output a new data frame with all name variables appended.
+  + It can handle millions of cases in seconds.
+  + I strongly recommend using this function because of its convenience and optimized computation efficiency. Otherwise, users have to spend much time on basic work such as transforming and merging different datasets.
+  + Example:
+```r
+demodata  # a data frame
+compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
+```
+```
+      name birth name0 name1 name2 name3 NLen       NU      CCU       NV         NG      SNU SNI
+1 包寒吴霜  1995    包    寒    吴    霜    4 3.604170 4.117764 3.444444 -0.2187045 3.059540   2
+2   陈俊霖  1995    陈    俊    霖  <NA>    3 2.461936 4.768781 4.250000  0.4080962 1.341518   3
+3     张伟  1985    张    伟  <NA>  <NA>    2 1.661054 3.886456 4.000000  0.6859337 1.152858  26
+4     张炜  1988    张    炜  <NA>  <NA>    2 3.166530 5.858278 3.833333  0.6025298 1.152858  26
+5   欧阳修  1968  欧阳    修  <NA>  <NA>    3 2.946245 3.550976 2.833333  0.5047172 3.164511  15
+6     欧阳  2010    欧    阳  <NA>  <NA>    2 1.950870 3.457427 4.000000  0.5102738 2.969432  15
+```
 
 
 ## Author

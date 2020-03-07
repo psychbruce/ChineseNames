@@ -62,19 +62,19 @@ NULL
 NULL
 
 
-#' Top 1000 given names across 31 Chinese mainland provinces
+#' Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
 #' @name top1000name.prov
 #' @usage top1000name.prov
 NULL
 
 
-#' Top 100 given names across 6 birth cohorts (pre-1960s to 2008)
+#' Top 100 given names (character combinations) for 6 birth cohorts
 #' @name top100name.year
 #' @usage top100name.year
 NULL
 
 
-#' Top 50 given-name characters across 6 birth cohorts (pre-1960s to 2008)
+#' Top 50 given-name characters for 6 birth cohorts
 #' @name top50char.year
 #' @usage top50char.year
 NULL
