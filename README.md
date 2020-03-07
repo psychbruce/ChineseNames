@@ -40,6 +40,8 @@ The `ChineseNames` package includes six datasets (`data.frame` in R):
 5. `top100name.year`: Top 100 given names across 6 birth cohorts (pre-1960s to 2008)
 6. `top50char.year`: Top 50 given-name characters across 6 birth cohorts (pre-1960s to 2008)
 
+Note: "ppm" in the variable names of these datasets means "parts per million" (百万分率; 1/10<sup>6</sup>).
+
 
 ### Name Variables
 - NLen: full-name length
@@ -47,19 +49,30 @@ The `ChineseNames` package includes six datasets (`data.frame` in R):
 - NU: given-name uniqueness
   + 1~6
   + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
+    + P<sub>given-name</sub> = percentage of a character used among the Han Chinese population specific to a person's birth cohort (all kinds of usage in either single-character or multi-character given names; e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
+    + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero frequency (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
+    + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
 - CCU: character uniqueness in daily corpus
   + 1~6
-  + $$CCU=-log_{10}(P_{character}+10^{-6})$$
+  + CCU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
+    + P<sub>character</sub> = percentage of a character appearing in Chinese corpus (http://www.cncorpus.org)
+    + CCU should be distinguished from NU because daily language usage is quite different from naming practices.
+    + CCU ranges from 1.31 to 6.00. For example, CCU = 2 and 3 mean that the frequency of a character used in written and/or spoken Chinese texts equals to 1% and 1‰, respectively.
 - NV: given-name valence (i.e., positivity of character meaning)
   + 1~5
+  + Six raters evaluated the valence (1 = *strongly negative*, 5 = *strongly positive*) of all the 2,614 characters in the Chinese given-name list (interrater reliability ICC = 0.884).
 - NG: given-name gender (i.e., difference in proportions of a character used by males vs. females)
   + -1~1
-  + $$NG=P_{male}-P_{female}$$
+  + NG = P<sub>male</sub> – P<sub>female</sub>
+  + NG ranges from –1 (completely feminine; 100% used by females) through 0 (gender-neutral; half by females and half by males) to 1 (completely masculine; 100% used by males).
 - SNU: surname uniqueness
   + 1~6
-  + $$SNU=-log_{10}(P_{surname}+10^{-6})$$
+  + SNU = –log<sub>10</sub>(P<sub>surname</sub> + 10<sup>–6</sup>)
+    + SNU ranges from 1.13 to 6.00. Likewise, SNU = 2 and 3 mean that 1% and 1‰ of people possess this surname, respectively.
+    + Note that the diversity of surnames is rather limited in China: the top 25 popular Chinese surnames have covered about 60% (0.7 billion) of the Han Chinese population (1.2 billion).
 - SNI: surname initial (i.e., alphabetical order)
   + 1~26
+  + As Chinese names are always sorted by surname initials, we obtained such an index according to the alphabetical order of *Pinyin* initial of each surname.
 
 
 ### Functions in `ChineseNames`
