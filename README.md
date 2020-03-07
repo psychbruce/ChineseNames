@@ -46,7 +46,7 @@ The `ChineseNames` package includes six datasets (`data.frame` in R):
   + 2~4
 - NU: given-name uniqueness
   + 1~6
-  + $$NU=-log_{10}(P_{given-name}+10^{-6})$$
+  + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
 - CCU: character uniqueness in daily corpus
   + 1~6
   + $$CCU=-log_{10}(P_{character}+10^{-6})$$
