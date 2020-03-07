@@ -31,14 +31,14 @@ This Chinese name database was provided by *Beijing Meiming Science and Technolo
 It consists of nationwide statistics for almost all surnames and given-name characters and covers **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
 
 The `ChineseNames` package includes five datasets (`data.frame` in R):
-1.	`familyname`: 1,806 Chinese surnames with their proportions in the Han Chinese population
+-	`familyname`: 1,806 Chinese surnames with their proportions in the Han Chinese population
   + overall proportions regardless of gender and birth cohort
-2.	`givenname`: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
+-	`givenname`: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
   + separately for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
   + considering all kinds of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
-3. `top1000name.prov`: Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
-4. `top100name.year`: Top 100 given names (character combinations) for 6 birth cohorts
-5. `top50char.year`: Top 50 given-name characters for 6 birth cohorts
+- `top1000name.prov`: Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
+- `top100name.year`: Top 100 given names (character combinations) for 6 birth cohorts
+- `top50char.year`: Top 50 given-name characters for 6 birth cohorts
 
 *Note*. The “ppm” in variable names of these datasets means “parts per million (百万分率)” (e.g., ppm = 1 means a proportion of 1/10<sup>6</sup>).
 
