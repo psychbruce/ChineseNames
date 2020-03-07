@@ -115,7 +115,7 @@ NULL
 #' ## Compute for a dataset with a list of names
 #' demodata  # a data frame
 #' compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
-#' compute_name_index(demodata, "name")  # no controlling for birth cohort
+#' compute_name_index(demodata, "name")  # not adjust for birth cohort
 #' compute_name_index(demodata, "name", return.all=T)  # return temporary variables
 #' @export
 compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,

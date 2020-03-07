@@ -55,6 +55,6 @@ compute_name_index(name=myname, birth=mybirth, index="NU")
 ## Compute for a dataset with a list of names
 demodata  # a data frame
 compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
-compute_name_index(demodata, "name")  # no controlling for birth cohort
+compute_name_index(demodata, "name")  # not adjust for birth cohort
 compute_name_index(demodata, "name", return.all=T)  # return temporary variables
 }
