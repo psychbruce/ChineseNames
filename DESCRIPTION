@@ -7,15 +7,10 @@ Authors@R: c(
   )
 Author: Han-Wu-Shuang Bao [aut, cre]
 Maintainer: Han-Wu-Shuang Bao <baohws@psych.ac.cn>
-Description: A database of Han Chinese names provided by Beijing Meiming 
-  Science and Technology Company. This database contains: 
-  a) 1,806 Chinese surnames and 2,614 Chinese given-name characters, 
-  with their usage frequencies among the Han Chinese population 
-  (1.2 billion) alive in 2008; 
-  b) some key variables (e.g., name gender, name uniqueness, meaning 
-  positivity) of these names; 
-  c) the most common given names used in 31 Chinese mainland provinces
-  and 6 birth cohorts.
+Description: A full database of Han Chinese names provided by 
+  Beijing Meiming Science and Technology Company and originally 
+  obtained from the National Citizen Identity Information Center 
+  (NCIIC) of China.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

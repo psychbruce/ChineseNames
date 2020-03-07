@@ -15,8 +15,7 @@ Chinese Names Database 1930-2008
 Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from https://github.com/psychbruce/ChineseNames
 
 
-## User Guide
-### Install
+## Install
 NOTE: To use the function `compute_name_index()` in `ChineseNames`, you should also install the package `bruceR`. For an installation guide of `bruceR`, please see: https://github.com/psychbruce/bruceR
 ```r
 install.packages("devtools")
@@ -25,19 +24,21 @@ devtools::install_github("psychbruce/ChineseNames")
 ```
 
 
+## Description
 ### Data Source
 This Chinese name database was provided by *Beijing Meiming Science and Technology Company* and originally obtained from the National Citizen Identity Information Center (NCIIC) of China.
 
-It consists of nationwide statistics for almost all surnames and given-name characters and covers **1.2 billion Han Chinese population**. To our knowledge, it is the most comprehensive and accurate Chinese name database up to now.
+It consists of nationwide statistics for almost all surnames and given-name characters and covers **1.2 billion Han Chinese population**. To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
 
 The given-name and surname lists cover 96.8% of Han Chinese population born from 1930 to 2008 and still alive in 2008 (i.e., the living household-registered population). The given-name list documents the proportions of given-name characters separately for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008). The surname list records the overall proportions of surnames across gender and birth cohorts.
 
-The `ChineseNames` package includes five datasets (`data.frame` in R):
+The `ChineseNames` package includes six datasets (`data.frame` in R):
 1.	`familyname`: 1,806 Chinese surnames with their proportions in the Han Chinese population
 2.	`givenname`: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
 3. `population`: Population for name databases
 4. `top1000name.prov`: Top 1000 given names across 31 Chinese mainland provinces
-5. `top100name.year`: Top 100 given names across 6 birth cohorts (pre-1960 to 2008)
+5. `top100name.year`: Top 100 given names across 6 birth cohorts (pre-1960s to 2008)
+6. `top50char.year`: Top 50 given-name characters across 6 birth cohorts (pre-1960s to 2008)
 
 
 ### Name Variables
@@ -45,15 +46,19 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + 2~4
 - NU: given-name uniqueness
   + 1~6
+  + $$NU=-log_{10}(P_{given-name}+10^{-6})$$
 - CCU: character uniqueness in daily corpus
   + 1~6
-- NV: given-name valence
+  + $$CCU=-log_{10}(P_{character}+10^{-6})$$
+- NV: given-name valence (i.e., positivity of character meaning)
   + 1~5
-- NG: given-name gender
+- NG: given-name gender (i.e., difference in proportions of a character used by males vs. females)
   + -1~1
+  + $$NG=P_{male}-P_{female}$$
 - SNU: surname uniqueness
   + 1~6
-- SNI: surname initial (alphabetical order)
+  + $$SNU=-log_{10}(P_{surname}+10^{-6})$$
+- SNI: surname initial (i.e., alphabetical order)
   + 1~26
 
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ChineseNames.R
 \name{compute_name_index}
 \alias{compute_name_index}
-\title{Easily compute all available indexes of given names and surnames for scientific research}
+\title{Easily compute variables of given names and surnames for scientific research}
 \usage{
 compute_name_index(
   data = NULL,
@@ -47,7 +47,7 @@ To use this function, you also install the package \code{bruceR} from GitHub.
 For an installation guide of \code{bruceR}, please see: \link{https://github.com/psychbruce/bruceR}
 }
 \examples{
-## Compute for a name
+## Compute for one name
 myname=demodata[1, "name"]
 mybirth=1995
 compute_name_index(name=myname, birth=mybirth, index="NU")

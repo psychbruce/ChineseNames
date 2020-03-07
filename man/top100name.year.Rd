@@ -2,10 +2,10 @@
 % Please edit documentation in R/ChineseNames.R
 \name{top100name.year}
 \alias{top100name.year}
-\title{Top 100 given names across 6 birth cohorts (pre-1960 to 2008)}
+\title{Top 100 given names across 6 birth cohorts (pre-1960s to 2008)}
 \usage{
 top100name.year
 }
 \description{
-Top 100 given names across 6 birth cohorts (pre-1960 to 2008)
+Top 100 given names across 6 birth cohorts (pre-1960s to 2008)
 }

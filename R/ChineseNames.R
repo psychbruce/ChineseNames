@@ -68,9 +68,15 @@ NULL
 NULL
 
 
-#' Top 100 given names across 6 birth cohorts (pre-1960 to 2008)
+#' Top 100 given names across 6 birth cohorts (pre-1960s to 2008)
 #' @name top100name.year
 #' @usage top100name.year
+NULL
+
+
+#' Top 50 given-name characters across 6 birth cohorts (pre-1960s to 2008)
+#' @name top50char.year
+#' @usage top50char.year
 NULL
 
 
