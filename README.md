@@ -26,15 +26,18 @@ devtools::install_github("psychbruce/ChineseNames")
 
 
 ### Data Source
-This Chinese name database, consisting of nationwide statistics for almost all surnames and given-name characters and covering 1.2 billion Han Chinese population, was obtained from the National Citizen Identity Information Center (NCIIC) of China and provided by *Beijing Meiming Science and Technology Company*.
+This Chinese name database was provided by *Beijing Meiming Science and Technology Company* and originally obtained from the National Citizen Identity Information Center (NCIIC) of China.
 
-To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
+It consists of nationwide statistics for almost all surnames and given-name characters and covers **1.2 billion Han Chinese population**. To our knowledge, it is the most comprehensive and accurate Chinese name database up to now.
 
-The database includes:
-1.	a list of 1,806 Chinese surnames with their proportions in the Chinese population;
-2.	a list of 2,614 characters used in Chinese given names with their proportions in the Chinese population.
+The given-name and surname lists cover 96.8% of Han Chinese population born from 1930 to 2008 and still alive in 2008 (i.e., the living household-registered population). The given-name list documents the proportions of given-name characters separately for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008). The surname list records the overall proportions of surnames across gender and birth cohorts.
 
-These two lists cover 96.8% of Han Chinese population born from 1930 to 2008 and still alive in 2008 (i.e., the living household-registered population). The given-name list documents the proportions of given-name characters separately for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008). The surname list records the overall proportions of surnames across gender and birth cohorts.
+The `ChineseNames` package includes five datasets (`data.frame` in R):
+1.	`familyname`: 1,806 Chinese surnames with their proportions in the Han Chinese population
+2.	`givenname`: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
+3. `population`: Population for name databases
+4. `top1000name.prov`: Top 1000 given names across 31 Chinese mainland provinces
+5. `top100name.year`: Top 100 given names across 6 birth cohorts (pre-1960 to 2008)
 
 
 ### Name Variables
@@ -56,7 +59,7 @@ These two lists cover 96.8% of Han Chinese population born from 1930 to 2008 and
 
 ### Functions in `ChineseNames`
 - `compute_name_index()`
-  + Compute variables of given names and surnames for scientific research
+  + Easily compute variables of given names and surnames for scientific research
 
 
 ## Author
