@@ -3,6 +3,9 @@
 \name{givenname}
 \alias{givenname}
 \title{Chinese given-name database (character level)}
+\usage{
+givenname
+}
 \description{
-Chinese given-name database (character level)
+A list of 2,614 characters used in Chinese given names with their proportions in the Chinese population.
 }

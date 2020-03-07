@@ -3,6 +3,9 @@
 \name{familyname}
 \alias{familyname}
 \title{Chinese surname database}
+\usage{
+familyname
+}
 \description{
-Chinese surname database
+A list of 1,806 Chinese surnames with their proportions in the Chinese population.
 }

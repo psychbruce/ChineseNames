@@ -1,8 +1,10 @@
 #' ChineseNames: Chinese Names Database 1930-2008
 #'
-#' A database of Han Chinese names provided by \href{https://www.qimingtong.com/}{Beijing Meiming Technology Company}.
+#' A database of Han Chinese names obtained from
+#' the National Citizen Identity Information Center (NCIIC) of China
+#' and provided by \emph{Beijing Meiming Science and Technology Company}.
 #' @references
-#' To cite this package if you use the data in your research:
+#' If you use this database, please cite it as:
 #'
 #' Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from \link{https://github.com/psychbruce/ChineseNames}
 #' @docType package
@@ -11,50 +13,73 @@ NULL
 
 
 .onAttach=function(libname, pkgname) {
-  if(require(bruceR)==FALSE) devtools::install_github("psychbruce/bruceR")
-  Print("
-  <<bold <<blue
-  \n\n\n<<magenta {rep_char('=', 56)}>>
-  Loaded package:
-  <<green \u2714 ChineseNames>>
-  Citation:
-  <<silver
-  Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from <<underline https://github.com/psychbruce/ChineseNames>>
-  >>>>>>
-  ")
+  if(require(bruceR)==FALSE) {
+    cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from https://github.com/psychbruce/ChineseNames")
+    message("NOTE:
+    To use the function `compute_name_index()` in `ChineseNames`,
+    you should also install the package `bruceR` from GitHub.
+    For an installation guide of `bruceR`, please see:
+      https://github.com/psychbruce/bruceR")
+    # devtools::install_github("psychbruce/bruceR")
+  } else {
+    Print("
+    <<blue
+    <<bold <<magenta
+    {rep_char('=', 56)}
+    >>
+    Loaded package:>>
+    <<green \u2714 ChineseNames>>
+    <<black
+    <<bold <<blue Citation:>>>>
+    Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from <<underline https://github.com/psychbruce/ChineseNames>>
+    >>>>
+    ")
+  }
 }
 
 
 #### Databases ####
 
 #' Chinese surname database
+#'
+#' A list of 1,806 Chinese surnames with their proportions in the Chinese population.
 #' @name familyname
+#' @usage familyname
 NULL
 
 
 #' Chinese given-name database (character level)
+#'
+#' A list of 2,614 characters used in Chinese given names with their proportions in the Chinese population.
 #' @name givenname
+#' @usage givenname
 NULL
 
 
 #' Population for name databases
 #' @name population
+#' @usage population
 NULL
 
 
 #' Top 1000 given names across 31 Chinese mainland provinces
 #' @name top1000name.prov
+#' @usage top1000name.prov
 NULL
 
 
 #' Top 100 given names across 6 birth cohorts (pre-1960 to 2008)
 #' @name top100name.year
+#' @usage top100name.year
 NULL
 
 
 #### Functions ####
 
-#' Compute indexes of given names and surnames
+#' Easily compute variables of given names and surnames for scientific research
+#'
+#' To use this function, you also install the package \code{bruceR} from GitHub.
+#' For an installation guide of \code{bruceR}, please see: \link{https://github.com/psychbruce/bruceR}
 #' @import data.table
 #' @import stringr
 #' @param data \code{data.frame} or \code{data.table}.
@@ -62,28 +87,30 @@ NULL
 #' @param var.birthyear [Optional] Variable name of birth year in your data (e.g., \code{"birth"}).
 #' @param index [Optional] Which indexes to compute?
 #'
-#' By default, it will compute all the available variables.
+#' By default, it will compute all available variables.
 #' \itemize{
 #'   \item NLen: full-name length (2~4).
 #'   \item NU: given-name uniqueness (1~6).
-#'   \item CCU: character uniqueness in corpus (1~6).
+#'   \item CCU: character uniqueness in daily corpus (1~6).
 #'   \item NV: given-name valence (1~5).
 #'   \item NG: given-name gender (-1~1).
 #'   \item SNU: surname uniqueness (1~6).
 #'   \item SNI: surname initial (alphabetical order; 1~26).
 #' }
 #' @param return.namechar Whether to return separate name characters. Default is \code{TRUE}.
-#' @param return.all Whether to return all the in-process variables that are used to compute the final variables. Default is \code{FALSE}.
-#' @return An appended \code{data.frame} or \code{data.table} with a series of name indexes added.
+#' @param return.all Whether to return all temporary variables in computing the final variables. Default is \code{FALSE}.
+#' @return A new \code{data.frame} or \code{data.table} with name variables appended.
 #' @examples
-#' demodata
-#' compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
-#' compute_name_index(demodata, "name")  # no controlling for birth cohort
-#' compute_name_index(demodata, "name", return.all=T)  # return all in-process variables
-#'
+#' ## Compute for one name
 #' myname=demodata[1, "name"]
 #' mybirth=1995
 #' compute_name_index(name=myname, birth=mybirth, index="NU")
+#'
+#' ## Compute for a dataset with a list of names
+#' demodata  # a data frame
+#' compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
+#' compute_name_index(demodata, "name")  # no controlling for birth cohort
+#' compute_name_index(demodata, "name", return.all=T)  # return temporary variables
 #' @export
 compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,
                             name=NA, birth=NA,
@@ -198,16 +225,16 @@ compute_NU_char=function(char, year=NA) {
 }
 
 
-#' Baby-naming APP (with reports and suggestions)
-#' @param name Full name.
-#' @param sex \code{0} = unknown, \code{-1} = female, \code{1} = male.
-#' @param birth Birth year or \code{NA}.
-#' @return This function will output a list of results and "invisibly" return a final score (0-100).
-#' @examples
-#' testname=demodata[1, "name"]
-#' sex=1  # 0 = unknown, -1 = female, 1 = male
-#' baby_naming_app(testname, sex, 1995)
-#' @export
+## Baby-naming APP (with reports and suggestions)
+## @param name Full name.
+## @param sex \code{0} = unknown, \code{-1} = female, \code{1} = male.
+## @param birth Birth year or \code{NA}.
+## @return This function will output a list of results and "invisibly" return a final score (0-100).
+## @examples
+## testname=demodata[1, "name"]
+## sex=1  # 0 = unknown, -1 = female, 1 = male
+## baby_naming_app(testname, sex, 1995)
+## @export
 baby_naming_app=function(name, sex=0, birth=NA) {
   rs=compute_name_index(name=name, birth=birth)
   # sex=RECODE(sex, "2=-1; 1=1; 0=0; else=NA")

@@ -2,12 +2,18 @@
 % Please edit documentation in R/ChineseNames.R
 \name{compute_name_index}
 \alias{compute_name_index}
-\title{Compute indexes of given names and surnames}
+\title{Easily compute all available indexes of given names and surnames for scientific research}
 \usage{
-compute_name_index(data = NULL, var.fullname = NULL,
-  var.birthyear = NULL, name = NA, birth = NA, index = c("NLen",
-  "NU", "CCU", "NV", "NG", "SNU", "SNI"), return.namechar = TRUE,
-  return.all = FALSE)
+compute_name_index(
+  data = NULL,
+  var.fullname = NULL,
+  var.birthyear = NULL,
+  name = NA,
+  birth = NA,
+  index = c("NLen", "NU", "CCU", "NV", "NG", "SNU", "SNI"),
+  return.namechar = TRUE,
+  return.all = FALSE
+)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{data.table}.}
@@ -18,11 +24,11 @@ compute_name_index(data = NULL, var.fullname = NULL,
 
 \item{index}{[Optional] Which indexes to compute?
 
-By default, it will compute all the available variables.
+By default, it will compute all available variables.
 \itemize{
   \item NLen: full-name length (2~4).
   \item NU: given-name uniqueness (1~6).
-  \item CCU: character uniqueness in corpus (1~6).
+  \item CCU: character uniqueness in daily corpus (1~6).
   \item NV: given-name valence (1~5).
   \item NG: given-name gender (-1~1).
   \item SNU: surname uniqueness (1~6).
@@ -31,21 +37,24 @@ By default, it will compute all the available variables.
 
 \item{return.namechar}{Whether to return separate name characters. Default is \code{TRUE}.}
 
-\item{return.all}{Whether to return all the in-process variables that are used to compute the final variables. Default is \code{FALSE}.}
+\item{return.all}{Whether to return all temporary variables in computing the final variables. Default is \code{FALSE}.}
 }
 \value{
-An appended \code{data.frame} or \code{data.table} with a series of name indexes added.
+A new \code{data.frame} or \code{data.table} with name variables appended.
 }
 \description{
-Compute indexes of given names and surnames
+To use this function, you also install the package \code{bruceR} from GitHub.
+For an installation guide of \code{bruceR}, please see: \link{https://github.com/psychbruce/bruceR}
 }
 \examples{
-demodata
-compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
-compute_name_index(demodata, "name")  # no controlling for birth cohort
-compute_name_index(demodata, "name", return.all=T)  # return all in-process variables
-
+## Compute for a name
 myname=demodata[1, "name"]
 mybirth=1995
 compute_name_index(name=myname, birth=mybirth, index="NU")
+
+## Compute for a dataset with a list of names
+demodata  # a data frame
+compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
+compute_name_index(demodata, "name")  # no controlling for birth cohort
+compute_name_index(demodata, "name", return.all=T)  # return temporary variables
 }

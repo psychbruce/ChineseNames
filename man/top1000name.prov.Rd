@@ -3,6 +3,9 @@
 \name{top1000name.prov}
 \alias{top1000name.prov}
 \title{Top 1000 given names across 31 Chinese mainland provinces}
+\usage{
+top1000name.prov
+}
 \description{
 Top 1000 given names across 31 Chinese mainland provinces
 }

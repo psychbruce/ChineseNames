@@ -5,10 +5,12 @@
 \alias{ChineseNames-package}
 \title{ChineseNames: Chinese Names Database 1930-2008}
 \description{
-A database of Han Chinese names provided by \href{https://www.qimingtong.com/}{Beijing Meiming Technology Company}.
+A database of Han Chinese names obtained from
+the National Citizen Identity Information Center (NCIIC) of China
+and provided by \emph{Beijing Meiming Science and Technology Company}.
 }
 \references{
-To cite this package if you use the data in your research:
+If you use this database, please cite it as:
 
 Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from \link{https://github.com/psychbruce/ChineseNames}
 }

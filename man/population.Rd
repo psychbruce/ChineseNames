@@ -3,6 +3,9 @@
 \name{population}
 \alias{population}
 \title{Population for name databases}
+\usage{
+population
+}
 \description{
 Population for name databases
 }
