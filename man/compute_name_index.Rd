@@ -28,7 +28,7 @@ By default, it will compute all available variables.
 \itemize{
   \item NLen: full-name length (2~4).
   \item NU: given-name uniqueness (1~6).
-  \item CCU: character uniqueness in daily corpus (1~6).
+  \item CCU: character uniqueness in daily Chinese corpus (1~6).
   \item NV: given-name valence (1~5).
   \item NG: given-name gender (-1~1).
   \item SNU: surname uniqueness (1~6).

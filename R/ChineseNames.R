@@ -14,7 +14,7 @@ NULL
 
 .onAttach=function(libname, pkgname) {
   if(require(bruceR)==FALSE) {
-    cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from https://github.com/psychbruce/ChineseNames")
+    cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames")
     message("NOTE:
     To use the function `compute_name_index()` in `ChineseNames`,
     you should also install the package `bruceR` from GitHub.
@@ -31,7 +31,7 @@ NULL
     <<green \u2714 ChineseNames>>
     <<black
     <<bold <<blue Citation:>>>>
-    Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from <<underline https://github.com/psychbruce/ChineseNames>>
+    Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
     >>>>
     ")
   }
@@ -97,7 +97,7 @@ NULL
 #' \itemize{
 #'   \item NLen: full-name length (2~4).
 #'   \item NU: given-name uniqueness (1~6).
-#'   \item CCU: character uniqueness in daily corpus (1~6).
+#'   \item CCU: character uniqueness in daily Chinese corpus (1~6).
 #'   \item NV: given-name valence (1~5).
 #'   \item NG: given-name gender (-1~1).
 #'   \item SNU: surname uniqueness (1~6).

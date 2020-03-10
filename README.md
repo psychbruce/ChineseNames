@@ -12,16 +12,22 @@ Chinese Names Database 1930-2008
 
 
 ## Citation
-Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from https://github.com/psychbruce/ChineseNames
+
+Please cite the following two references if you use this database.
+
+- Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
+
+- Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
+  + This research article has been submitted for publication and posted in the preprint server *PsyArXiv*.
 
 
 ## Install
-NOTE: To use the function `compute_name_index()` in `ChineseNames`, you should also install the package `bruceR`. For an installation guide of `bruceR`, please see: https://github.com/psychbruce/bruceR
 ```r
 install.packages("devtools")
 # devtools::install_github("psychbruce/bruceR")
 devtools::install_github("psychbruce/ChineseNames")
 ```
+*Note*. To use the function `compute_name_index()` in `ChineseNames`, you should also install the package `bruceR`. For an installation guide of `bruceR`, please see: https://github.com/psychbruce/bruceR
 
 
 ## Description
@@ -32,10 +38,10 @@ It consists of nationwide statistics for almost all surnames and given-name char
 
 The `ChineseNames` package includes five datasets (`data.frame` in R):
 - **`familyname`**: 1,806 Chinese surnames with their proportions in the Han Chinese population
-  + overall counts and proportions regardless of gender and birth cohort
+  + overall frequencies and proportions regardless of gender and birth cohort
 - **`givenname`**: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
-  + separate counts and proportions for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
-  + considering all situations of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
+  + separate frequencies and proportions for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
+  + involving all situations of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
 - **`top1000name.prov`**: Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
 - **`top100name.year`**: Top 100 given names (character combinations) for 6 birth cohorts
 - **`top50char.year`**: Top 50 given-name characters for 6 birth cohorts
@@ -53,13 +59,13 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
     + P<sub>given-name</sub> = percentage of a character used in either single-character or multi-character given names among the Han Chinese population within a specific birth cohort
     + The distribution of P<sub>given-name</sub> was highly skewed, so we log-transform and reverse it to get an index of uniqueness easy to be interpreted.
-    + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero frequency (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
+    + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero percentage (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
     + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
-- **CCU: character uniqueness in daily corpus**
+- **CCU: character uniqueness in daily Chinese corpus**
   + 1~6
   + CCU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
-    + P<sub>character</sub> = percentage of a character appearing in Chinese corpus (http://www.cncorpus.org)
-    + CCU should be distinguished from NU because daily language usage is quite different from naming practices.
+    + P<sub>character</sub> = percentage of a character appearing in daily Chinese corpus (http://www.cncorpus.org)
+    + CCU should be distinguished from NU because daily language usage is quite different from naming practices. For instance, some characters rarely used in personal names may instead be frequently used in daily language (and vice versa).
     + CCU ranges from 1.31 to 6.00. For example, CCU = 2 and 3 mean that the frequency of a character used in written and/or spoken Chinese texts equals to 1% and 1‰, respectively.
 - **NV: given-name valence (positivity of character meaning)**
   + 1~5
@@ -85,8 +91,12 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + We strongly recommend using this function given its convenience and optimized computation efficiency. Otherwise, users have to spend much time on basic work such as transforming and merging different datasets.
   + Example:
 ```r
+library(ChineseNames)  # "bruceR" package should also be installed
 demodata  # a data frame with two variables "name" and "birth"
-compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
+compute_name_index(demodata,
+                   var.fullname="name",  # full name
+                   var.birthyear="birth",  # adjust for birth cohort
+                   return.all=FALSE)  # or TRUE (return all temporary variables in computing process)
 ```
 ```
       name birth name0 name1 name2 name3 NLen       NU      CCU       NV         NG      SNU SNI
