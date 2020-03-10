@@ -18,7 +18,6 @@ Please cite the following two references if you use this database.
 - Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
 - Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
-  + This research article has been submitted for publication and posted in the preprint server *PsyArXiv*.
 
 
 ## Install
