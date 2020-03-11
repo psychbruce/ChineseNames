@@ -61,7 +61,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
     + The distribution of P<sub>given-name</sub> is highly skewed, so we log-transform and reverse it to get an index of uniqueness easy to be interpreted.
     + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero percentage (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
     + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
-    + For data without birth-year information, you can just use the averaged NU across all six birth cohorts (see the help page of the function `compute_name_index()`).
+    + For data without birth-year information, you can just use the averaged percentage across all six birth cohorts to estimate NU (see the help page of the function `compute_name_index()`).
 - **CCU: character uniqueness in daily Chinese corpus**
   + 1~6
   + CCU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
@@ -114,6 +114,19 @@ newdata
 8   张艺谋  1950    张    艺    谋  <NA>    3 3.880830 3.661088 3.250000  0.3183426 1.152858  26
 9     王的  2005    王    的  <NA>  <NA>    2 5.189320 1.310983 1.666667 -0.5325489 1.125734  23
 ```
+
+
+## A Note on Multi-Character Given Names
+For a Chinese given name with multiple characters, name variables (NU, CCU, NV, and NG) are averaged across characters. In other words, we target *characters* rather than *combinations of characters* in Chinese given names. Here we summarize the reasons for doing so.
+1. This practice has been accepted by academic community of psychology.
+2. Analyses based on characters are more practical and allow for more specific examination targeting characters used at different locations in a given name.
+3. In computing the percentage of a character used among the Han Chinese population, the Chinese name database has added up all kinds of its usage in either single-character or multi-character given names. Therefore, the percentages of characters indeed reflect their all possible usage in naming practices.
+4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = .32, *p* < .001), suggesting an objective–subjective correspondence.
+5. For name variables other than NU, it is the only feasible approach to compute them in a large sample.
+
+For details, please see the *SI Appendix* (`Bao_2020_Preprint_SI_Unique-name holders are more likely to choose and succeed in unique jobs.pdf`) posted on our OSF Project (https://osf.io/8syrc/).
+
+We also recommend future researchers to follow this practice in processing Chinese given names.
 
 
 ## Author
