@@ -18,6 +18,7 @@ Please cite the following two references if you use this database.
 - Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
 - Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
+  + This manuscript has been submitted to a journal and posted on a preprint server (*PsyArXiv*). I will update the reference information if it is accepted and published.
 
 
 ## Install
@@ -31,7 +32,7 @@ devtools::install_github("psychbruce/ChineseNames")
 
 ## Description
 ### Data Source
-This Chinese name database was provided by *Beijing Meiming Science and Technology Company* and originally obtained from the National Citizen Identity Information Center (NCIIC) of China.
+This Chinese name database was provided by *Beijing Meiming Science and Technology Company* and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 
 It consists of nationwide statistics for almost all surnames and given-name characters and covers **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
 
@@ -57,9 +58,10 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + 1~6
   + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
     + P<sub>given-name</sub> = percentage of a character used in either single-character or multi-character given names among the Han Chinese population within a specific birth cohort
-    + The distribution of P<sub>given-name</sub> was highly skewed, so we log-transform and reverse it to get an index of uniqueness easy to be interpreted.
+    + The distribution of P<sub>given-name</sub> is highly skewed, so we log-transform and reverse it to get an index of uniqueness easy to be interpreted.
     + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero percentage (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
     + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
+    + For data without birth-year information, you can just use the overall percentage across all six birth cohorts to estimate NU.
 - **CCU: character uniqueness in daily Chinese corpus**
   + 1~6
   + CCU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
@@ -80,7 +82,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
     + Note that the diversity of surnames is rather limited in China: the top 25 popular Chinese surnames have covered about 60% (0.7 billion) of the Han Chinese population (1.2 billion).
 - **SNI: surname initial (alphabetical order)**
   + 1~26
-  + As Chinese names are always sorted by surname initials, we obtained such an index according to the alphabetical order of *Pinyin* initial of each surname.
+  + As Chinese names are always sorted by surname initials, we include such an index according to the alphabetical order of *Pinyin* initial of each surname.
 
 
 ### Functions in `ChineseNames`
