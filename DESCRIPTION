@@ -1,7 +1,7 @@
 Package: ChineseNames
 Type: Package
-Title: Chinese Names Database 1930-2008
-Version: 0.3.0
+Title: Chinese Name Database 1930-2008
+Version: 0.4.0
 Authors@R: c(
   "Han-Wu-Shuang Bao <baohws@psych.ac.cn> [aut, cre]"
   )

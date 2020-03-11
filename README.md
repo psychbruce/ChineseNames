@@ -1,9 +1,9 @@
 # ChineseNames
 
-Chinese Names Database 1930-2008
+Chinese Name Database 1930-2008
 
 ![](https://img.shields.io/badge/R-package-success)
-![](https://img.shields.io/badge/Version-0.3.0-success)
+![](https://img.shields.io/badge/Version-0.4.0-success)
 ![](https://img.shields.io/github/license/psychbruce/ChineseNames?label=License&color=success)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
@@ -15,7 +15,7 @@ Chinese Names Database 1930-2008
 
 Please cite the following two references if you use this database.
 
-- Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
+- Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
 - Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
   + This manuscript has been submitted to a journal and posted on a preprint server (*PsyArXiv*). I will update the reference information once it is accepted and published.
@@ -37,9 +37,9 @@ This Chinese name database was provided by *Beijing Meiming Science and Technolo
 It consists of nationwide statistics for almost all surnames and given-name characters and covers **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
 
 The `ChineseNames` package includes five datasets (`data.frame` in R):
-- **`familyname`**: 1,806 Chinese surnames with their proportions in the Han Chinese population
+- **`familyname`**: 1,806 Chinese surnames with their usage in the Han Chinese population
   + overall frequencies and proportions regardless of gender and birth cohort
-- **`givenname`**: 2,614 characters used in Chinese given names with their proportions in the Han Chinese population
+- **`givenname`**: 2,614 characters used in Chinese given names with their usage in the Han Chinese population
   + separate frequencies and proportions for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
   + involving all situations of their usage in either single-character or multi-character given names (e.g., the character “伟” in “张伟”, “张伟\*”, “张\*伟”, “王伟”, “王伟\*”, “王\*伟”, …)
 - **`top1000name.prov`**: Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
@@ -118,10 +118,10 @@ newdata
 
 ### A Note on Multi-Character Given Names
 For a Chinese given name with multiple characters, name variables (NU, CCU, NV, and NG) are averaged across characters. In other words, we target (and recommend targeting) ***characters*** rather than ***character combinations*** in Chinese given names. Here we summarize the reasons for doing so.
-1. This practice has been accepted by academic community of psychology ([Cai et al., 2018](https://doi.org/10.3389/fpsyg.2018.00554)).
+1. This practice has been accepted by academic community of psychology (for related previous research, see [Cai et al., 2018](https://doi.org/10.3389/fpsyg.2018.00554)).
 2. Analyses based on characters are more practical and allow for more specific examination targeting characters used at different locations in a given name.
 3. In computing the percentage of a character used among the Han Chinese population, the Chinese name database has added up all kinds of its usage in either single-character or multi-character given names. Therefore, the percentages of characters indeed reflect their all possible usage in naming practices.
-4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = .32, *p* < .001, *N* = 672, [Study 1](https://doi.org/10.31234/osf.io/53j86)), suggesting an objective–subjective correspondence.
+4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = 0.32, *p* < 0.001, *N* = 672, [Study 1](https://doi.org/10.31234/osf.io/53j86)), suggesting an objective–subjective correspondence.
 5. For name variables other than NU, it is the only feasible approach to compute them in a large sample.
 
 For details, please see the *SI Appendix* (`Bao_2020_Preprint_SI_Unique-name holders are more likely to choose and succeed in unique jobs.pdf`) posted on our OSF Project (https://osf.io/8syrc/).

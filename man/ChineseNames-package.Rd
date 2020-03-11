@@ -3,14 +3,17 @@
 \docType{package}
 \name{ChineseNames-package}
 \alias{ChineseNames-package}
-\title{ChineseNames: Chinese Names Database 1930-2008}
+\title{ChineseNames: Chinese Name Database 1930-2008}
 \description{
-A database of Han Chinese names obtained from
-the National Citizen Identity Information Center (NCIIC) of China
-and provided by \emph{Beijing Meiming Science and Technology Company}.
+A full database of Han Chinese names provided by
+\emph{Beijing Meiming Science and Technology Company} and
+originally obtained from the National Citizen Identity Information Center
+(NCIIC) of China.
 }
 \references{
-If you use this database, please cite it as:
+Please cite the following two references if you use this database.
 
-Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from \link{https://github.com/psychbruce/ChineseNames}
+Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. \link{https://github.com/psychbruce/ChineseNames}
+
+Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. \emph{PsyArXiv}. \link{https://doi.org/10.31234/osf.io/53j86}
 }

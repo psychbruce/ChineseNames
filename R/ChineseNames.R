@@ -1,12 +1,15 @@
-#' ChineseNames: Chinese Names Database 1930-2008
+#' ChineseNames: Chinese Name Database 1930-2008
 #'
-#' A database of Han Chinese names obtained from
-#' the National Citizen Identity Information Center (NCIIC) of China
-#' and provided by \emph{Beijing Meiming Science and Technology Company}.
+#' A full database of Han Chinese names provided by
+#' \emph{Beijing Meiming Science and Technology Company} and
+#' originally obtained from the National Citizen Identity Information Center
+#' (NCIIC) of China.
 #' @references
-#' If you use this database, please cite it as:
+#' Please cite the following two references if you use this database.
 #'
-#' Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 (R package). Retrieved from \link{https://github.com/psychbruce/ChineseNames}
+#' Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. \link{https://github.com/psychbruce/ChineseNames}
+#'
+#' Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. \emph{PsyArXiv}. \link{https://doi.org/10.31234/osf.io/53j86}
 #' @docType package
 #' @name ChineseNames-package
 NULL
@@ -14,7 +17,8 @@ NULL
 
 .onAttach=function(libname, pkgname) {
   if(require(bruceR)==FALSE) {
-    cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames")
+    cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames")
+    cat("\nBao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. PsyArXiv. https://doi.org/10.31234/osf.io/53j86")
     message("NOTE:
     To use the function `compute_name_index()` in `ChineseNames`,
     you should also install the package `bruceR` from GitHub.
@@ -28,10 +32,11 @@ NULL
     {rep_char('=', 56)}
     >>
     Loaded package:>>
-    <<green \u2714 ChineseNames>>
+    <<green \u2714 ChineseNames (version {as.character(packageVersion('ChineseNames'))})>>
     <<black
     <<bold <<blue Citation:>>>>
-    Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
+    Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
+    Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. <<italic PsyArXiv>>. <<underline https://doi.org/10.31234/osf.io/53j86>>
     >>>>
     ")
   }
