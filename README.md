@@ -18,7 +18,7 @@ Please cite the following two references if you use this database.
 - Bao, H.-W.-S. (2020). ChineseNames: Chinese Names Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
 - Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
-  + This manuscript has been submitted to a journal and posted on a preprint server (*PsyArXiv*). I will update the reference information if it is accepted and published.
+  + This manuscript has been submitted to a journal and posted on a preprint server (*PsyArXiv*). I will update the reference information once it is accepted and published.
 
 
 ## Install
@@ -121,7 +121,7 @@ For a Chinese given name with multiple characters, name variables (NU, CCU, NV, 
 1. This practice has been accepted by academic community of psychology ([Cai et al., 2018](https://doi.org/10.3389/fpsyg.2018.00554)).
 2. Analyses based on characters are more practical and allow for more specific examination targeting characters used at different locations in a given name.
 3. In computing the percentage of a character used among the Han Chinese population, the Chinese name database has added up all kinds of its usage in either single-character or multi-character given names. Therefore, the percentages of characters indeed reflect their all possible usage in naming practices.
-4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = .32, *p* < .001), suggesting an objective–subjective correspondence.
+4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = .32, *p* < .001, *N* = 672, [Study 1](https://doi.org/10.31234/osf.io/53j86)), suggesting an objective–subjective correspondence.
 5. For name variables other than NU, it is the only feasible approach to compute them in a large sample.
 
 For details, please see the *SI Appendix* (`Bao_2020_Preprint_SI_Unique-name holders are more likely to choose and succeed in unique jobs.pdf`) posted on our OSF Project (https://osf.io/8syrc/).
