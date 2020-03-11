@@ -116,9 +116,9 @@ newdata
 ```
 
 
-## A Note on Multi-Character Given Names
-For a Chinese given name with multiple characters, name variables (NU, CCU, NV, and NG) are averaged across characters. In other words, we target *characters* rather than *combinations of characters* in Chinese given names. Here we summarize the reasons for doing so.
-1. This practice has been accepted by academic community of psychology.
+### A Note on Multi-Character Given Names
+For a Chinese given name with multiple characters, name variables (NU, CCU, NV, and NG) are averaged across characters. In other words, we target (and recommend targeting) ***characters*** rather than ***character combinations*** in Chinese given names. Here we summarize the reasons for doing so.
+1. This practice has been accepted by academic community of psychology ([Cai et al., 2018](https://doi.org/10.3389/fpsyg.2018.00554)).
 2. Analyses based on characters are more practical and allow for more specific examination targeting characters used at different locations in a given name.
 3. In computing the percentage of a character used among the Han Chinese population, the Chinese name database has added up all kinds of its usage in either single-character or multi-character given names. Therefore, the percentages of characters indeed reflect their all possible usage in naming practices.
 4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = .32, *p* < .001), suggesting an objective–subjective correspondence.
@@ -126,7 +126,7 @@ For a Chinese given name with multiple characters, name variables (NU, CCU, NV, 
 
 For details, please see the *SI Appendix* (`Bao_2020_Preprint_SI_Unique-name holders are more likely to choose and succeed in unique jobs.pdf`) posted on our OSF Project (https://osf.io/8syrc/).
 
-We also recommend future researchers to follow this practice in processing Chinese given names.
+We recommend future researchers to follow this practice in processing Chinese given names.
 
 
 ## Author
