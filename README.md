@@ -124,9 +124,9 @@ For a Chinese given name with multiple characters, name variables (NU, CCU, NV, 
 4. Our research has shown that the NU computed by averaging NU across multiple characters (objective NU) is positively correlated with people’s perception (subjective NU) (*r*<sub>obj–subj</sub> = 0.32, *p* < 0.001, *N* = 672, [Study 1](https://doi.org/10.31234/osf.io/53j86)), suggesting an objective–subjective correspondence.
 5. For name variables other than NU, it is the only feasible approach to compute them in a large sample.
 
-For details, please see the *SI Appendix* (`Bao_2020_Preprint_SI_Unique-name holders are more likely to choose and succeed in unique jobs.pdf`) posted on our OSF Project (https://osf.io/8syrc/).
+For details, see *Supplementary Information* (`Bao_2020_Preprint_SI_Name uniqueness predicts career choice and career achievement.pdf`) posted on our OSF Project (https://osf.io/8syrc/).
 
-We recommend future researchers to follow this practice in processing Chinese given names.
+We recommend future researchers to follow this practice when handling multi-character given names.
 
 
 ## Author
