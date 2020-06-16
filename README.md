@@ -17,7 +17,7 @@ Please cite the following two references if you use this database.
 
 - Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
-- Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
+- Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
   + This manuscript has been submitted to a journal and posted on a preprint server (*PsyArXiv*). I will update the reference information once it is accepted and published.
 
 
@@ -73,7 +73,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + Six raters evaluated the valence (1 = *strongly negative*, 5 = *strongly positive*) of all the 2,614 characters in the Chinese given-name list (interrater reliability ICC = 0.884).
 - **NG: given-name gender (difference in proportions of a character used by males vs. females)**
   + –1~1
-  + NG = P<sub>male</sub> – P<sub>female</sub>
+  + NG = (*N*<sub>male</sub> – *N*<sub>female</sub>) / (*N*<sub>male</sub> + *N*<sub>female</sub>)
     + NG ranges from –1 (completely feminine; 100% used by females) through 0 (gender-neutral; half by females and half by males) to 1 (completely masculine; 100% used by males).
 - **SNU: surname uniqueness**
   + 1~6
