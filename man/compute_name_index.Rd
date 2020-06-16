@@ -28,12 +28,14 @@ By default, it will compute all available variables.
 \itemize{
   \item NLen: full-name length (2~4).
   \item NU: given-name uniqueness (1~6).
-  \item CCU: character uniqueness in daily Chinese corpus (1~6).
+  \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
   \item NV: given-name valence (1~5).
   \item NG: given-name gender (-1~1).
   \item SNU: surname uniqueness (1~6).
   \item SNI: surname initial (alphabetical order; 1~26).
-}}
+}
+
+For details about these variables, see \link{https://github.com/psychbruce/ChineseNames}}
 
 \item{return.namechar}{Whether to return separate name characters. Default is \code{TRUE}.}
 
@@ -44,7 +46,7 @@ A new \code{data.frame} or \code{data.table} with name variables appended.
 }
 \description{
 To use this function, you also install the package \code{bruceR} from GitHub.
-For an installation guide of \code{bruceR}, please see: \link{https://github.com/psychbruce/bruceR}
+For an installation guide of \code{bruceR}, see \link{https://github.com/psychbruce/bruceR}
 }
 \examples{
 ## Compute for one name
