@@ -17,7 +17,7 @@ Please cite the following two references if you use this database.
 
 - Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
-- Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. *PsyArXiv*. https://doi.org/10.31234/osf.io/53j86
+- Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at *PsyArXiv* https://doi.org/10.31234/osf.io/53j86
   + This manuscript has been submitted to a journal and posted on a preprint server (*PsyArXiv*). I will update the reference information once it is accepted and published.
 
 
@@ -62,10 +62,10 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
     + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero percentage (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
     + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
     + For data without birth-year information, you can just use the averaged percentage across all six birth cohorts to estimate NU (see the help page of the function `compute_name_index()`).
-- **CCU: character uniqueness in daily Chinese corpus**
+- **CCU: character uniqueness in contemporary Chinese corpus**
   + 1~6
   + CCU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
-    + P<sub>character</sub> = percentage of a character appearing in daily Chinese corpus (http://www.cncorpus.org)
+    + P<sub>character</sub> = percentage of a character appearing in contemporary Chinese corpus (http://www.cncorpus.org)
     + CCU should be distinguished from NU because daily language usage is quite different from naming practices. For instance, some characters rarely used in personal names may instead be frequently used in daily language (and vice versa).
     + CCU ranges from 1.31 to 6.00. For example, CCU = 2 and 3 mean that the frequency of a character used in written and/or spoken Chinese texts equals to 1% and 1‰, respectively.
 - **NV: given-name valence (positivity of character meaning)**
