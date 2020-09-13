@@ -117,7 +117,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
   + 1~5
   + Ten Chinese raters (5 males and 5 females) evaluated how likely a person whose name contains each of the 2,614 given-name characters is to have competence-related traits (1 = *strongly unlikely to have*, 3 = *medium likelihood*, 5 = *strongly likely to have*) (interrater reliability ICC = 0.712).
 
-\* Instruction for rating tasks of NW and NC (adapted from [Newman et al., 2018](https://doi.org/10.1177/0146167218769858)):
+\* Instructions for the rating tasks of NW and NC (adapted from [Newman et al., 2018](https://doi.org/10.1177/0146167218769858)):
 > According to psychological research, when people form impressions of others, they usually evaluate them in two aspects: warmth and competence.
 > - “Warmth” (温暖) includes traits such as warm (热情), friendly (友好), righteous (正直), honest (诚实), kind (和善), fair (公平), sincere (真诚), reliable (可靠), and moral (有道德).
 > - “Competence” (能力) includes traits such as competent (能干), clever (聪明), careful (细心), efficient (高效), creative (创新), ingenious (灵巧), knowledgeable (博学), persistent (坚韧), and intelligent (有智慧).
