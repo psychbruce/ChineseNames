@@ -1,7 +1,7 @@
 Package: ChineseNames
 Type: Package
 Title: Chinese Name Database 1930-2008
-Version: 0.4.0
+Version: 0.5.0
 Authors@R: c(
   "Han-Wu-Shuang Bao <baohws@psych.ac.cn> [aut, cre]"
   )
@@ -16,8 +16,9 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/psychbruce/ChineseNames
 BugReports: https://github.com/psychbruce/ChineseNames/issues
+Depends: R (>= 4.0.0)
 Imports: dplyr,
          data.table,
          stringr
 Suggests: bruceR
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

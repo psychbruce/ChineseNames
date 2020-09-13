@@ -5,11 +5,13 @@
 #' originally obtained from the National Citizen Identity Information Center
 #' (NCIIC) of China.
 #' @references
-#' Please cite the following two references if you use this database.
+#' Please cite the following three references if you use this database.
 #'
 #' Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. \link{https://github.com/psychbruce/ChineseNames}
 #'
-#' Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. \emph{PsyArXiv}. \link{https://doi.org/10.31234/osf.io/53j86}
+#' Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at \emph{PsyArXiv} \link{https://doi.org/10.31234/osf.io/53j86}
+#'
+#' Bao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at \emph{PsyArXiv} \link{https://doi.org/10.31234/osf.io/txhqg}
 #' @docType package
 #' @name ChineseNames-package
 NULL
@@ -18,7 +20,8 @@ NULL
 .onAttach=function(libname, pkgname) {
   if(require(bruceR)==FALSE) {
     cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames")
-    cat("\nBao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Unique-name holders are more likely to choose and succeed in unique jobs. PsyArXiv. https://doi.org/10.31234/osf.io/53j86")
+    cat("\nBao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at PsyArXiv https://doi.org/10.31234/osf.io/53j86")
+    cat("\nBao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at PsyArXiv https://doi.org/10.31234/osf.io/txhqg")
     message("NOTE:
     To use the function `compute_name_index()` in `ChineseNames`,
     you should also install the package `bruceR` from GitHub.
@@ -27,17 +30,19 @@ NULL
     # devtools::install_github("psychbruce/bruceR")
   } else {
     Print("
-    <<blue
-    <<bold <<magenta
-    {rep_char('=', 56)}
-    >>
-    Loaded package:>>
+    <<bold
+    <<magenta {rep_char('=', 56)}>>
+
+    <<blue Loaded package:>>
     <<green \u2714 ChineseNames (version {as.character(packageVersion('ChineseNames'))})>>
-    <<black
-    <<bold <<blue Citation:>>>>
-    Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
-    Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at <<italic PsyArXiv>> <<underline https://doi.org/10.31234/osf.io/53j86>>
-    >>>>
+
+    <<blue Citation:>>
+    >>
+    - Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
+
+    - Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at <<italic PsyArXiv>> <<underline https://doi.org/10.31234/osf.io/53j86>>
+
+    - Bao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at <<italic PsyArXiv>> <<underline https://doi.org/10.31234/osf.io/txhqg>>
     ")
   }
 }
@@ -89,29 +94,34 @@ NULL
 
 #' Easily compute variables of given names and surnames for scientific research
 #'
-#' To use this function, you also install the package \code{bruceR} from GitHub.
+#' To use this function, you should also install the package \code{bruceR} from GitHub.
 #' For an installation guide of \code{bruceR}, see \link{https://github.com/psychbruce/bruceR}
 #' @import data.table
 #' @import stringr
 #' @param data \code{data.frame} or \code{data.table}.
-#' @param var.fullname Variable name of full Chinese names in your data (e.g., \code{"name"}).
-#' @param var.birthyear [Optional] Variable name of birth year in your data (e.g., \code{"birth"}).
+#' @param var.fullname Variable of Chinese full names (e.g., \code{"name"}).
+#' @param var.surname [Only if \code{var.fullname==NULL}] Variable of surnames (e.g., \code{"surname"}).
+#' @param var.givenname [Only if \code{var.fullname==NULL}] Variable of given names (e.g., \code{"givenname"}).
+#' @param var.birthyear [Optional] Variable of birth year (e.g., \code{"birth"}).
 #' @param index [Optional] Which indexes to compute?
 #'
 #' By default, it will compute all available variables.
 #' \itemize{
 #'   \item NLen: full-name length (2~4).
-#'   \item NU: given-name uniqueness (1~6).
-#'   \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
-#'   \item NV: given-name valence (1~5).
-#'   \item NG: given-name gender (-1~1).
 #'   \item SNU: surname uniqueness (1~6).
 #'   \item SNI: surname initial (alphabetical order; 1~26).
+#'   \item NU: given-name uniqueness (1~6).
+#'   \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
+#'   \item NG: given-name gender (-1~1).
+#'   \item NV: given-name valence (1~5).
+#'   \item NW: given-name warmth (1~5).
+#'   \item NC: given-name competence (1~5).
 #' }
 #'
 #' For details about these variables, see \link{https://github.com/psychbruce/ChineseNames}
+#' @param digits Number of decimal places. Default is 4.
 #' @param return.namechar Whether to return separate name characters. Default is \code{TRUE}.
-#' @param return.all Whether to return all temporary variables in computing the final variables. Default is \code{FALSE}.
+#' @param return.all Whether to return all temporary variables when computing the final variables. Default is \code{FALSE}.
 #' @return A new \code{data.frame} or \code{data.table} with name variables appended.
 #' @examples
 #' ## Compute for one name
@@ -121,15 +131,24 @@ NULL
 #'
 #' ## Compute for a dataset with a list of names
 #' demodata  # a data frame
-#' compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
-#' compute_name_index(demodata, "name")  # not adjust for birth cohort
-#' compute_name_index(demodata, "name", return.all=T)  # return temporary variables
+#' compute_name_index(demodata, var.fullname="name")  # not adjust for birth cohort
+#' compute_name_index(demodata, var.fullname="name", var.birthyear="birth")  # adjust for birth cohort
+#' compute_name_index(demodata,
+#'                    var.fullname="name",
+#'                    var.birthyear="birth",
+#'                    return.all=T)  # return temporary variables
 #' @export
-compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,
+compute_name_index=function(data=NULL,
+                            var.fullname=NULL,
+                            var.surname=NULL,
+                            var.givenname=NULL,
+                            var.birthyear=NULL,
                             name=NA, birth=NA,
                             index=c("NLen",
-                                    "NU", "CCU", "NV", "NG",
-                                    "SNU", "SNI"),
+                                    "SNU", "SNI",
+                                    "NU", "CCU", "NG",
+                                    "NV", "NW", "NC"),
+                            digits=4,
                             return.namechar=TRUE,
                             return.all=FALSE) {
   if(is.na(name)==FALSE) {
@@ -138,70 +157,111 @@ compute_name_index=function(data=NULL, var.fullname=NULL, var.birthyear=NULL,
     var.birthyear="birth"
   }
   if(is.null(data)) stop("Please input your data.")
-  if(is.null(var.fullname)) stop("Please input a variable of full names.")
+  if(is.null(var.fullname) & is.null(var.surname) & is.null(var.givenname))
+    stop("Please input variable(s) of full/family/given names.")
 
-  d=data.table(name=as.data.frame(data)[[var.fullname]])
-  d$name=as.character(d$name)
+  data=as.data.frame(data)
+  if(!is.null(var.fullname)) {
+    d=data.table(name=data[[var.fullname]])
+    d[,name:=as.character(name)]
+    d[,NLen:=nchar(name)]
+    d[,fx:=(str_sub(name, 1, 2) %in% fuxing) & NLen>2]
+    d[,name0:=str_sub(name, 1, ifelse(fx, 2, 1))]
+    d[,name1:=str_sub(name, ifelse(fx, 3, 2), ifelse(fx, 3, 2)) %>% ifelse(.=="", NA, .)]
+    d[,name2:=str_sub(name, ifelse(fx, 4, 3), ifelse(fx, 4, 3)) %>% ifelse(.=="", NA, .)]
+    d[,name3:=str_sub(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4)) %>% ifelse(.=="", NA, .)]
+  } else {
+    if(!is.null(var.surname) & !is.null(var.givenname)) {
+      d=as.data.table(data[[c(var.surname, var.givenname)]])
+      names(d)=c("sur.name", "given.name")
+    } else {
+      if(!is.null(var.surname)) {
+        d=data.table(sur.name=data[[var.surname]])
+        d$given.name=""
+      }
+      if(!is.null(var.givenname)) {
+        d=data.table(given.name=data[[var.givenname]])
+        d$sur.name=""
+      }
+    }
+    d[,name:=paste0(sur.name, given.name)]
+    d[,NLen:=nchar(name)]
+    d[,fx:=sur.name %in% fuxing]
+    d[,name0:=sur.name]
+    d[,name1:=str_sub(given.name, 1, 1) %>% ifelse(.=="", NA, .)]
+    d[,name2:=str_sub(given.name, 2, 2) %>% ifelse(.=="", NA, .)]
+    d[,name3:=str_sub(given.name, 3, 3) %>% ifelse(.=="", NA, .)]
+    d$sur.name=NULL
+    d$given.name=NULL
+  }
   if(!is.null(var.birthyear)) {
-    d=cbind(d, year=as.data.frame(data)[[var.birthyear]])
+    d=cbind(d, year=data[[var.birthyear]])
   } else {
     d=cbind(d, year=NA)
   }
 
-  d[,NLen:=nchar(name)]
-  d[,fx:=(str_sub(name, 1, 2) %in% fuxing) & NLen>2]
-  d[,name0:=str_sub(name, 1, ifelse(fx, 2, 1))]
-  d[,name1:=str_sub(name, ifelse(fx, 3, 2), ifelse(fx, 3, 2))]
-  d[,name2:=str_sub(name, ifelse(fx, 4, 3), ifelse(fx, 4, 3))]
-  d[,name3:=str_sub(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4))]
-  d[,name1:=ifelse(name1=="", NA, name1) %>% as.character()]
-  d[,name2:=ifelse(name2=="", NA, name2) %>% as.character()]
-  d[,name3:=ifelse(name3=="", NA, name3) %>% as.character()]
-
-  if("NU" %in% index) {
-    d[,":="(nu1=mapply(compute_NU_char, name1, year),
-            nu2=mapply(compute_NU_char, name2, year),
-            nu3=mapply(compute_NU_char, name3, year)
-            )]
-    d[,NU:=MEAN(d, "nu", 1:3)]
-  }
-
-  if("CCU" %in% index) {
-    d[,":="(ccu1=LOOKUP(d, "name1", givenname, "character", "corpus.uniqueness", return="new.value"),
-            ccu2=LOOKUP(d, "name2", givenname, "character", "corpus.uniqueness", return="new.value"),
-            ccu3=LOOKUP(d, "name3", givenname, "character", "corpus.uniqueness", return="new.value")
-            )]
-    d[,CCU:=MEAN(d, "ccu", 1:3)]
-  }
-
-  if("NV" %in% index) {
-    d[,":="(nv1=LOOKUP(d, "name1", givenname, "character", "meaning.positivity", return="new.value"),
-            nv2=LOOKUP(d, "name2", givenname, "character", "meaning.positivity", return="new.value"),
-            nv3=LOOKUP(d, "name3", givenname, "character", "meaning.positivity", return="new.value")
-            )]
-    d[,NV:=MEAN(d, "nv", 1:3)]
-  }
-
-  if("NG" %in% index) {
-    d[,":="(ng1=LOOKUP(d, "name1", givenname, "character", "name.gender", return="new.value"),
-            ng2=LOOKUP(d, "name2", givenname, "character", "name.gender", return="new.value"),
-            ng3=LOOKUP(d, "name3", givenname, "character", "name.gender", return="new.value")
-            )]
-    d[,NG:=MEAN(d, "ng", 1:3)]
-  }
+  # now: d[,.(name, NLen, fx, name0, name1, name2, name3)]
+  d=d[,.(name0, name1, name2, name3, year, NLen)]
 
   if("SNU" %in% index) {
-    d[,SNU:=LOOKUP(d, "name0", familyname, "surname", "surname.uniqueness", return="new.value")]
+    d[,SNU:=LOOKUP(d, "name0", familyname, "surname", "surname.uniqueness", return="new.value") %>% round(digits)]
   }
 
   if("SNI" %in% index) {
     d[,SNI:=LOOKUP(d, "name0", familyname, "surname", "initial.rank", return="new.value")]
   }
 
-  if(return.namechar) data=cbind(data, as.data.frame(d)[c("name0", "name1", "name2", "name3")])
-  data.new=cbind(data, as.data.frame(d)[index])
-  if(is.data.table(data)) data.new=as.data.table(data.new)
-  if(is.data.frame(data)) d=as.data.frame(d)
+  if("NU" %in% index) {
+    d[,`:=`(nu1=mapply(compute_NU_char, name1, year),
+            nu2=mapply(compute_NU_char, name2, year),
+            nu3=mapply(compute_NU_char, name3, year)
+            )]
+    d[,NU:=MEAN(d, "nu", 1:3) %>% round(digits)]
+  }
+
+  if("CCU" %in% index) {
+    d[,`:=`(ccu1=LOOKUP(d, "name1", givenname, "character", "corpus.uniqueness", return="new.value"),
+            ccu2=LOOKUP(d, "name2", givenname, "character", "corpus.uniqueness", return="new.value"),
+            ccu3=LOOKUP(d, "name3", givenname, "character", "corpus.uniqueness", return="new.value")
+            )]
+    d[,CCU:=MEAN(d, "ccu", 1:3) %>% round(digits)]
+  }
+
+  if("NG" %in% index) {
+    d[,`:=`(ng1=LOOKUP(d, "name1", givenname, "character", "name.gender", return="new.value"),
+            ng2=LOOKUP(d, "name2", givenname, "character", "name.gender", return="new.value"),
+            ng3=LOOKUP(d, "name3", givenname, "character", "name.gender", return="new.value")
+            )]
+    d[,NG:=MEAN(d, "ng", 1:3) %>% round(digits)]
+  }
+
+  if("NV" %in% index) {
+    d[,`:=`(nv1=LOOKUP(d, "name1", givenname, "character", "name.valence", return="new.value"),
+            nv2=LOOKUP(d, "name2", givenname, "character", "name.valence", return="new.value"),
+            nv3=LOOKUP(d, "name3", givenname, "character", "name.valence", return="new.value")
+            )]
+    d[,NV:=MEAN(d, "nv", 1:3) %>% round(digits)]
+  }
+
+  if("NW" %in% index) {
+    d[,`:=`(nw1=LOOKUP(d, "name1", givenname, "character", "name.warmth", return="new.value"),
+            nw2=LOOKUP(d, "name2", givenname, "character", "name.warmth", return="new.value"),
+            nw3=LOOKUP(d, "name3", givenname, "character", "name.warmth", return="new.value")
+            )]
+    d[,NW:=MEAN(d, "nw", 1:3) %>% round(digits)]
+  }
+
+  if("NC" %in% index) {
+    d[,`:=`(nc1=LOOKUP(d, "name1", givenname, "character", "name.competence", return="new.value"),
+            nc2=LOOKUP(d, "name2", givenname, "character", "name.competence", return="new.value"),
+            nc3=LOOKUP(d, "name3", givenname, "character", "name.competence", return="new.value")
+            )]
+    d[,NC:=MEAN(d, "nc", 1:3) %>% round(digits)]
+  }
+
+  if(return.namechar)
+    data=cbind(data, d[,.(name0, name1, name2, name3)])
+  data.new=cbind(data, as.data.frame(d)[index]) %>% as.data.table()
   if(return.all)
     return(d)
   else

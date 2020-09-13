@@ -7,10 +7,13 @@
 compute_name_index(
   data = NULL,
   var.fullname = NULL,
+  var.surname = NULL,
+  var.givenname = NULL,
   var.birthyear = NULL,
   name = NA,
   birth = NA,
-  index = c("NLen", "NU", "CCU", "NV", "NG", "SNU", "SNI"),
+  index = c("NLen", "SNU", "SNI", "NU", "CCU", "NG", "NV", "NW", "NC"),
+  digits = 4,
   return.namechar = TRUE,
   return.all = FALSE
 )
@@ -18,34 +21,42 @@ compute_name_index(
 \arguments{
 \item{data}{\code{data.frame} or \code{data.table}.}
 
-\item{var.fullname}{Variable name of full Chinese names in your data (e.g., \code{"name"}).}
+\item{var.fullname}{Variable of Chinese full names (e.g., \code{"name"}).}
 
-\item{var.birthyear}{[Optional] Variable name of birth year in your data (e.g., \code{"birth"}).}
+\item{var.surname}{[Only if \code{var.fullname==NULL}] Variable of surnames (e.g., \code{"surname"}).}
+
+\item{var.givenname}{[Only if \code{var.fullname==NULL}] Variable of given names (e.g., \code{"givenname"}).}
+
+\item{var.birthyear}{[Optional] Variable of birth year (e.g., \code{"birth"}).}
 
 \item{index}{[Optional] Which indexes to compute?
 
 By default, it will compute all available variables.
 \itemize{
   \item NLen: full-name length (2~4).
-  \item NU: given-name uniqueness (1~6).
-  \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
-  \item NV: given-name valence (1~5).
-  \item NG: given-name gender (-1~1).
   \item SNU: surname uniqueness (1~6).
   \item SNI: surname initial (alphabetical order; 1~26).
+  \item NU: given-name uniqueness (1~6).
+  \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
+  \item NG: given-name gender (-1~1).
+  \item NV: given-name valence (1~5).
+  \item NW: given-name warmth (1~5).
+  \item NC: given-name competence (1~5).
 }
 
 For details about these variables, see \link{https://github.com/psychbruce/ChineseNames}}
 
+\item{digits}{Number of decimal places. Default is 4.}
+
 \item{return.namechar}{Whether to return separate name characters. Default is \code{TRUE}.}
 
-\item{return.all}{Whether to return all temporary variables in computing the final variables. Default is \code{FALSE}.}
+\item{return.all}{Whether to return all temporary variables when computing the final variables. Default is \code{FALSE}.}
 }
 \value{
 A new \code{data.frame} or \code{data.table} with name variables appended.
 }
 \description{
-To use this function, you also install the package \code{bruceR} from GitHub.
+To use this function, you should also install the package \code{bruceR} from GitHub.
 For an installation guide of \code{bruceR}, see \link{https://github.com/psychbruce/bruceR}
 }
 \examples{
@@ -56,7 +67,10 @@ compute_name_index(name=myname, birth=mybirth, index="NU")
 
 ## Compute for a dataset with a list of names
 demodata  # a data frame
-compute_name_index(demodata, "name", "birth")  # adjust for birth cohort
-compute_name_index(demodata, "name")  # not adjust for birth cohort
-compute_name_index(demodata, "name", return.all=T)  # return temporary variables
+compute_name_index(demodata, var.fullname="name")  # not adjust for birth cohort
+compute_name_index(demodata, var.fullname="name", var.birthyear="birth")  # adjust for birth cohort
+compute_name_index(demodata,
+                   var.fullname="name",
+                   var.birthyear="birth",
+                   return.all=T)  # return temporary variables
 }
