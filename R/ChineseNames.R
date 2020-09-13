@@ -172,7 +172,7 @@ compute_name_index=function(data=NULL,
     d[,name3:=str_sub(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4)) %>% ifelse(.=="", NA, .)]
   } else {
     if(!is.null(var.surname) & !is.null(var.givenname)) {
-      d=as.data.table(data[[c(var.surname, var.givenname)]])
+      d=data.table(sur.name=data[[var.surname]], given.name=data[[var.givenname]])
       names(d)=c("sur.name", "given.name")
     } else {
       if(!is.null(var.surname)) {
