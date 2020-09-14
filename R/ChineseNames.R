@@ -96,7 +96,6 @@ NULL
 #'
 #' To use this function, you should also install the package \code{bruceR} from GitHub.
 #' For an installation guide of \code{bruceR}, see \link{https://github.com/psychbruce/bruceR}
-#' @import dplyr
 #' @import data.table
 #' @import stringr
 #' @param data \code{data.frame} or \code{data.table}.
