@@ -2,4 +2,5 @@
 
 export(compute_name_index)
 import(data.table)
+import(dplyr)
 import(stringr)
