@@ -203,12 +203,16 @@ compute_name_index=function(data=NULL,
   # now: d[,.(name, NLen, fx, name0, name1, name2, name3)]
   d=d[,.(name0, name1, name2, name3, year, NLen)]
 
+  log=(nrow(d)>=100000)
+
   if("SNU" %in% index) {
     d[,SNU:=LOOKUP(d, "name0", familyname, "surname", "surname.uniqueness", return="new.value") %>% round(digits)]
+    if(log) Print("SNU computed.")
   }
 
   if("SNI" %in% index) {
     d[,SNI:=LOOKUP(d, "name0", familyname, "surname", "initial.rank", return="new.value")]
+    if(log) Print("SNI computed.")
   }
 
   if("NU" %in% index) {
@@ -217,6 +221,7 @@ compute_name_index=function(data=NULL,
             nu3=mapply(compute_NU_char, name3, year)
             )]
     d[,NU:=MEAN(d, "nu", 1:3) %>% round(digits)]
+    if(log) Print("NU computed.")
   }
 
   if("CCU" %in% index) {
@@ -225,6 +230,7 @@ compute_name_index=function(data=NULL,
             ccu3=LOOKUP(d, "name3", givenname, "character", "corpus.uniqueness", return="new.value")
             )]
     d[,CCU:=MEAN(d, "ccu", 1:3) %>% round(digits)]
+    if(log) Print("CCU computed.")
   }
 
   if("NG" %in% index) {
@@ -233,6 +239,7 @@ compute_name_index=function(data=NULL,
             ng3=LOOKUP(d, "name3", givenname, "character", "name.gender", return="new.value")
             )]
     d[,NG:=MEAN(d, "ng", 1:3) %>% round(digits)]
+    if(log) Print("NG computed.")
   }
 
   if("NV" %in% index) {
@@ -241,6 +248,7 @@ compute_name_index=function(data=NULL,
             nv3=LOOKUP(d, "name3", givenname, "character", "name.valence", return="new.value")
             )]
     d[,NV:=MEAN(d, "nv", 1:3) %>% round(digits)]
+    if(log) Print("NV computed.")
   }
 
   if("NW" %in% index) {
@@ -249,6 +257,7 @@ compute_name_index=function(data=NULL,
             nw3=LOOKUP(d, "name3", givenname, "character", "name.warmth", return="new.value")
             )]
     d[,NW:=MEAN(d, "nw", 1:3) %>% round(digits)]
+    if(log) Print("NW computed.")
   }
 
   if("NC" %in% index) {
@@ -257,6 +266,7 @@ compute_name_index=function(data=NULL,
             nc3=LOOKUP(d, "name3", givenname, "character", "name.competence", return="new.value")
             )]
     d[,NC:=MEAN(d, "nc", 1:3) %>% round(digits)]
+    if(log) Print("NC computed.")
   }
 
   if(return.namechar)
