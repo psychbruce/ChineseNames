@@ -119,6 +119,9 @@ NULL
 #' }
 #'
 #' For details about these variables, see \link{https://github.com/psychbruce/ChineseNames}
+#' @param NU_approx Whether to \emph{approximately} compute given-name uniqueness
+#' using the nearest \emph{two} birth cohorts with relative weights
+#' (which could be more precise than just using the corresponding birth cohort).
 #' @param digits Number of decimal places. Default is 4.
 #' @param return.namechar Whether to return separate name characters. Default is \code{TRUE}.
 #' @param return.all Whether to return all temporary variables when computing the final variables. Default is \code{FALSE}.
@@ -148,6 +151,7 @@ compute_name_index=function(data=NULL,
                                     "SNU", "SNI",
                                     "NU", "CCU", "NG",
                                     "NV", "NW", "NC"),
+                            NU.approx=FALSE,
                             digits=4,
                             return.namechar=TRUE,
                             return.all=FALSE) {
@@ -216,9 +220,9 @@ compute_name_index=function(data=NULL,
   }
 
   if("NU" %in% index) {
-    d[,`:=`(nu1=mapply(compute_NU_char, name1, year),
-            nu2=mapply(compute_NU_char, name2, year),
-            nu3=mapply(compute_NU_char, name3, year)
+    d[,`:=`(nu1=mapply(compute_NU_char, name1, year, NU_approx),
+            nu2=mapply(compute_NU_char, name2, year, NU_approx),
+            nu3=mapply(compute_NU_char, name3, year, NU_approx)
             )]
     d[,NU:=MEAN(d, "nu", 1:3) %>% round(digits)]
     if(log) Print("NU computed.")
@@ -279,25 +283,67 @@ compute_name_index=function(data=NULL,
 }
 
 
-compute_NU_char=function(char, year=NA) {
+compute_NU_char=function(char, year=NA, approx=FALSE) {
+  raw=!approx
+  # k=((year%%10+5)%%10)/10; k=ifelse(k==0, 1, k)
   if(is.na(char))
     ppm="NA"
   else if(is.na(year) | year<1930)
-    ppm=ref0[char]
+    ppm=ref0[char]  # overall
   else if(year<1960)
-    ppm=ref1[char]  # 1930-1959
+    ppm=ifelse(
+      raw,
+      ref1[char],  # 1930-1959
+      (ref1[char]*(1960-year) + ref2[char]*(year-1930))/30
+    )
   else if(year<1970)
-    ppm=ref2[char]  # 1960-1969
+    ppm=ifelse(
+      raw,
+      ref2[char],  # 1960-1969
+      ifelse(year<1965,
+             (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10,
+             (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10)
+    )
   else if(year<1980)
-    ppm=ref3[char]  # 1970-1979
+    ppm=ifelse(
+      raw,
+      ref3[char],  # 1970-1979
+      ifelse(year<1975,
+             (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10,
+             (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10)
+    )
   else if(year<1990)
-    ppm=ref4[char]  # 1980-1989
+    ppm=ifelse(
+      raw,
+      ref4[char],  # 1980-1989
+      ifelse(year<1985,
+             (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10,
+             (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10)
+    )
   else if(year<2000)
-    ppm=ref5[char]  # 1990-1999
+    ppm=ifelse(
+      raw,
+      ref5[char],  # 1990-1999
+      ifelse(year<1995,
+             (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10,
+             (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10)
+    )
   else if(year<2010)
-    ppm=ref6[char]  # 2000-2009 (2008)
+    ppm=ifelse(
+      raw,
+      ref6[char],  # 2000-2009 (2008)
+      ifelse(year<2005,
+             (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10,
+             (ref6[char]*(2015-year) + ref7[char]*(year-2005))/10)
+    )
   else if(year<2020)
-    ppm=ref7[char]  # 2010-2019 (forecast by time-series models)
+    ppm=ifelse(
+      raw,
+      ref7[char],  # 2010-2019 (forecast by time-series models)
+      ifelse(year<2015,
+             (ref6[char]*(2015-year) + ref7[char]*(year-2005))/10,
+             (ref7[char]*(2025-year) + ref8[char]*(year-2015))/10)
+    )
   else if(year<2030)
     ppm=ref8[char]  # 2020-2029 (forecast by time-series models)
   else

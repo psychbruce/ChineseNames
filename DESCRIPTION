@@ -1,16 +1,16 @@
 Package: ChineseNames
 Type: Package
 Title: Chinese Name Database 1930-2008
-Version: 0.5.0
+Version: 0.6.0
 Authors@R: c(
   "Han-Wu-Shuang Bao <baohws@psych.ac.cn> [aut, cre]"
   )
 Author: Han-Wu-Shuang Bao [aut, cre]
 Maintainer: Han-Wu-Shuang Bao <baohws@psych.ac.cn>
-Description: A full database of Han Chinese names provided by 
-  Beijing Meiming Science and Technology Company and originally 
+Description: A full database of Han Chinese names, originally 
   obtained from the National Citizen Identity Information Center 
-  (NCIIC) of China.
+  (NCIIC) of China and provided by 
+  Beijing Meiming Science and Technology Company.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

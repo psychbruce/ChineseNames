@@ -13,6 +13,7 @@ compute_name_index(
   name = NA,
   birth = NA,
   index = c("NLen", "SNU", "SNI", "NU", "CCU", "NG", "NV", "NW", "NC"),
+  NU.approx = FALSE,
   digits = 4,
   return.namechar = TRUE,
   return.all = FALSE
@@ -51,6 +52,10 @@ For details about these variables, see \link{https://github.com/psychbruce/Chine
 \item{return.namechar}{Whether to return separate name characters. Default is \code{TRUE}.}
 
 \item{return.all}{Whether to return all temporary variables when computing the final variables. Default is \code{FALSE}.}
+
+\item{NU_approx}{Whether to \emph{approximately} compute given-name uniqueness
+using the nearest \emph{two} birth cohorts with relative weights
+(which could be more precise than just using the corresponding birth cohort).}
 }
 \value{
 A new \code{data.frame} or \code{data.table} with name variables appended.

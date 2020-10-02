@@ -3,7 +3,7 @@
 Chinese Name Database 1930-2008
 
 ![](https://img.shields.io/badge/R-package-success)
-![](https://img.shields.io/badge/Version-0.5.0-success)
+![](https://img.shields.io/badge/Version-0.6.0-success)
 ![](https://img.shields.io/github/license/psychbruce/ChineseNames?label=License&color=success)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
