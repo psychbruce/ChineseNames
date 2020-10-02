@@ -220,9 +220,9 @@ compute_name_index=function(data=NULL,
   }
 
   if("NU" %in% index) {
-    d[,`:=`(nu1=mapply(compute_NU_char, name1, year, NU_approx),
-            nu2=mapply(compute_NU_char, name2, year, NU_approx),
-            nu3=mapply(compute_NU_char, name3, year, NU_approx)
+    d[,`:=`(nu1=mapply(compute_NU_char, name1, year, NU.approx),
+            nu2=mapply(compute_NU_char, name2, year, NU.approx),
+            nu3=mapply(compute_NU_char, name3, year, NU.approx)
             )]
     d[,NU:=MEAN(d, "nu", 1:3) %>% round(digits)]
     if(log) Print("NU computed.")
