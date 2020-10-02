@@ -87,7 +87,7 @@ The `ChineseNames` package includes five datasets (`data.frame` in R):
 - **NU: given-name uniqueness (character level)**
   + 1~6
   + NU = –log<sub>10</sub>(P<sub>given-name</sub> + 10<sup>–6</sup>)
-    + P<sub>given-name</sub> = percentage of a character used in either single-character or multi-character given names among the Han Chinese population within a specific birth cohort
+    + P<sub>given-name</sub> = percentage of a character used in either single-character or multi-character given names among the Han Chinese population within a specific *birth cohort* (or within a specific *birth year*, please see and use the parameter `NU.approx` of the function `compute_name_index()` to obtain **an approximate estimate of NU within a birth year** rather than a birth cohort)
     + The distribution of P<sub>given-name</sub> is highly skewed, so we log-transform and reverse it to get an index of uniqueness easy to be interpreted.
     + As the Chinese given-name database does not include some extremely rare characters, a small constant (10<sup>–6</sup>) is added to adjust for zero percentage (P<sub>given-name</sub> = 0) and limit the maximum of NU to 6.00.
     + NU ranges from 1.18 to 6.00, with a higher value indicating a more unique character. This index can be directly interpreted. For instance, NU = 2 means that 1% of people use this character in given names within their birth cohort; and NU = 3 means that 1‰ of people use this character in given names within their birth cohort.
