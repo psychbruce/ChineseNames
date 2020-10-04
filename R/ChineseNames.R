@@ -285,16 +285,15 @@ compute_name_index=function(data=NULL,
 
 compute_NU_char=function(char, year=NA, approx=FALSE) {
   raw=!approx
-  # k=((year%%10+5)%%10)/10; k=ifelse(k==0, 1, k)
   if(is.na(char))
     ppm="NA"
   else if(is.na(year) | year<1930)
     ppm=ref0[char]  # overall
   else if(year<1960)
     ppm=ifelse(
-      raw,
+      raw | year<1955,
       ref1[char],  # 1930-1959
-      (ref1[char]*(1960-year) + ref2[char]*(year-1930))/30
+      (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10
     )
   else if(year<1970)
     ppm=ifelse(
