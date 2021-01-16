@@ -28,13 +28,8 @@ Website: [psychbruce.github.io](https://psychbruce.github.io)
 
 ## Citation
 
-Please cite the following three references if you use this database:
-
 - Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames
 
-- Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at *PsyArXiv* https://doi.org/10.31234/osf.io/53j86
-
-- Bao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at *PsyArXiv* https://doi.org/10.31234/osf.io/txhqg
 
 ## Install
 
