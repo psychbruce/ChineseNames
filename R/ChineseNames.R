@@ -5,13 +5,7 @@
 #' originally obtained from the National Citizen Identity Information Center
 #' (NCIIC) of China.
 #' @references
-#' Please cite the following three references if you use this database.
-#'
 #' Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. \link{https://github.com/psychbruce/ChineseNames}
-#'
-#' Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at \emph{PsyArXiv} \link{https://doi.org/10.31234/osf.io/53j86}
-#'
-#' Bao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at \emph{PsyArXiv} \link{https://doi.org/10.31234/osf.io/txhqg}
 #' @docType package
 #' @name ChineseNames-package
 NULL
@@ -20,8 +14,6 @@ NULL
 .onAttach=function(libname, pkgname) {
   if(require(bruceR)==FALSE) {
     cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames")
-    cat("\nBao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at PsyArXiv https://doi.org/10.31234/osf.io/53j86")
-    cat("\nBao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at PsyArXiv https://doi.org/10.31234/osf.io/txhqg")
     message("NOTE:
     To use the function `compute_name_index()` in `ChineseNames`,
     you should also install the package `bruceR` from GitHub.
@@ -39,10 +31,6 @@ NULL
     <<blue Citation:>>
     >>
     - Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
-
-    - Bao, H.-W.-S., Cai, H., DeWall, C. N., Gu, R., Chen, J., & Luo, Y. L. L. (2020). Name uniqueness predicts career choice and career achievement. Preprint at <<italic PsyArXiv>> <<underline https://doi.org/10.31234/osf.io/53j86>>
-
-    - Bao, H.-W.-S., Wang, J., & Cai, H. (2020). Blame crime on name? People with bad names are more likely to commit crime. Preprint at <<italic PsyArXiv>> <<underline https://doi.org/10.31234/osf.io/txhqg>>
     ")
   }
 }
@@ -287,8 +275,10 @@ compute_NU_char=function(char, year=NA, approx=FALSE) {
   raw=!approx
   if(is.na(char))
     ppm="NA"
-  else if(is.na(year) | year<1930)
+  else if(is.na(year))
     ppm=ref0[char]  # overall
+  else if(year<1930)
+    ppm=ref1[char]  # 1930-1959
   else if(year<1960)
     ppm=ifelse(
       raw | year<1955,
