@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 data-raw
+^cran-comments.md$
+^CRAN-RELEASE$

@@ -2,10 +2,13 @@
 % Please edit documentation in R/ChineseNames.R
 \name{top1000name.prov}
 \alias{top1000name.prov}
-\title{Top 1,000 given names (character combinations) for 31 Chinese mainland provinces}
+\title{Top 1,000 given names in 31 Chinese mainland provinces.}
 \usage{
-top1000name.prov
+data(top1000name.prov)
 }
 \description{
-Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
+Top 1,000 given names in 31 Chinese mainland provinces.
+}
+\details{
+\url{https://github.com/psychbruce/ChineseNames}
 }

@@ -2,10 +2,13 @@
 % Please edit documentation in R/ChineseNames.R
 \name{top50char.year}
 \alias{top50char.year}
-\title{Top 50 given-name characters for 6 birth cohorts}
+\title{Top 50 given-name characters in 6 birth cohorts.}
 \usage{
-top50char.year
+data(top50char.year)
 }
 \description{
-Top 50 given-name characters for 6 birth cohorts
+Top 50 given-name characters in 6 birth cohorts.
+}
+\details{
+\url{https://github.com/psychbruce/ChineseNames}
 }

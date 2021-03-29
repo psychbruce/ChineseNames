@@ -1,133 +1,187 @@
 #' ChineseNames: Chinese Name Database 1930-2008
 #'
-#' A full database of Han Chinese names provided by
-#' \emph{Beijing Meiming Science and Technology Company} and
-#' originally obtained from the National Citizen Identity Information Center
-#' (NCIIC) of China.
-#' @references
-#' Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. \link{https://github.com/psychbruce/ChineseNames}
+#' A database of Chinese surnames and given names (1930-2008), originally
+#' obtained from the National Citizen Identity Information Center (NCIIC)
+#' of China and provided by Beijing Meiming Science and Technology Company.
+#' This name database contains nationwide frequency statistics for
+#' 1,806 Chinese surnames and 2,614 Chinese characters used in given names,
+#' covering about 1.2 billion Han Chinese population
+#' (96.8\% of the Han Chinese household-registered population
+#' born from 1930 to 2008 and still alive in 2008).
+#' This package also contains a function that can compute variables of
+#' Chinese surnames and given names for scientific research (e.g.,
+#' name uniqueness, name positivity, name warmth/competence).
+#'
+#' Details are described in
+#' \url{https://github.com/psychbruce/ChineseNames}
+#'
+#' @section Citation:
+#' Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
+#' R package version 1.0.0.
+#' \url{https://CRAN.R-project.org/package=ChineseNames}
+#'
 #' @docType package
-#' @name ChineseNames-package
+#' @name ChineseNames
 NULL
 
 
 .onAttach=function(libname, pkgname) {
-  if(require(bruceR)==FALSE) {
-    cat("Citation:\nBao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. https://github.com/psychbruce/ChineseNames")
-    message("NOTE:
-    To use the function `compute_name_index()` in `ChineseNames`,
-    you should also install the package `bruceR` from GitHub.
-    For an installation guide of `bruceR`, please see:
-      https://github.com/psychbruce/bruceR")
-    # devtools::install_github("psychbruce/bruceR")
-  } else {
-    Print("
-    <<bold
-    <<magenta {rep_char('=', 56)}>>
-
-    <<blue Loaded package:>>
-    <<green \u2714 ChineseNames (version {as.character(packageVersion('ChineseNames'))})>>
-
-    <<blue Citation:>>
-    >>
-    - Bao, H.-W.-S. (2020). ChineseNames: Chinese Name Database 1930-2008 [R package]. <<underline https://github.com/psychbruce/ChineseNames>>
-    ")
-  }
+  packageStartupMessage(
+    "To cite the `ChineseNames` package in publications, please use:\n",
+    "Bao, H.-W.-S. (2021). ",
+    "ChineseNames: Chinese Name Database 1930-2008. ",
+    "R package version 1.0.0. ",
+    "https://CRAN.R-project.org/package=ChineseNames")
 }
 
 
-#### Databases ####
+#### Database ####
 
-#' Chinese surname database
+
+#' 1,806 Chinese surnames and nationwide frequency.
 #'
-#' A list of 1,806 Chinese surnames with their proportions in the Chinese population.
 #' @name familyname
-#' @usage familyname
+#' @usage data(familyname)
+#' @format
+#' A data frame with 7 variables:
+#' \describe{
+#'   \item{\code{surname}}{surname (in Chinese)}
+#'   \item{\code{compound}}{0 = single surname, 1 = compound surname}
+#'   \item{\code{initial}}{initial letter (a-z)}
+#'   \item{\code{initial.rank}}{initial order (1-26)}
+#'   \item{\code{n.1930_2008}}{total counts in the database}
+#'   \item{\code{ppm.1930_2008}}{proportion in population (ppm = parts per million)}
+#'   \item{\code{surname.uniqueness}}{surname uniqueness}
+#' }
+#' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
 
 
-#' Chinese given-name database (character level)
+#' 2,614 Chinese characters used in given names and nationwide frequency.
 #'
-#' A list of 2,614 characters used in Chinese given names with their proportions in the Chinese population.
 #' @name givenname
-#' @usage givenname
+#' @usage data(givenname)
+#' @format
+#' A data frame with 25 variables:
+#' \describe{
+#'   \item{\code{character}}{character used in given names (in Chinese)}
+#'   \item{\code{pinyin}}{pinyin (pronunciation)}
+#'   \item{\code{bihua}}{number of strokes in a character}
+#'   \item{\code{n.male}}{total counts in male}
+#'   \item{\code{n.female}}{total counts in female}
+#'   \item{\code{name.gender}}{difference in proportions of a character used by male vs. female}
+#'   \item{\code{n.1930_1959}, \code{n.1960_1969}, ..., \code{n.2000_2008}}{total counts in a birth cohort}
+#'   \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, ..., \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
+#'   \item{\code{name.ppm}}{average ppm (parts per million) across all cohorts}
+#'   \item{\code{name.uniqueness}}{name-character uniqueness (in naming practices)}
+#'   \item{\code{corpus.ppm}}{proportion (parts per million) in contemporary Chinese corpus}
+#'   \item{\code{corpus.uniqueness}}{character-corpus uniqueness (in contemporary Chinese corpus)}
+#'   \item{\code{name.valence} (based on subjective ratings from 16 raters, ICC = 0.921)}{name valence (positivity of character meaning)}
+#'   \item{\code{name.warmth} (based on subjective ratings from 10 raters, ICC = 0.774)}{name warmth/morality}
+#'   \item{\code{name.competence} (based on subjective ratings from 10 raters, ICC = 0.712)}{name competence/assertiveness}
+#' }
+#' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
 
 
-#' Population for name databases
+#' Population statistics for the Chinese name database.
 #' @name population
-#' @usage population
+#' @usage data(population)
+#' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
 
 
-#' Top 1,000 given names (character combinations) for 31 Chinese mainland provinces
+#' Top 1,000 given names in 31 Chinese mainland provinces.
 #' @name top1000name.prov
-#' @usage top1000name.prov
+#' @usage data(top1000name.prov)
+#' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
 
 
-#' Top 100 given names (character combinations) for 6 birth cohorts
+#' Top 100 given names in 6 birth cohorts.
 #' @name top100name.year
-#' @usage top100name.year
+#' @usage data(top100name.year)
+#' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
 
 
-#' Top 50 given-name characters for 6 birth cohorts
+#' Top 50 given-name characters in 6 birth cohorts.
 #' @name top50char.year
-#' @usage top50char.year
+#' @usage data(top50char.year)
+#' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
 
 
-#### Functions ####
+#### Function ####
 
-#' Easily compute variables of given names and surnames for scientific research
+
+`%>%`=dplyr::`%>%`
+
+
+#' Compute indices of surnames and given names.
 #'
-#' To use this function, you should also install the package \code{bruceR} from GitHub.
-#' For an installation guide of \code{bruceR}, see \link{https://github.com/psychbruce/bruceR}
-#' @import data.table
-#' @import stringr
-#' @param data \code{data.frame} or \code{data.table}.
-#' @param var.fullname Variable of Chinese full names (e.g., \code{"name"}).
-#' @param var.surname [Only if \code{var.fullname==NULL}] Variable of surnames (e.g., \code{"surname"}).
-#' @param var.givenname [Only if \code{var.fullname==NULL}] Variable of given names (e.g., \code{"givenname"}).
-#' @param var.birthyear [Optional] Variable of birth year (e.g., \code{"birth"}).
-#' @param index [Optional] Which indexes to compute?
+#' Compute all available name indices based on
+#' \code{\link{familyname}} and \code{\link{givenname}}.
+#' You can either input \code{data} with a variable of Chinese names
+#' (and a variable of birth year, if necessary)
+#' or just input a vector of \code{name}
+#' (and \code{birth} year, if necessary).
 #'
-#' By default, it will compute all available variables.
+#' @param data Data frame.
+#' @param var.fullname Variable name of Chinese full names (e.g., \code{"name"}).
+#' @param var.surname Variable name of Chinese surnames (e.g., \code{"surname"}).
+#' @param var.givenname Variable name of Chinese given names (e.g., \code{"givenname"}).
+#' @param var.birthyear Variable name of birth year (e.g., \code{"birth"}).
+#' @param name \strong{If no \code{data}}, you can just input a vector of full name(s).
+#' @param birth \strong{If no \code{data}}, you can just input a vector of birth year(s).
+#' @param index Which indices to compute?
+#'
+#' By default, it computes all available name indices:
 #' \itemize{
-#'   \item NLen: full-name length (2~4).
-#'   \item SNU: surname uniqueness (1~6).
-#'   \item SNI: surname initial (alphabetical order; 1~26).
-#'   \item NU: given-name uniqueness (1~6).
-#'   \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
-#'   \item NG: given-name gender (-1~1).
-#'   \item NV: given-name valence (1~5).
-#'   \item NW: given-name warmth (1~5).
-#'   \item NC: given-name competence (1~5).
+#'   \item \code{NLen}: full-name length (2~4).
+#'   \item \code{SNU}: surname uniqueness (1~6).
+#'   \item \code{SNI}: surname initial (1~26).
+#'   \item \code{NU}: name-character uniqueness (1~6).
+#'   \item \code{CCU}: character-corpus uniqueness (1~6).
+#'   \item \code{NG}: name gender (-1~1).
+#'   \item \code{NV}: name valence (1~5).
+#'   \item \code{NW}: name warmth (1~5).
+#'   \item \code{NC}: name competence (1~5).
 #' }
 #'
-#' For details about these variables, see \link{https://github.com/psychbruce/ChineseNames}
-#' @param NU_approx Whether to \emph{approximately} compute given-name uniqueness
-#' using the nearest \emph{two} birth cohorts with relative weights
-#' (which could be more precise than just using the corresponding birth cohort).
-#' @param digits Number of decimal places. Default is 4.
-#' @param return.namechar Whether to return separate name characters. Default is \code{TRUE}.
-#' @param return.all Whether to return all temporary variables when computing the final variables. Default is \code{FALSE}.
-#' @return A new \code{data.frame} or \code{data.table} with name variables appended.
+#' For details, see \url{https://github.com/psychbruce/ChineseNames}
+#' @param NU.approx Whether to \emph{approximately} compute name-character uniqueness (NU)
+#' using \emph{the nearest two birth cohorts with relative weights}
+#' (which would be more precise than just using a single birth cohort).
+#' Default is \code{TRUE}.
+#' @param digits Number of decimal places. Default is \code{4}.
+#' @param return.namechar Whether to return separate name characters.
+#' Default is \code{TRUE}.
+#' @param return.all Whether to return all temporary variables
+#' in the computation of the final variables.
+#' Default is \code{FALSE}.
+#'
+#' @return
+#' A new data frame (\code{data.table}) with name indices appended.
+#'
 #' @examples
-#' ## Compute for one name
+#' ## compute for one name
 #' myname=demodata[1, "name"]
 #' mybirth=1995
-#' compute_name_index(name=myname, birth=mybirth, index="NU")
+#' d=compute_name_index(name=myname, birth=mybirth, index="NU")
+#' # use View(d) to see the results
 #'
-#' ## Compute for a dataset with a list of names
-#' demodata  # a data frame
-#' compute_name_index(demodata, var.fullname="name")  # not adjust for birth cohort
-#' compute_name_index(demodata, var.fullname="name", var.birthyear="birth")  # adjust for birth cohort
-#' compute_name_index(demodata,
-#'                    var.fullname="name",
-#'                    var.birthyear="birth",
-#'                    return.all=T)  # return temporary variables
+#' ## compute for a dataset with a variable of names
+#' data(demodata)  # a data frame
+#' data=compute_name_index(demodata,
+#'                         var.fullname="name")  # not adjusted for birth year
+#' data=compute_name_index(demodata,
+#'                         var.fullname="name",
+#'                         var.birthyear="birth")  # adjusted for birth year
+#' # use View(data) to see the results
+#'
+#' @import data.table
+#' @importFrom bruceR Print MEAN LOOKUP
 #' @export
 compute_name_index=function(data=NULL,
                             var.fullname=NULL,
@@ -139,7 +193,7 @@ compute_name_index=function(data=NULL,
                                     "SNU", "SNI",
                                     "NU", "CCU", "NG",
                                     "NV", "NW", "NC"),
-                            NU.approx=FALSE,
+                            NU.approx=TRUE,
                             digits=4,
                             return.namechar=TRUE,
                             return.all=FALSE) {
@@ -148,7 +202,8 @@ compute_name_index=function(data=NULL,
     var.fullname="name"
     var.birthyear="birth"
   }
-  if(is.null(data)) stop("Please input your data.")
+  if(is.null(data))
+    stop("Please input your data.")
   if(is.null(var.fullname) & is.null(var.surname) & is.null(var.givenname))
     stop("Please input variable(s) of full/family/given names.")
 
@@ -157,11 +212,11 @@ compute_name_index=function(data=NULL,
     d=data.table(name=data[[var.fullname]])
     d[,name:=as.character(name)]
     d[,NLen:=nchar(name)]
-    d[,fx:=(str_sub(name, 1, 2) %in% fuxing) & NLen>2]
-    d[,name0:=str_sub(name, 1, ifelse(fx, 2, 1))]
-    d[,name1:=str_sub(name, ifelse(fx, 3, 2), ifelse(fx, 3, 2)) %>% ifelse(.=="", NA, .)]
-    d[,name2:=str_sub(name, ifelse(fx, 4, 3), ifelse(fx, 4, 3)) %>% ifelse(.=="", NA, .)]
-    d[,name3:=str_sub(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4)) %>% ifelse(.=="", NA, .)]
+    d[,fx:=(substr(name, 1, 2) %in% fuxing) & NLen>2]
+    d[,name0:=substr(name, 1, ifelse(fx, 2, 1))]
+    d[,name1:=substr(name, ifelse(fx, 3, 2), ifelse(fx, 3, 2)) %>% ifelse(.=="", NA, .)]
+    d[,name2:=substr(name, ifelse(fx, 4, 3), ifelse(fx, 4, 3)) %>% ifelse(.=="", NA, .)]
+    d[,name3:=substr(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4)) %>% ifelse(.=="", NA, .)]
   } else {
     if(!is.null(var.surname) & !is.null(var.givenname)) {
       d=data.table(sur.name=data[[var.surname]], given.name=data[[var.givenname]])
@@ -180,19 +235,19 @@ compute_name_index=function(data=NULL,
     d[,NLen:=nchar(name)]
     d[,fx:=sur.name %in% fuxing]
     d[,name0:=sur.name]
-    d[,name1:=str_sub(given.name, 1, 1) %>% ifelse(.=="", NA, .)]
-    d[,name2:=str_sub(given.name, 2, 2) %>% ifelse(.=="", NA, .)]
-    d[,name3:=str_sub(given.name, 3, 3) %>% ifelse(.=="", NA, .)]
+    d[,name1:=substr(given.name, 1, 1) %>% ifelse(.=="", NA, .)]
+    d[,name2:=substr(given.name, 2, 2) %>% ifelse(.=="", NA, .)]
+    d[,name3:=substr(given.name, 3, 3) %>% ifelse(.=="", NA, .)]
     d$sur.name=NULL
     d$given.name=NULL
   }
+
   if(!is.null(var.birthyear)) {
     d=cbind(d, year=data[[var.birthyear]])
   } else {
     d=cbind(d, year=NA)
   }
 
-  # now: d[,.(name, NLen, fx, name0, name1, name2, name3)]
   d=d[,.(name0, name1, name2, name3, year, NLen)]
 
   log=(nrow(d)>=100000)
@@ -271,7 +326,7 @@ compute_name_index=function(data=NULL,
 }
 
 
-compute_NU_char=function(char, year=NA, approx=FALSE) {
+compute_NU_char=function(char, year=NA, approx=TRUE) {
   raw=!approx
   if(is.na(char))
     ppm="NA"
@@ -342,66 +397,3 @@ compute_NU_char=function(char, year=NA, approx=FALSE) {
   return(as.numeric( -log10((ppm+1)/10^6) ))
 }
 
-
-## Baby-naming APP (with reports and suggestions)
-## @param name Full name.
-## @param sex \code{0} = unknown, \code{-1} = female, \code{1} = male.
-## @param birth Birth year or \code{NA}.
-## @return This function will output a list of results and "invisibly" return a final score (0-100).
-## @examples
-## testname=demodata[1, "name"]
-## sex=1  # 0 = unknown, -1 = female, 1 = male
-## baby_naming_app(testname, sex, 1995)
-## @export
-baby_naming_app=function(name, sex=0, birth=NA) {
-  rs=compute_name_index(name=name, birth=birth)
-  # sex=RECODE(sex, "2=-1; 1=1; 0=0; else=NA")
-
-  sg.NLen=switch(as.character(rs$NLen),
-                 "2"="过短，易重名，三字姓名为宜",
-                 "3"="-",
-                 "4"="四字姓名较难起好，请三思")
-
-  ## Evaluation: NLen, NU, NV, NG
-  sc=c(0, 0, 0, 0)  # raw score
-  wt=c(1, 3, 3, 3)  # weight
-  sc[1]=RECODE(rs$NLen, "2=70; 3=90; 4=80; else=50")
-  sc[2]=100*(1-(rs$NU-4.5)^2/3.5^2)
-  sc[3]=RESCALE(rs$NV, 1:5, 20:100)
-  sc[4]=100*ifelse(sex==1, 1-(rs$NG-0.3)^2/2,
-                   ifelse(sex==-1, 1-(rs$NG+0.3)^2/2, 1-rs$NG^2/4))
-  # d=data.table(x=seq(1, 6, 0.2)); d[,y:=100*(1-(x-4.5)^2/3.5^2)]; plot(d)
-  # d=data.table(x=seq(1, 5, 0.2)); d[,y:=RESCALE(x, 1:5, 20:100)]; plot(d)
-  # d=data.table(x=seq(-1, 1, 0.1)); d[,y:=100*(1-(x-0.3)^2/2)]; plot(d)
-  # d=data.table(x=seq(-1, 1, 0.1)); d[,y:=100*(1-x^2/4)]; plot(d)
-  score=sum(sc*wt)/sum(wt)
-
-  Print("
-  <<bold
-  <<magenta {rep_char('=', 15)} Baby-Naming APP (0.1.0) {rep_char('=', 15)}>>
-
-  全名：\t\t{name}
-  全名长度：\t{rs$NLen}\t<<blue （2~4；建议长度：3）>>
-
-  姓氏：\t\t{rs$name0}
-  姓氏独特性：\t{formatF(rs$SNU, 3)}\t<<blue （1~6；建议范围：无）>>
-
-  名字：\t\t{gsub(rs$name0, '', name)}
-  名字独特性：\t{formatF(rs$NU, 3)}\t<<blue （1~6；建议范围：3.0~5.5）>>
-  寓意积极性：\t{formatF(rs$NV, 3)}\t<<blue （1~5；建议范围：3.5~5.0）>>
-  性别倾向：\t{formatF(rs$NG, 3)}\t<<blue （-1~1；建议范围：-0.3~0.3）>>
-
-  综合评分：\t<<red {formatF(score, 2)}>>
-  1）全名长度：\t{formatF(sc[1], 2)}（10%）
-  2）名字独特性：\t{formatF(sc[2], 2)}（30%）
-  3）寓意积极性：\t{formatF(sc[3], 2)}（30%）
-  4）性别倾向：\t{formatF(sc[4], 2)}（30%）
-
-  建议：
-  <<red {sg.NLen}>>
-
-  <<magenta {rep_char('=', 15)} Copyright (c) Bruce Bao {rep_char('=', 15)}>>
-  >>
-  ")
-  invisible(score)
-}

@@ -2,10 +2,33 @@
 % Please edit documentation in R/ChineseNames.R
 \name{givenname}
 \alias{givenname}
-\title{Chinese given-name database (character level)}
+\title{2,614 Chinese characters used in given names and nationwide frequency.}
+\format{
+A data frame with 25 variables:
+\describe{
+  \item{\code{character}}{character used in given names (in Chinese)}
+  \item{\code{pinyin}}{pinyin (pronunciation)}
+  \item{\code{bihua}}{number of strokes in a character}
+  \item{\code{n.male}}{total counts in male}
+  \item{\code{n.female}}{total counts in female}
+  \item{\code{name.gender}}{difference in proportions of a character used by male vs. female}
+  \item{\code{n.1930_1959}, \code{n.1960_1969}, ..., \code{n.2000_2008}}{total counts in a birth cohort}
+  \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, ..., \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
+  \item{\code{name.ppm}}{average ppm (parts per million) across all cohorts}
+  \item{\code{name.uniqueness}}{name-character uniqueness (in naming practices)}
+  \item{\code{corpus.ppm}}{proportion (parts per million) in contemporary Chinese corpus}
+  \item{\code{corpus.uniqueness}}{character-corpus uniqueness (in contemporary Chinese corpus)}
+  \item{\code{name.valence} (based on subjective ratings from 16 raters, ICC = 0.921)}{name valence (positivity of character meaning)}
+  \item{\code{name.warmth} (based on subjective ratings from 10 raters, ICC = 0.774)}{name warmth/morality}
+  \item{\code{name.competence} (based on subjective ratings from 10 raters, ICC = 0.712)}{name competence/assertiveness}
+}
+}
 \usage{
-givenname
+data(givenname)
 }
 \description{
-A list of 2,614 characters used in Chinese given names with their proportions in the Chinese population.
+2,614 Chinese characters used in given names and nationwide frequency.
+}
+\details{
+\url{https://github.com/psychbruce/ChineseNames}
 }

@@ -2,10 +2,13 @@
 % Please edit documentation in R/ChineseNames.R
 \name{population}
 \alias{population}
-\title{Population for name databases}
+\title{Population statistics for the Chinese name database.}
 \usage{
-population
+data(population)
 }
 \description{
-Population for name databases
+Population statistics for the Chinese name database.
+}
+\details{
+\url{https://github.com/psychbruce/ChineseNames}
 }

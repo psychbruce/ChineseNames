@@ -2,4 +2,6 @@
 
 export(compute_name_index)
 import(data.table)
-import(stringr)
+importFrom(bruceR,LOOKUP)
+importFrom(bruceR,MEAN)
+importFrom(bruceR,Print)

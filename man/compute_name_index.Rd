@@ -2,7 +2,7 @@
 % Please edit documentation in R/ChineseNames.R
 \name{compute_name_index}
 \alias{compute_name_index}
-\title{Easily compute variables of given names and surnames for scientific research}
+\title{Compute indices of surnames and given names.}
 \usage{
 compute_name_index(
   data = NULL,
@@ -13,69 +13,83 @@ compute_name_index(
   name = NA,
   birth = NA,
   index = c("NLen", "SNU", "SNI", "NU", "CCU", "NG", "NV", "NW", "NC"),
-  NU.approx = FALSE,
+  NU.approx = TRUE,
   digits = 4,
   return.namechar = TRUE,
   return.all = FALSE
 )
 }
 \arguments{
-\item{data}{\code{data.frame} or \code{data.table}.}
+\item{data}{Data frame.}
 
-\item{var.fullname}{Variable of Chinese full names (e.g., \code{"name"}).}
+\item{var.fullname}{Variable name of Chinese full names (e.g., \code{"name"}).}
 
-\item{var.surname}{[Only if \code{var.fullname==NULL}] Variable of surnames (e.g., \code{"surname"}).}
+\item{var.surname}{Variable name of Chinese surnames (e.g., \code{"surname"}).}
 
-\item{var.givenname}{[Only if \code{var.fullname==NULL}] Variable of given names (e.g., \code{"givenname"}).}
+\item{var.givenname}{Variable name of Chinese given names (e.g., \code{"givenname"}).}
 
-\item{var.birthyear}{[Optional] Variable of birth year (e.g., \code{"birth"}).}
+\item{var.birthyear}{Variable name of birth year (e.g., \code{"birth"}).}
 
-\item{index}{[Optional] Which indexes to compute?
+\item{name}{\strong{If no \code{data}}, you can just input a vector of full name(s).}
 
-By default, it will compute all available variables.
+\item{birth}{\strong{If no \code{data}}, you can just input a vector of birth year(s).}
+
+\item{index}{Which indices to compute?
+
+By default, it computes all available name indices:
 \itemize{
-  \item NLen: full-name length (2~4).
-  \item SNU: surname uniqueness (1~6).
-  \item SNI: surname initial (alphabetical order; 1~26).
-  \item NU: given-name uniqueness (1~6).
-  \item CCU: character uniqueness in contemporary Chinese corpus (1~6).
-  \item NG: given-name gender (-1~1).
-  \item NV: given-name valence (1~5).
-  \item NW: given-name warmth (1~5).
-  \item NC: given-name competence (1~5).
+  \item \code{NLen}: full-name length (2~4).
+  \item \code{SNU}: surname uniqueness (1~6).
+  \item \code{SNI}: surname initial (1~26).
+  \item \code{NU}: name-character uniqueness (1~6).
+  \item \code{CCU}: character-corpus uniqueness (1~6).
+  \item \code{NG}: name gender (-1~1).
+  \item \code{NV}: name valence (1~5).
+  \item \code{NW}: name warmth (1~5).
+  \item \code{NC}: name competence (1~5).
 }
 
-For details about these variables, see \link{https://github.com/psychbruce/ChineseNames}}
+For details, see \url{https://github.com/psychbruce/ChineseNames}}
 
-\item{digits}{Number of decimal places. Default is 4.}
+\item{NU.approx}{Whether to \emph{approximately} compute name-character uniqueness (NU)
+using \emph{the nearest two birth cohorts with relative weights}
+(which would be more precise than just using a single birth cohort).
+Default is \code{TRUE}.}
 
-\item{return.namechar}{Whether to return separate name characters. Default is \code{TRUE}.}
+\item{digits}{Number of decimal places. Default is \code{4}.}
 
-\item{return.all}{Whether to return all temporary variables when computing the final variables. Default is \code{FALSE}.}
+\item{return.namechar}{Whether to return separate name characters.
+Default is \code{TRUE}.}
 
-\item{NU_approx}{Whether to \emph{approximately} compute given-name uniqueness
-using the nearest \emph{two} birth cohorts with relative weights
-(which could be more precise than just using the corresponding birth cohort).}
+\item{return.all}{Whether to return all temporary variables
+in the computation of the final variables.
+Default is \code{FALSE}.}
 }
 \value{
-A new \code{data.frame} or \code{data.table} with name variables appended.
+A new data frame (\code{data.table}) with name indices appended.
 }
 \description{
-To use this function, you should also install the package \code{bruceR} from GitHub.
-For an installation guide of \code{bruceR}, see \link{https://github.com/psychbruce/bruceR}
+Compute all available name indices based on
+\code{\link{familyname}} and \code{\link{givenname}}.
+You can either input \code{data} with a variable of Chinese names
+(and a variable of birth year, if necessary)
+or just input a vector of \code{name}
+(and \code{birth} year, if necessary).
 }
 \examples{
-## Compute for one name
+## compute for one name
 myname=demodata[1, "name"]
 mybirth=1995
-compute_name_index(name=myname, birth=mybirth, index="NU")
+d=compute_name_index(name=myname, birth=mybirth, index="NU")
+# use View(d) to see the results
 
-## Compute for a dataset with a list of names
-demodata  # a data frame
-compute_name_index(demodata, var.fullname="name")  # not adjust for birth cohort
-compute_name_index(demodata, var.fullname="name", var.birthyear="birth")  # adjust for birth cohort
-compute_name_index(demodata,
-                   var.fullname="name",
-                   var.birthyear="birth",
-                   return.all=T)  # return temporary variables
+## compute for a dataset with a variable of names
+data(demodata)  # a data frame
+data=compute_name_index(demodata,
+                        var.fullname="name")  # not adjusted for birth year
+data=compute_name_index(demodata,
+                        var.fullname="name",
+                        var.birthyear="birth")  # adjusted for birth year
+# use View(data) to see the results
+
 }
