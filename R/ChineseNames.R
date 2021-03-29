@@ -1,16 +1,14 @@
 #' ChineseNames: Chinese Name Database 1930-2008
 #'
-#' A database of Chinese surnames and given names (1930-2008), originally
-#' obtained from the National Citizen Identity Information Center (NCIIC)
-#' of China and provided by Beijing Meiming Science and Technology Company.
+#' A database of Chinese surnames and Chinese given names (1930-2008).
 #' This name database contains nationwide frequency statistics for
 #' 1,806 Chinese surnames and 2,614 Chinese characters used in given names,
 #' covering about 1.2 billion Han Chinese population
 #' (96.8\% of the Han Chinese household-registered population
 #' born from 1930 to 2008 and still alive in 2008).
-#' This package also contains a function that can compute variables of
-#' Chinese surnames and given names for scientific research (e.g.,
-#' name uniqueness, name positivity, name warmth/competence).
+#' This package also contains a function for computing multiple features of
+#' Chinese surnames and Chinese given names for scientific research (e.g.,
+#' name uniqueness, name gender, name valence, and name warmth/competence).
 #'
 #' Details are described in
 #' \url{https://github.com/psychbruce/ChineseNames}
@@ -27,11 +25,11 @@ NULL
 
 .onAttach=function(libname, pkgname) {
   packageStartupMessage(
-    "To cite the `ChineseNames` package in publications, please use:\n",
+    "\nTo cite the `ChineseNames` package in publications, please use:\n\n",
     "Bao, H.-W.-S. (2021). ",
     "ChineseNames: Chinese Name Database 1930-2008. ",
     "R package version 1.0.0. ",
-    "https://CRAN.R-project.org/package=ChineseNames")
+    "https://CRAN.R-project.org/package=ChineseNames\n")
 }
 
 
@@ -116,9 +114,9 @@ NULL
 `%>%`=dplyr::`%>%`
 
 
-#' Compute indices of surnames and given names.
+#' Compute features of surnames and given names.
 #'
-#' Compute all available name indices based on
+#' Compute all available name features (indices) based on
 #' \code{\link{familyname}} and \code{\link{givenname}}.
 #' You can either input \code{data} with a variable of Chinese names
 #' (and a variable of birth year, if necessary)
@@ -163,6 +161,20 @@ NULL
 #' A new data frame (\code{data.table}) with name indices appended.
 #'
 #' @note For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
+#'
+#' @examples
+#' sn=familyname$surname[1:12]
+#' gn=c(top100name.year$name.all.1960[1:6],
+#'      top100name.year$name.all.2000[1:6],
+#'      top100name.year$name.all.1960[95:100],
+#'      top100name.year$name.all.2000[95:100])
+#' demodata=data.frame(name=paste0(sn, gn),
+#'                     birth=c(1960:1965, 2000:2005,
+#'                             1960:1965, 2000:2005))
+#' newdata=compute_name_index(demodata,
+#'                            var.fullname="name",
+#'                            var.birthyear="birth")
+#' # use View(newdata) to see the results
 #'
 #' @import data.table
 #' @importFrom bruceR Print MEAN LOOKUP

@@ -5,17 +5,15 @@
 \alias{ChineseNames}
 \title{ChineseNames: Chinese Name Database 1930-2008}
 \description{
-A database of Chinese surnames and given names (1930-2008), originally
-obtained from the National Citizen Identity Information Center (NCIIC)
-of China and provided by Beijing Meiming Science and Technology Company.
+A database of Chinese surnames and Chinese given names (1930-2008).
 This name database contains nationwide frequency statistics for
 1,806 Chinese surnames and 2,614 Chinese characters used in given names,
 covering about 1.2 billion Han Chinese population
 (96.8\% of the Han Chinese household-registered population
 born from 1930 to 2008 and still alive in 2008).
-This package also contains a function that can compute variables of
-Chinese surnames and given names for scientific research (e.g.,
-name uniqueness, name positivity, name warmth/competence).
+This package also contains a function for computing multiple features of
+Chinese surnames and Chinese given names for scientific research (e.g.,
+name uniqueness, name gender, name valence, and name warmth/competence).
 }
 \details{
 Details are described in

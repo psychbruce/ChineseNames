@@ -2,13 +2,9 @@
 
 **Chinese Name Database 1930-2008**
 
-A database of Chinese surnames and given names (1930-2008), originally obtained from the National Citizen Identity Information Center (NCIIC) of China and provided by Beijing Meiming Science and Technology Company.
+A database of Chinese surnames and Chinese given names (1930-2008). This name database contains nationwide frequency statistics for 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple features of Chinese surnames and Chinese given names for scientific research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
 
-This name database contains nationwide frequency statistics for 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008).
-
-This package also contains a function that can compute indices of Chinese surnames and given names for scientific research (e.g., name uniqueness, name gender, name positivity, name warmth/competence).
-
-[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://www.rdocumentation.org/packages/ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://travis-ci.com/psychbruce/ChineseNames) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
+[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://travis-ci.com/psychbruce/ChineseNames) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
 
 <img src="https://s1.ax1x.com/2020/07/28/aAjUJg.jpg" width="120px" height="42px"/>
 
@@ -66,11 +62,11 @@ This package includes five datasets (`data.frame` in R):
 
 *Note*. The "ppm" in variable names of these datasets means "parts per million (百万分率)" (e.g., ppm = 1 means a proportion of 1/10<sup>6</sup>).
 
-### Compute Name Indices
+### Compute Name Features
 
 **Use the `compute_name_index()` function.** This function computes multiple indices of Chinese surnames and given names for scientific research. Just input a data frame with full names (and birth year, if necessary), then it returns a new data frame with all name indices appended.
 
-Example:
+**Examples:**
 
 ``` r
 library(ChineseNames)
@@ -85,7 +81,7 @@ demodata=data.frame(
 newdata=compute_name_index(
   demodata,
   var.fullname="name",  # full name
-  var.birthyear="birth")  # adjusted for birth cohort
+  var.birthyear="birth")  # adjusted for birth year
 View(newdata)
 ```
 

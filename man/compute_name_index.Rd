@@ -2,7 +2,7 @@
 % Please edit documentation in R/ChineseNames.R
 \name{compute_name_index}
 \alias{compute_name_index}
-\title{Compute indices of surnames and given names.}
+\title{Compute features of surnames and given names.}
 \usage{
 compute_name_index(
   data = NULL,
@@ -69,7 +69,7 @@ Default is \code{FALSE}.}
 A new data frame (\code{data.table}) with name indices appended.
 }
 \description{
-Compute all available name indices based on
+Compute all available name features (indices) based on
 \code{\link{familyname}} and \code{\link{givenname}}.
 You can either input \code{data} with a variable of Chinese names
 (and a variable of birth year, if necessary)
@@ -78,4 +78,19 @@ or just input a vector of \code{name}
 }
 \note{
 For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
+}
+\examples{
+sn=familyname$surname[1:12]
+gn=c(top100name.year$name.all.1960[1:6],
+     top100name.year$name.all.2000[1:6],
+     top100name.year$name.all.1960[95:100],
+     top100name.year$name.all.2000[95:100])
+demodata=data.frame(name=paste0(sn, gn),
+                    birth=c(1960:1965, 2000:2005,
+                            1960:1965, 2000:2005))
+newdata=compute_name_index(demodata,
+                           var.fullname="name",
+                           var.birthyear="birth")
+# use View(newdata) to see the results
+
 }
