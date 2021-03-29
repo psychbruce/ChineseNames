@@ -8,7 +8,7 @@ This name database contains nationwide frequency statistics for 1,806 Chinese su
 
 This package also contains a function that can compute indices of Chinese surnames and given names for scientific research (e.g., name uniqueness, name gender, name positivity, name warmth/competence).
 
-[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://www.rdocumentation.org/packages/ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://travis-ci.com/psychbruce/ChineseNames) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
+[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://www.rdocumentation.org/packages/ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://travis-ci.com/psychbruce/ChineseNames) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
 
 <img src="https://s1.ax1x.com/2020/07/28/aAjUJg.jpg" width="120px" height="42px"/>
 
@@ -66,9 +66,9 @@ This package includes five datasets (`data.frame` in R):
 
 *Note*. The "ppm" in variable names of these datasets means "parts per million (百万分率)" (e.g., ppm = 1 means a proportion of 1/10<sup>6</sup>).
 
-### Compute Name Variables
+### Compute Name Indices
 
-**Use the `compute_name_index()` function.** This function computes multiple indices of Chinese surnames and given names for scientific research. Just input a data frame with full names (and birth year, if necessary), then it returns a new data frame with all name variables appended.
+**Use the `compute_name_index()` function.** This function computes multiple indices of Chinese surnames and given names for scientific research. Just input a data frame with full names (and birth year, if necessary), then it returns a new data frame with all name indices appended.
 
 Example:
 
@@ -76,8 +76,11 @@ Example:
 library(ChineseNames)
 ?compute_name_index  # see usage in help page
 
-demodata  # a data frame with full names and birth years
-View(demodata)  # two variables: "name", "birth"
+compute_name_index(name="包寒吴霜", birth=1995, index="NU")
+
+demodata=data.frame(
+  name=c("包寒吴霜", "陈俊霖", "张伟", "张炜", "欧阳修", "欧阳", "易烊千玺", "张艺谋", "王的"),
+  birth=c(1995, 1995, 1985, 1988, 1968, 2010, 2000, 1950, 2005))
 
 newdata=compute_name_index(
   demodata,

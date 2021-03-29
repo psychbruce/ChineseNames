@@ -42,8 +42,7 @@ NULL
 #'
 #' @name familyname
 #' @usage data(familyname)
-#' @format
-#' A data frame with 7 variables:
+#' @format A data frame with 7 variables:
 #' \describe{
 #'   \item{\code{surname}}{surname (in Chinese)}
 #'   \item{\code{compound}}{0 = single surname, 1 = compound surname}
@@ -61,8 +60,7 @@ NULL
 #'
 #' @name givenname
 #' @usage data(givenname)
-#' @format
-#' A data frame with 25 variables:
+#' @format A data frame with 25 variables:
 #' \describe{
 #'   \item{\code{character}}{character used in given names (in Chinese)}
 #'   \item{\code{pinyin}}{pinyin (pronunciation)}
@@ -70,15 +68,15 @@ NULL
 #'   \item{\code{n.male}}{total counts in male}
 #'   \item{\code{n.female}}{total counts in female}
 #'   \item{\code{name.gender}}{difference in proportions of a character used by male vs. female}
-#'   \item{\code{n.1930_1959}, \code{n.1960_1969}, ..., \code{n.2000_2008}}{total counts in a birth cohort}
-#'   \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, ..., \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
+#'   \item{\code{n.1930_1959}, \code{n.1960_1969}, \code{n.1970_1979}, \code{n.1980_1989}, \code{n.1990_1999}, \code{n.2000_2008}}{total counts in a birth cohort}
+#'   \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, \code{ppm.1970_1979}, \code{ppm.1980_1989}, \code{ppm.1990_1999}, \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
 #'   \item{\code{name.ppm}}{average ppm (parts per million) across all cohorts}
 #'   \item{\code{name.uniqueness}}{name-character uniqueness (in naming practices)}
 #'   \item{\code{corpus.ppm}}{proportion (parts per million) in contemporary Chinese corpus}
 #'   \item{\code{corpus.uniqueness}}{character-corpus uniqueness (in contemporary Chinese corpus)}
-#'   \item{\code{name.valence} (based on subjective ratings from 16 raters, ICC = 0.921)}{name valence (positivity of character meaning)}
-#'   \item{\code{name.warmth} (based on subjective ratings from 10 raters, ICC = 0.774)}{name warmth/morality}
-#'   \item{\code{name.competence} (based on subjective ratings from 10 raters, ICC = 0.712)}{name competence/assertiveness}
+#'   \item{\code{name.valence}}{name valence (positivity of character meaning) (based on subjective ratings from 16 raters, ICC = 0.921)}
+#'   \item{\code{name.warmth}}{name warmth/morality (based on subjective ratings from 10 raters, ICC = 0.774)}
+#'   \item{\code{name.competence}}{name competence/assertiveness (based on subjective ratings from 10 raters, ICC = 0.712)}
 #' }
 #' @details \url{https://github.com/psychbruce/ChineseNames}
 NULL
@@ -112,7 +110,7 @@ NULL
 NULL
 
 
-#### Function ####
+#### Functions ####
 
 
 `%>%`=dplyr::`%>%`
@@ -164,21 +162,7 @@ NULL
 #' @return
 #' A new data frame (\code{data.table}) with name indices appended.
 #'
-#' @examples
-#' ## compute for one name
-#' myname=demodata[1, "name"]
-#' mybirth=1995
-#' d=compute_name_index(name=myname, birth=mybirth, index="NU")
-#' # use View(d) to see the results
-#'
-#' ## compute for a dataset with a variable of names
-#' data(demodata)  # a data frame
-#' data=compute_name_index(demodata,
-#'                         var.fullname="name")  # not adjusted for birth year
-#' data=compute_name_index(demodata,
-#'                         var.fullname="name",
-#'                         var.birthyear="birth")  # adjusted for birth year
-#' # use View(data) to see the results
+#' @note For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
 #'
 #' @import data.table
 #' @importFrom bruceR Print MEAN LOOKUP
@@ -197,6 +181,89 @@ compute_name_index=function(data=NULL,
                             digits=4,
                             return.namechar=TRUE,
                             return.all=FALSE) {
+  ## Prepare ##
+
+  familyname=ChineseNames::familyname
+  givenname=ChineseNames::givenname
+
+  fuxing=familyname[familyname$compound==1, "surname"]
+  ref0=givenname$name.ppm; names(ref0)=givenname$character
+  ref1=givenname$ppm.1930_1959; names(ref1)=givenname$character
+  ref2=givenname$ppm.1960_1969; names(ref2)=givenname$character
+  ref3=givenname$ppm.1970_1979; names(ref3)=givenname$character
+  ref4=givenname$ppm.1980_1989; names(ref4)=givenname$character
+  ref5=givenname$ppm.1990_1999; names(ref5)=givenname$character
+  ref6=givenname$ppm.2000_2008; names(ref6)=givenname$character
+
+  compute_NU_char=function(char, year=NA, approx=TRUE) {
+    raw=!approx
+    if(is.na(char))
+      ppm="NA"
+    else if(is.na(year))
+      ppm=ref0[char]  # overall
+    else if(year<1930)
+      ppm=ref1[char]  # 1930-1959
+    else if(year<1960)
+      ppm=ifelse(
+        raw | year<1955,
+        ref1[char],  # 1930-1959
+        (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10
+      )
+    else if(year<1970)
+      ppm=ifelse(
+        raw,
+        ref2[char],  # 1960-1969
+        ifelse(year<1965,
+               (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10,
+               (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10)
+      )
+    else if(year<1980)
+      ppm=ifelse(
+        raw,
+        ref3[char],  # 1970-1979
+        ifelse(year<1975,
+               (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10,
+               (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10)
+      )
+    else if(year<1990)
+      ppm=ifelse(
+        raw,
+        ref4[char],  # 1980-1989
+        ifelse(year<1985,
+               (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10,
+               (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10)
+      )
+    else if(year<2000)
+      ppm=ifelse(
+        raw,
+        ref5[char],  # 1990-1999
+        ifelse(year<1995,
+               (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10,
+               (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10)
+      )
+    else if(year<2010)
+      ppm=ifelse(
+        raw,
+        ref6[char],  # 2000-2009 (2008)
+        ifelse(year<2005,
+               (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10,
+               ref6[char])
+      )
+    else
+      ppm="NA"
+    if(is.na(ppm)) ppm=0
+    if(ppm=="NA") ppm=NA
+    return(as.numeric( -log10((ppm+1)/10^6) ))
+  }
+
+  ## Debug ##
+
+  `.`=NULL
+  NLen=SNU=SNI=NU=CCU=NG=NV=NW=NC=NULL
+  fx=sur.name=given.name=name0=name1=name2=name3=NULL
+
+  ## Main ##
+
   if(is.na(name)==FALSE) {
     data=data.frame(name=name, birth=birth)
     var.fullname="name"
@@ -323,77 +390,5 @@ compute_name_index=function(data=NULL,
     return(d)
   else
     return(data.new)
-}
-
-
-compute_NU_char=function(char, year=NA, approx=TRUE) {
-  raw=!approx
-  if(is.na(char))
-    ppm="NA"
-  else if(is.na(year))
-    ppm=ref0[char]  # overall
-  else if(year<1930)
-    ppm=ref1[char]  # 1930-1959
-  else if(year<1960)
-    ppm=ifelse(
-      raw | year<1955,
-      ref1[char],  # 1930-1959
-      (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10
-    )
-  else if(year<1970)
-    ppm=ifelse(
-      raw,
-      ref2[char],  # 1960-1969
-      ifelse(year<1965,
-             (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10,
-             (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10)
-    )
-  else if(year<1980)
-    ppm=ifelse(
-      raw,
-      ref3[char],  # 1970-1979
-      ifelse(year<1975,
-             (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10,
-             (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10)
-    )
-  else if(year<1990)
-    ppm=ifelse(
-      raw,
-      ref4[char],  # 1980-1989
-      ifelse(year<1985,
-             (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10,
-             (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10)
-    )
-  else if(year<2000)
-    ppm=ifelse(
-      raw,
-      ref5[char],  # 1990-1999
-      ifelse(year<1995,
-             (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10,
-             (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10)
-    )
-  else if(year<2010)
-    ppm=ifelse(
-      raw,
-      ref6[char],  # 2000-2009 (2008)
-      ifelse(year<2005,
-             (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10,
-             (ref6[char]*(2015-year) + ref7[char]*(year-2005))/10)
-    )
-  else if(year<2020)
-    ppm=ifelse(
-      raw,
-      ref7[char],  # 2010-2019 (forecast by time-series models)
-      ifelse(year<2015,
-             (ref6[char]*(2015-year) + ref7[char]*(year-2005))/10,
-             (ref7[char]*(2025-year) + ref8[char]*(year-2015))/10)
-    )
-  else if(year<2030)
-    ppm=ref8[char]  # 2020-2029 (forecast by time-series models)
-  else
-    ppm="NA"
-  if(is.na(ppm)) ppm=0
-  if(ppm=="NA") ppm=NA
-  return(as.numeric( -log10((ppm+1)/10^6) ))
 }
 

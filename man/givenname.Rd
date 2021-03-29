@@ -12,15 +12,15 @@ A data frame with 25 variables:
   \item{\code{n.male}}{total counts in male}
   \item{\code{n.female}}{total counts in female}
   \item{\code{name.gender}}{difference in proportions of a character used by male vs. female}
-  \item{\code{n.1930_1959}, \code{n.1960_1969}, ..., \code{n.2000_2008}}{total counts in a birth cohort}
-  \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, ..., \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
+  \item{\code{n.1930_1959}, \code{n.1960_1969}, \code{n.1970_1979}, \code{n.1980_1989}, \code{n.1990_1999}, \code{n.2000_2008}}{total counts in a birth cohort}
+  \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, \code{ppm.1970_1979}, \code{ppm.1980_1989}, \code{ppm.1990_1999}, \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
   \item{\code{name.ppm}}{average ppm (parts per million) across all cohorts}
   \item{\code{name.uniqueness}}{name-character uniqueness (in naming practices)}
   \item{\code{corpus.ppm}}{proportion (parts per million) in contemporary Chinese corpus}
   \item{\code{corpus.uniqueness}}{character-corpus uniqueness (in contemporary Chinese corpus)}
-  \item{\code{name.valence} (based on subjective ratings from 16 raters, ICC = 0.921)}{name valence (positivity of character meaning)}
-  \item{\code{name.warmth} (based on subjective ratings from 10 raters, ICC = 0.774)}{name warmth/morality}
-  \item{\code{name.competence} (based on subjective ratings from 10 raters, ICC = 0.712)}{name competence/assertiveness}
+  \item{\code{name.valence}}{name valence (positivity of character meaning) (based on subjective ratings from 16 raters, ICC = 0.921)}
+  \item{\code{name.warmth}}{name warmth/morality (based on subjective ratings from 10 raters, ICC = 0.774)}
+  \item{\code{name.competence}}{name competence/assertiveness (based on subjective ratings from 10 raters, ICC = 0.712)}
 }
 }
 \usage{

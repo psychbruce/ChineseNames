@@ -76,20 +76,6 @@ You can either input \code{data} with a variable of Chinese names
 or just input a vector of \code{name}
 (and \code{birth} year, if necessary).
 }
-\examples{
-## compute for one name
-myname=demodata[1, "name"]
-mybirth=1995
-d=compute_name_index(name=myname, birth=mybirth, index="NU")
-# use View(d) to see the results
-
-## compute for a dataset with a variable of names
-data(demodata)  # a data frame
-data=compute_name_index(demodata,
-                        var.fullname="name")  # not adjusted for birth year
-data=compute_name_index(demodata,
-                        var.fullname="name",
-                        var.birthyear="birth")  # adjusted for birth year
-# use View(data) to see the results
-
+\note{
+For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
 }
