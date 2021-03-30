@@ -2,7 +2,7 @@
 % Please edit documentation in R/ChineseNames.R
 \name{compute_name_index}
 \alias{compute_name_index}
-\title{Compute features of surnames and given names.}
+\title{Compute multiple features of surnames and given names.}
 \usage{
 compute_name_index(
   data = NULL,
@@ -67,19 +67,36 @@ Default is \code{FALSE}.}
 }
 \value{
 A new data frame (\code{data.table}) with name indices appended.
+Full names are split into \code{name0}
+(surnames, with compound surnames automatically detected),
+\code{name1}, \code{name2}, and \code{name3} (given-name characters).
 }
 \description{
 Compute all available name features (indices) based on
 \code{\link{familyname}} and \code{\link{givenname}}.
-You can either input \code{data} with a variable of Chinese names
-(and a variable of birth year, if necessary)
-or just input a vector of \code{name}
-(and \code{birth} year, if necessary).
+You can either input a data frame
+with a variable of Chinese full names
+(and a variable of birth years, if necessary)
+or just input a vector of full names
+(and a vector of birth years, if necessary).
+
+\itemize{
+  \item Usage 1: input a data frame of \code{data}
+  and the variable name of
+  \code{var.fullname} (or \code{var.surname} and/or \code{var.givenname})
+  [and \code{var.birthyear}, if necessary].
+  \item Usage 2: input a vector of \code{name} [and \code{birth}, if necessary].
+}
+
+\emph{Caution.} Name-character uniqueness (NU) of cases
+with birth year >= 2010 would not be accurately computed
+due to the year limitation of this name database.
 }
 \note{
 For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
 }
 \examples{
+## Prepare
 sn=familyname$surname[1:12]
 gn=c(top100name.year$name.all.1960[1:6],
      top100name.year$name.all.2000[1:6],
@@ -88,6 +105,8 @@ gn=c(top100name.year$name.all.1960[1:6],
 demodata=data.frame(name=paste0(sn, gn),
                     birth=c(1960:1965, 2000:2005,
                             1960:1965, 2000:2005))
+
+## Compute
 newdata=compute_name_index(demodata,
                            var.fullname="name",
                            var.birthyear="birth")

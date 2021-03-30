@@ -114,14 +114,28 @@ NULL
 `%>%`=dplyr::`%>%`
 
 
-#' Compute features of surnames and given names.
+#' Compute multiple features of surnames and given names.
 #'
+#' @description
 #' Compute all available name features (indices) based on
 #' \code{\link{familyname}} and \code{\link{givenname}}.
-#' You can either input \code{data} with a variable of Chinese names
-#' (and a variable of birth year, if necessary)
-#' or just input a vector of \code{name}
-#' (and \code{birth} year, if necessary).
+#' You can either input a data frame
+#' with a variable of Chinese full names
+#' (and a variable of birth years, if necessary)
+#' or just input a vector of full names
+#' (and a vector of birth years, if necessary).
+#'
+#' \itemize{
+#'   \item Usage 1: input a data frame of \code{data}
+#'   and the variable name of
+#'   \code{var.fullname} (or \code{var.surname} and/or \code{var.givenname})
+#'   [and \code{var.birthyear}, if necessary].
+#'   \item Usage 2: input a vector of \code{name} [and \code{birth}, if necessary].
+#' }
+#'
+#' \emph{Caution.} Name-character uniqueness (NU) of cases
+#' with birth year >= 2010 would not be accurately computed
+#' due to the year limitation of this name database.
 #'
 #' @param data Data frame.
 #' @param var.fullname Variable name of Chinese full names (e.g., \code{"name"}).
@@ -159,10 +173,14 @@ NULL
 #'
 #' @return
 #' A new data frame (\code{data.table}) with name indices appended.
+#' Full names are split into \code{name0}
+#' (surnames, with compound surnames automatically detected),
+#' \code{name1}, \code{name2}, and \code{name3} (given-name characters).
 #'
 #' @note For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
 #'
 #' @examples
+#' ## Prepare
 #' sn=familyname$surname[1:12]
 #' gn=c(top100name.year$name.all.1960[1:6],
 #'      top100name.year$name.all.2000[1:6],
@@ -171,6 +189,8 @@ NULL
 #' demodata=data.frame(name=paste0(sn, gn),
 #'                     birth=c(1960:1965, 2000:2005,
 #'                             1960:1965, 2000:2005))
+#'
+#' ## Compute
 #' newdata=compute_name_index(demodata,
 #'                            var.fullname="name",
 #'                            var.birthyear="birth")
@@ -209,9 +229,9 @@ compute_name_index=function(data=NULL,
 
   compute_NU_char=function(char, year=NA, approx=TRUE) {
     raw=!approx
-    if(is.na(char))
+    if(is.na(char) | char=="")
       ppm="NA"
-    else if(is.na(year))
+    else if(is.na(year) | year>=2010)
       ppm=ref0[char]  # overall
     else if(year<1930)
       ppm=ref1[char]  # 1930-1959
@@ -288,44 +308,33 @@ compute_name_index=function(data=NULL,
 
   data=as.data.frame(data)
   if(!is.null(var.fullname)) {
-    d=data.table(name=data[[var.fullname]])
-    d[,name:=as.character(name)]
-    d[,NLen:=nchar(name)]
-    d[,fx:=(substr(name, 1, 2) %in% fuxing) & NLen>2]
-    d[,name0:=substr(name, 1, ifelse(fx, 2, 1))]
-    d[,name1:=substr(name, ifelse(fx, 3, 2), ifelse(fx, 3, 2)) %>% ifelse(.=="", NA, .)]
-    d[,name2:=substr(name, ifelse(fx, 4, 3), ifelse(fx, 4, 3)) %>% ifelse(.=="", NA, .)]
-    d[,name3:=substr(name, ifelse(fx, 5, 4), ifelse(fx, 5, 4)) %>% ifelse(.=="", NA, .)]
+    d=data.table(full.name=data[[var.fullname]])
+    d[,NLen:=nchar(full.name)]
+    d[,sur.name:=substr(full.name, 1,
+                        ifelse((substr(full.name, 1, 2) %in% fuxing) & NLen>2,
+                               2, 1))]
+    d[,given.name:=substr(full.name, nchar(sur.name)+1, NLen)]
   } else {
     if(!is.null(var.surname) & !is.null(var.givenname)) {
       d=data.table(sur.name=data[[var.surname]], given.name=data[[var.givenname]])
-      names(d)=c("sur.name", "given.name")
     } else {
-      if(!is.null(var.surname)) {
-        d=data.table(sur.name=data[[var.surname]])
-        d$given.name=""
-      }
-      if(!is.null(var.givenname)) {
-        d=data.table(given.name=data[[var.givenname]])
-        d$sur.name=""
-      }
+      if(!is.null(var.surname))
+        d=data.table(sur.name=data[[var.surname]], given.name="")
+      if(!is.null(var.givenname))
+        d=data.table(sur.name="", given.name=data[[var.givenname]])
     }
-    d[,name:=paste0(sur.name, given.name)]
-    d[,NLen:=nchar(name)]
-    d[,fx:=sur.name %in% fuxing]
-    d[,name0:=sur.name]
-    d[,name1:=substr(given.name, 1, 1) %>% ifelse(.=="", NA, .)]
-    d[,name2:=substr(given.name, 2, 2) %>% ifelse(.=="", NA, .)]
-    d[,name3:=substr(given.name, 3, 3) %>% ifelse(.=="", NA, .)]
-    d$sur.name=NULL
-    d$given.name=NULL
+    d[,full.name:=paste0(sur.name, given.name)]
+    d[,NLen:=nchar(full.name)]
   }
+  d[,name0:=sur.name]
+  d[,name1:=substr(given.name, 1, 1)]
+  d[,name2:=substr(given.name, 2, 2)]
+  d[,name3:=substr(given.name, 3, 3)]
 
-  if(!is.null(var.birthyear)) {
+  if(!is.null(var.birthyear))
     d=cbind(d, year=data[[var.birthyear]])
-  } else {
+  else
     d=cbind(d, year=NA)
-  }
 
   d=d[,.(name0, name1, name2, name3, year, NLen)]
 
@@ -342,55 +351,61 @@ compute_name_index=function(data=NULL,
   }
 
   if("NU" %in% index) {
-    d[,`:=`(nu1=mapply(compute_NU_char, name1, year, NU.approx),
-            nu2=mapply(compute_NU_char, name2, year, NU.approx),
-            nu3=mapply(compute_NU_char, name3, year, NU.approx)
-            )]
+    d[,`:=`(
+      nu1=mapply(compute_NU_char, name1, year, NU.approx),
+      nu2=mapply(compute_NU_char, name2, year, NU.approx),
+      nu3=mapply(compute_NU_char, name3, year, NU.approx)
+    )]
     d[,NU:=MEAN(d, "nu", 1:3) %>% round(digits)]
     if(log) Print("NU computed.")
   }
 
   if("CCU" %in% index) {
-    d[,`:=`(ccu1=LOOKUP(d, "name1", givenname, "character", "corpus.uniqueness", return="new.value"),
-            ccu2=LOOKUP(d, "name2", givenname, "character", "corpus.uniqueness", return="new.value"),
-            ccu3=LOOKUP(d, "name3", givenname, "character", "corpus.uniqueness", return="new.value")
-            )]
+    d[,`:=`(
+      ccu1=LOOKUP(d, "name1", givenname, "character", "corpus.uniqueness", return="new.value"),
+      ccu2=LOOKUP(d, "name2", givenname, "character", "corpus.uniqueness", return="new.value"),
+      ccu3=LOOKUP(d, "name3", givenname, "character", "corpus.uniqueness", return="new.value")
+    )]
     d[,CCU:=MEAN(d, "ccu", 1:3) %>% round(digits)]
     if(log) Print("CCU computed.")
   }
 
   if("NG" %in% index) {
-    d[,`:=`(ng1=LOOKUP(d, "name1", givenname, "character", "name.gender", return="new.value"),
-            ng2=LOOKUP(d, "name2", givenname, "character", "name.gender", return="new.value"),
-            ng3=LOOKUP(d, "name3", givenname, "character", "name.gender", return="new.value")
-            )]
+    d[,`:=`(
+      ng1=LOOKUP(d, "name1", givenname, "character", "name.gender", return="new.value"),
+      ng2=LOOKUP(d, "name2", givenname, "character", "name.gender", return="new.value"),
+      ng3=LOOKUP(d, "name3", givenname, "character", "name.gender", return="new.value")
+    )]
     d[,NG:=MEAN(d, "ng", 1:3) %>% round(digits)]
     if(log) Print("NG computed.")
   }
 
   if("NV" %in% index) {
-    d[,`:=`(nv1=LOOKUP(d, "name1", givenname, "character", "name.valence", return="new.value"),
-            nv2=LOOKUP(d, "name2", givenname, "character", "name.valence", return="new.value"),
-            nv3=LOOKUP(d, "name3", givenname, "character", "name.valence", return="new.value")
-            )]
+    d[,`:=`(
+      nv1=LOOKUP(d, "name1", givenname, "character", "name.valence", return="new.value"),
+      nv2=LOOKUP(d, "name2", givenname, "character", "name.valence", return="new.value"),
+      nv3=LOOKUP(d, "name3", givenname, "character", "name.valence", return="new.value")
+    )]
     d[,NV:=MEAN(d, "nv", 1:3) %>% round(digits)]
     if(log) Print("NV computed.")
   }
 
   if("NW" %in% index) {
-    d[,`:=`(nw1=LOOKUP(d, "name1", givenname, "character", "name.warmth", return="new.value"),
-            nw2=LOOKUP(d, "name2", givenname, "character", "name.warmth", return="new.value"),
-            nw3=LOOKUP(d, "name3", givenname, "character", "name.warmth", return="new.value")
-            )]
+    d[,`:=`(
+      nw1=LOOKUP(d, "name1", givenname, "character", "name.warmth", return="new.value"),
+      nw2=LOOKUP(d, "name2", givenname, "character", "name.warmth", return="new.value"),
+      nw3=LOOKUP(d, "name3", givenname, "character", "name.warmth", return="new.value")
+    )]
     d[,NW:=MEAN(d, "nw", 1:3) %>% round(digits)]
     if(log) Print("NW computed.")
   }
 
   if("NC" %in% index) {
-    d[,`:=`(nc1=LOOKUP(d, "name1", givenname, "character", "name.competence", return="new.value"),
-            nc2=LOOKUP(d, "name2", givenname, "character", "name.competence", return="new.value"),
-            nc3=LOOKUP(d, "name3", givenname, "character", "name.competence", return="new.value")
-            )]
+    d[,`:=`(
+      nc1=LOOKUP(d, "name1", givenname, "character", "name.competence", return="new.value"),
+      nc2=LOOKUP(d, "name2", givenname, "character", "name.competence", return="new.value"),
+      nc3=LOOKUP(d, "name3", givenname, "character", "name.competence", return="new.value")
+    )]
     d[,NC:=MEAN(d, "nc", 1:3) %>% round(digits)]
     if(log) Print("NC computed.")
   }
