@@ -4,9 +4,13 @@
 \name{ChineseNames}
 \alias{ChineseNames}
 \title{ChineseNames: Chinese Name Database 1930-2008}
+\source{
+This database was provided by Beijing Meiming Science and Technology Company (in collaboration) and
+originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
+}
 \description{
 A database of Chinese surnames and Chinese given names (1930-2008).
-This name database contains nationwide frequency statistics for
+This database contains nationwide frequency statistics of
 1,806 Chinese surnames and 2,614 Chinese characters used in given names,
 covering about 1.2 billion Han Chinese population
 (96.8\% of the Han Chinese household-registered population
@@ -18,6 +22,12 @@ name uniqueness, name gender, name valence, and name warmth/competence).
 \details{
 Details are described in
 \url{https://github.com/psychbruce/ChineseNames}
+}
+\note{
+This database does not contain any individual-level information
+(so it does not leak personal privacy).
+All data are at the name level or character level.
+Extremely rare characters are not included.
 }
 \section{Citation}{
 

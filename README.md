@@ -2,7 +2,7 @@
 
 **Chinese Name Database 1930-2008**
 
-A database of Chinese surnames and Chinese given names (1930-2008). This name database contains nationwide frequency statistics for 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple features of Chinese surnames and Chinese given names for scientific research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
+A database of Chinese surnames and Chinese given names (1930-2008). This database contains nationwide frequency statistics of 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple features of Chinese surnames and Chinese given names for scientific research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
 
 [![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://travis-ci.com/psychbruce/ChineseNames) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
 
@@ -37,21 +37,23 @@ devtools::install_github("psychbruce/ChineseNames")
 
 ### Data Source
 
-This Chinese name database was provided by Beijing Meiming Science and Technology Company and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
+This Chinese name database was provided by Beijing Meiming Science and Technology Company (in collaboration) and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 
-It contains nationwide statistics for almost all Chinese surnames and given-name characters and covers **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
+It contains nationwide frequency statistics of almost all Chinese surnames and given-name characters, which have covered about **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). It also contains subjective rating indices of given-name characters. To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
+
+Note that this database does not contain any individual-level information (so it does not leak personal privacy). All data are at the name level or character level. Extremely rare characters are not included.
 
 ### Datasets
 
-This package includes five datasets (`data.frame` in R):
+This package includes five datasets (`data.frame` in R). You can access them using the `data()` function in R. The use of these datasets should follow the GNU GPL-3 License and the Creative Commons License CC BY-NC-SA, **with a proper citation of this package and only for non-commercial purposes**.
 
--   **`familyname`**: 1,806 Chinese surnames with their frequency in the Han Chinese population.
+-   **`familyname`**: 1,806 Chinese surnames with their frequencies in the Han Chinese population.
 
-    -   overall frequencies and proportions regardless of gender and birth cohort
+    -   overall frequencies and proportions, regardless of gender and birth cohort
 
--   **`givenname`**: 2,614 Chinese characters in given names with their frequency in the Han Chinese population.
+-   **`givenname`**: 2,614 Chinese characters in given names with their frequencies in the Han Chinese population.
 
-    -   separate frequencies and proportions for each gender and each birth cohort (i.e., pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
+    -   separate frequencies and proportions for each gender and each of 6 birth cohorts (pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
     -   including usage in all single-character and multi-character given names (e.g., the character "伟" in all "张伟", "张伟\_\_", "张\_\_伟", "王伟", "王伟\_\_", "王\_\_伟", …)
 
 -   **`top1000name.prov`**: Top 1,000 given names in 31 Chinese mainland provinces.
@@ -60,20 +62,22 @@ This package includes five datasets (`data.frame` in R):
 
 -   **`top50char.year`**: Top 50 given-name characters for 6 birth cohorts.
 
-*Note*. The "ppm" in variable names of these datasets means "parts per million (百万分率)" (e.g., ppm = 1 means a proportion of 1/10<sup>6</sup>).
+*Note*. The "ppm" in the variable names of these datasets means "parts per million (百万分率)" (e.g., 1 ppm = a proportion of 1/10<sup>6</sup>).
 
 ### Compute Name Features
 
-**Use the `compute_name_index()` function.** This function computes multiple indices of Chinese surnames and given names for scientific research. Just input a data frame with full names (and birth year, if necessary), then it returns a new data frame with all name indices appended.
+**Use the `compute_name_index()` function.** This function computes multiple indices of Chinese surnames and given names for scientific research. Just input a data frame with full names (and birth years, if necessary), then it returns a new data frame with all name indices appended.
 
 **Examples:**
 
 ``` r
 library(ChineseNames)
-?compute_name_index  # see usage in help page
+?compute_name_index  # see detailed usage in help page
 
-compute_name_index(name="包寒吴霜", birth=1995, index="NU")
+## Usage 1
+compute_name_index(name="包寒吴霜", birth=1995)
 
+## Usage 2
 demodata=data.frame(
   name=c("包寒吴霜", "陈俊霖", "张伟", "张炜", "欧阳修", "欧阳", "易烊千玺", "张艺谋", "王的"),
   birth=c(1995, 1995, 1985, 1988, 1968, 2009, 2000, 1950, 2005))
@@ -100,9 +104,9 @@ View(newdata)
 
     -   2\~4
 
-        -   A Chinese given name can be any Chinese character or any combination of two characters (rarely of three characters, like the author's name).
-
         -   A Chinese surname usually consists of one character (i.e., single surname, 单姓) and sometimes consists of two characters (i.e., compound surname, 复姓).
+
+        -   A Chinese given name can be any single character or any combination of two characters (rarely of three characters, like the author's given name "Han-Wu-Shuang").
 
 -   **SNU: surname uniqueness**
 
@@ -177,7 +181,7 @@ View(newdata)
 
 For a Chinese given name with multiple characters, name indices are averaged across characters. In other words, name indices are computed based on ***characters*** rather than ***character combinations***. Here are main reasons.
 
-1.  Computing name variables at the character level is more practical in research. Indeed, character combinations are countless, whereas single characters are a finite set and easy to handle. Moreover, for name indices other than NU, this is the only feasible approach, especially in a large sample. It is impractical to ask participants to rate thousands (or even millions) of character combinations.
-2.  As evidenced by our research, the NU computed by averaging across multiple characters (objective NU) was positively correlated with people's perception of the uniqueness of their given names (subjective NU): *r* = 0.32, *p* \< 0.001, *N* = 672.
-3.  As evidenced by our research, among four measures of name uniqueness (two at the character level and two at the character-combination level), only name-character uniqueness (i.e., NU) was positively associated with cultural-level individualism, which was comparable to the findings of English names.
+1.  Computing name variables at the character level is more practical in research. Indeed, character combinations are countless, whereas single characters are a finite set and easy to handle. Moreover, for name indices other than NU, this is the only feasible approach, especially in a large sample. It is impractical to ask participants to rate millions or billions of character combinations.
+2.  As evidenced by our research, NU computed by averaging across characters (objective NU) was positively correlated with people's perception of the uniqueness of their given names (subjective NU): *r* = 0.32, *p* \< 0.001, *N* = 672.
+3.  As evidenced by our research, among four measures of name uniqueness (two at the character level and two at the character-combination level), only name-character uniqueness (i.e., NU) was positively associated with cultural-level individualism.
 4.  In linguistics, a *name* (word) is to English what a *name character* (single character) is to Chinese.

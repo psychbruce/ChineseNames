@@ -81,11 +81,11 @@ or just input a vector of full names
 (and a vector of birth years, if necessary).
 
 \itemize{
-  \item Usage 1: input a data frame of \code{data}
+  \item Usage 1: Input a single value or a vector of \code{name} [and \code{birth}, if necessary].
+  \item Usage 2: Input a data frame of \code{data}
   and the variable name of
   \code{var.fullname} (or \code{var.surname} and/or \code{var.givenname})
   [and \code{var.birthyear}, if necessary].
-  \item Usage 2: input a vector of \code{name} [and \code{birth}, if necessary].
 }
 
 \emph{Caution.} Name-character uniqueness (NU) of cases
