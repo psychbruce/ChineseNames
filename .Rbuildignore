@@ -1,4 +1,5 @@
 data-raw
+data-csv
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
