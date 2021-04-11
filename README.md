@@ -1,4 +1,4 @@
-# ChineseNames <a href="https://github.com/psychbruce/ChineseNames/tree/master/logo"><img src="https://raw.githubusercontent.com/psychbruce/ChineseNames/master/logo/ChineseNames_logo.png" align="right" height="200px"/></a>
+# ChineseNames <a href="https://github.com/psychbruce/ChineseNames/tree/master/logo"><img src="https://raw.githubusercontent.com/psychbruce/ChineseNames/master/logo/ChineseNames-logo-min.png" align="right" height="240px"/></a>
 
 **Chinese Name Database 1930-2008**
 
