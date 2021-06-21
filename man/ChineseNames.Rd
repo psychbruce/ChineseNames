@@ -32,7 +32,7 @@ Extremely rare characters are not included.
 \section{Citation}{
 
 Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-R package version 1.0.0.
+R package version 1.1.0.
 \url{https://CRAN.R-project.org/package=ChineseNames}
 }
 

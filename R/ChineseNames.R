@@ -27,7 +27,7 @@
 #'
 #' @section Citation:
 #' Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-#' R package version 1.0.0.
+#' R package version 1.1.0.
 #' \url{https://CRAN.R-project.org/package=ChineseNames}
 #'
 #' @docType package
@@ -37,10 +37,10 @@ NULL
 
 .onAttach=function(libname, pkgname) {
   packageStartupMessage(
-    "\nTo cite the `ChineseNames` package in publications, please use:\n\n",
+    "\nTo use the `ChineseNames` package in publications, please cite:\n\n",
     "Bao, H.-W.-S. (2021). ",
     "ChineseNames: Chinese Name Database 1930-2008. ",
-    "R package version 1.0.0. ",
+    "R package version 1.1.0. ",
     "https://CRAN.R-project.org/package=ChineseNames\n")
 }
 
@@ -209,7 +209,7 @@ NULL
 #' # use View(newdata) to see the results
 #'
 #' @import data.table
-#' @importFrom bruceR Print MEAN LOOKUP
+#' @importFrom bruceR dtime Print MEAN LOOKUP
 #' @export
 compute_name_index=function(data=NULL,
                             var.fullname=NULL,
@@ -227,78 +227,21 @@ compute_name_index=function(data=NULL,
                             return.all=FALSE) {
   ## Prepare ##
 
+  if(!is.null(data)) log=(nrow(data)>=1000) else log=FALSE
+  t0=Sys.time()
+
   familyname=ChineseNames::familyname
   givenname=ChineseNames::givenname
 
   fuxing=familyname[familyname$compound==1, "surname"]
-  ref0=givenname$name.ppm; names(ref0)=givenname$character
-  ref1=givenname$ppm.1930_1959; names(ref1)=givenname$character
-  ref2=givenname$ppm.1960_1969; names(ref2)=givenname$character
-  ref3=givenname$ppm.1970_1979; names(ref3)=givenname$character
-  ref4=givenname$ppm.1980_1989; names(ref4)=givenname$character
-  ref5=givenname$ppm.1990_1999; names(ref5)=givenname$character
-  ref6=givenname$ppm.2000_2008; names(ref6)=givenname$character
-
-  compute_NU_char=function(char, year=NA, approx=TRUE) {
-    raw=!approx
-    if(is.na(char) | char=="")
-      ppm="NA"
-    else if(is.na(year) | year>=2010)
-      ppm=ref0[char]  # overall
-    else if(year<1930)
-      ppm=ref1[char]  # 1930-1959
-    else if(year<1960)
-      ppm=ifelse(
-        raw | year<1955,
-        ref1[char],  # 1930-1959
-        (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10
-      )
-    else if(year<1970)
-      ppm=ifelse(
-        raw,
-        ref2[char],  # 1960-1969
-        ifelse(year<1965,
-               (ref1[char]*(1965-year) + ref2[char]*(year-1955))/10,
-               (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10)
-      )
-    else if(year<1980)
-      ppm=ifelse(
-        raw,
-        ref3[char],  # 1970-1979
-        ifelse(year<1975,
-               (ref2[char]*(1975-year) + ref3[char]*(year-1965))/10,
-               (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10)
-      )
-    else if(year<1990)
-      ppm=ifelse(
-        raw,
-        ref4[char],  # 1980-1989
-        ifelse(year<1985,
-               (ref3[char]*(1985-year) + ref4[char]*(year-1975))/10,
-               (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10)
-      )
-    else if(year<2000)
-      ppm=ifelse(
-        raw,
-        ref5[char],  # 1990-1999
-        ifelse(year<1995,
-               (ref4[char]*(1995-year) + ref5[char]*(year-1985))/10,
-               (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10)
-      )
-    else if(year<2010)
-      ppm=ifelse(
-        raw,
-        ref6[char],  # 2000-2009 (2008)
-        ifelse(year<2005,
-               (ref5[char]*(2005-year) + ref6[char]*(year-1995))/10,
-               ref6[char])
-      )
-    else
-      ppm="NA"
-    if(is.na(ppm)) ppm=0
-    if(ppm=="NA") ppm=NA
-    return(as.numeric( -log10((ppm+1)/10^6) ))
-  }
+  ref0=data.table(char=givenname$character, code=0, ppm=givenname$name.ppm)
+  ref1=data.table(char=givenname$character, code=1, ppm=givenname$ppm.1930_1959)
+  ref2=data.table(char=givenname$character, code=2, ppm=givenname$ppm.1960_1969)
+  ref3=data.table(char=givenname$character, code=3, ppm=givenname$ppm.1970_1979)
+  ref4=data.table(char=givenname$character, code=4, ppm=givenname$ppm.1980_1989)
+  ref5=data.table(char=givenname$character, code=5, ppm=givenname$ppm.1990_1999)
+  ref6=data.table(char=givenname$character, code=6, ppm=givenname$ppm.2000_2008)
+  ref.long=rbind(ref0, ref1, ref2, ref3, ref4, ref5, ref6)
 
   ## Debug ##
 
@@ -350,76 +293,84 @@ compute_name_index=function(data=NULL,
 
   d=d[,.(name0, name1, name2, name3, year, NLen)]
 
-  log=(nrow(d)>=100000)
+  if(log) Print("Data preprocessed ({dtime(t0)}).")
 
   if("SNU" %in% index) {
+    t0=Sys.time()
     d[,SNU:=LOOKUP(d, "name0", familyname, "surname", "surname.uniqueness", return="new.value") %>% round(digits)]
-    if(log) Print("SNU computed.")
+    if(log) Print("SNU computed ({dtime(t0)}).")
   }
 
   if("SNI" %in% index) {
+    t0=Sys.time()
     d[,SNI:=LOOKUP(d, "name0", familyname, "surname", "initial.rank", return="new.value")]
-    if(log) Print("SNI computed.")
+    if(log) Print("SNI computed ({dtime(t0)}).")
   }
 
   if("NU" %in% index) {
+    t0=Sys.time()
     d[,`:=`(
-      nu1=mapply(compute_NU_char, name1, year, NU.approx),
-      nu2=mapply(compute_NU_char, name2, year, NU.approx),
-      nu3=mapply(compute_NU_char, name3, year, NU.approx)
+      nu1=compute_NU_char(d, ref.long, "name1", "year", NU.approx),
+      nu2=compute_NU_char(d, ref.long, "name2", "year", NU.approx),
+      nu3=compute_NU_char(d, ref.long, "name3", "year", NU.approx)
     )]
     d[,NU:=MEAN(d, "nu", 1:3) %>% round(digits)]
-    if(log) Print("NU computed.")
+    if(log) Print("NU computed ({dtime(t0)}).")
   }
 
   if("CCU" %in% index) {
+    t0=Sys.time()
     d[,`:=`(
       ccu1=LOOKUP(d, "name1", givenname, "character", "corpus.uniqueness", return="new.value"),
       ccu2=LOOKUP(d, "name2", givenname, "character", "corpus.uniqueness", return="new.value"),
       ccu3=LOOKUP(d, "name3", givenname, "character", "corpus.uniqueness", return="new.value")
     )]
     d[,CCU:=MEAN(d, "ccu", 1:3) %>% round(digits)]
-    if(log) Print("CCU computed.")
+    if(log) Print("CCU computed ({dtime(t0)}).")
   }
 
   if("NG" %in% index) {
+    t0=Sys.time()
     d[,`:=`(
       ng1=LOOKUP(d, "name1", givenname, "character", "name.gender", return="new.value"),
       ng2=LOOKUP(d, "name2", givenname, "character", "name.gender", return="new.value"),
       ng3=LOOKUP(d, "name3", givenname, "character", "name.gender", return="new.value")
     )]
     d[,NG:=MEAN(d, "ng", 1:3) %>% round(digits)]
-    if(log) Print("NG computed.")
+    if(log) Print("NG computed ({dtime(t0)}).")
   }
 
   if("NV" %in% index) {
+    t0=Sys.time()
     d[,`:=`(
       nv1=LOOKUP(d, "name1", givenname, "character", "name.valence", return="new.value"),
       nv2=LOOKUP(d, "name2", givenname, "character", "name.valence", return="new.value"),
       nv3=LOOKUP(d, "name3", givenname, "character", "name.valence", return="new.value")
     )]
     d[,NV:=MEAN(d, "nv", 1:3) %>% round(digits)]
-    if(log) Print("NV computed.")
+    if(log) Print("NV computed ({dtime(t0)}).")
   }
 
   if("NW" %in% index) {
+    t0=Sys.time()
     d[,`:=`(
       nw1=LOOKUP(d, "name1", givenname, "character", "name.warmth", return="new.value"),
       nw2=LOOKUP(d, "name2", givenname, "character", "name.warmth", return="new.value"),
       nw3=LOOKUP(d, "name3", givenname, "character", "name.warmth", return="new.value")
     )]
     d[,NW:=MEAN(d, "nw", 1:3) %>% round(digits)]
-    if(log) Print("NW computed.")
+    if(log) Print("NW computed ({dtime(t0)}).")
   }
 
   if("NC" %in% index) {
+    t0=Sys.time()
     d[,`:=`(
       nc1=LOOKUP(d, "name1", givenname, "character", "name.competence", return="new.value"),
       nc2=LOOKUP(d, "name2", givenname, "character", "name.competence", return="new.value"),
       nc3=LOOKUP(d, "name3", givenname, "character", "name.competence", return="new.value")
     )]
     d[,NC:=MEAN(d, "nc", 1:3) %>% round(digits)]
-    if(log) Print("NC computed.")
+    if(log) Print("NC computed ({dtime(t0)}).")
   }
 
   if(return.namechar)
@@ -431,3 +382,34 @@ compute_name_index=function(data=NULL,
     return(data.new)
 }
 
+
+compute_NU_char=function(data, ref.long, var.char, var.year=NULL, approx=TRUE) {
+  ppm1=ppm2=weight1=weight2=NULL
+  if(is.null(var.year)) {
+    ppm=bruceR::LOOKUP(data, var.char,
+                       ChineseNames::givenname, "character", "name.ppm",
+                       return="new.value")
+  } else {
+    d=as.data.frame(data)[c(var.char, var.year)]
+    names(d)=c("char", "year")
+    d$code=bruceR::RECODE(
+      d$year, "lo:1929=1; 1930:1959=1; 1960:1969=2; 1970:1979=3; 1980:1989=4; 1990:1999=5; 2000:2009=6; else=0")
+    d$code1=bruceR::RECODE(
+      d$year, "lo:1954=1; 1955:1964=1; 1965:1974=2; 1975:1984=3; 1985:1994=4; 1995:2004=5; 2005:2009=6; else=0")
+    d$code2=bruceR::RECODE(
+      d$year, "lo:1954=1; 1955:1964=2; 1965:1974=3; 1975:1984=4; 1985:1994=5; 1995:2004=6; 2005:2009=6; else=0")
+    d$weight1=5-(d$year%%10)
+    d$weight1=ifelse(d$weight1>0, d$weight1, 10+d$weight1)
+    d$weight1=ifelse(is.na(d$weight1), 5, d$weight1)
+    d$weight2=10-d$weight1
+    if(approx==FALSE) {
+      d$ppm=bruceR::LOOKUP(d, c("char", "code"), ref.long, c("char", "code"), "ppm", return="new.value")
+    } else {
+      d$ppm1=bruceR::LOOKUP(d, c("char", "code1"), ref.long, c("char", "code"), "ppm", return="new.value")
+      d$ppm2=bruceR::LOOKUP(d, c("char", "code2"), ref.long, c("char", "code"), "ppm", return="new.value")
+      d=dplyr::mutate(d, ppm=(ppm1*weight1+ppm2*weight2)/10)
+    }
+  }
+  d$ppm=ifelse(is.na(d$ppm) & !is.na(d$char) & d$char!="", 0, d$ppm)
+  return(as.numeric( -log10((d$ppm+1)/10^6) ))
+}

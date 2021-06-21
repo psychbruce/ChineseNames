@@ -1,7 +1,7 @@
 Package: ChineseNames
 Title: Chinese Name Database 1930-2008
-Version: 1.0.0
-Date: 2021-03-30
+Version: 1.1.0
+Date: 2021-06-21
 Authors@R:
     c(person(given = "Han-Wu-Shuang",
              family = "Bao",
