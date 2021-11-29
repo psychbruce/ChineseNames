@@ -27,8 +27,13 @@
 #'
 #' @section Citation:
 #' Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-#' R package version 1.1.0.
+#' R package version 1.1.1.
 #' \url{https://CRAN.R-project.org/package=ChineseNames}
+#'
+#' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
+#' Novel evidence for the increasing prevalence of unique names in China:
+#' A reply to Ogihara (2020). \emph{Frontiers in Psychology, 12}, 731244.
+#' \url{https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full}
 #'
 #' @docType package
 #' @name ChineseNames
@@ -40,8 +45,12 @@ NULL
     "\nTo use the `ChineseNames` package in publications, please cite:\n\n",
     "Bao, H.-W.-S. (2021). ",
     "ChineseNames: Chinese Name Database 1930-2008. ",
-    "R package version 1.1.0. ",
-    "https://CRAN.R-project.org/package=ChineseNames\n")
+    "R package version 1.1.1. ",
+    "https://CRAN.R-project.org/package=ChineseNames\n\n",
+    "Other references:\n\n",
+    "Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). ",
+    "Novel evidence for the increasing prevalence of unique names in China: ",
+    "A reply to Ogihara (2020). Frontiers in Psychology, 12, 731244.\n")
 }
 
 
@@ -145,17 +154,16 @@ NULL
 #'   [and \code{var.birthyear}, if necessary].
 #' }
 #'
-#' \emph{Caution.} Name-character uniqueness (NU) of cases
-#' with birth year >= 2010 would not be accurately computed
-#' due to the year limitation of this name database.
+#' \emph{Caution.} Name-character uniqueness (NU) for birth year >= 2010
+#' is estimated by forecasting and thereby may not be accurate.
 #'
 #' @param data Data frame.
 #' @param var.fullname Variable name of Chinese full names (e.g., \code{"name"}).
 #' @param var.surname Variable name of Chinese surnames (e.g., \code{"surname"}).
 #' @param var.givenname Variable name of Chinese given names (e.g., \code{"givenname"}).
 #' @param var.birthyear Variable name of birth year (e.g., \code{"birth"}).
-#' @param name \strong{If no \code{data}}, you can just input a vector of full name(s).
-#' @param birth \strong{If no \code{data}}, you can just input a vector of birth year(s).
+#' @param name If no \code{data}, you can just input a vector of full name(s).
+#' @param birth If no \code{data}, you can just input a vector of birth year(s).
 #' @param index Which indices to compute?
 #'
 #' By default, it computes all available name indices:
@@ -184,15 +192,25 @@ NULL
 #' Default is \code{FALSE}.
 #'
 #' @return
-#' A new data frame (\code{data.table}) with name indices appended.
-#' Full names are split into \code{name0}
-#' (surnames, with compound surnames automatically detected),
+#' A new data frame (of class \code{data.table}) with name indices appended.
+#' Full names are split into \code{name0} (surnames, with compound surnames automatically detected),
 #' \code{name1}, \code{name2}, and \code{name3} (given-name characters).
 #'
-#' @note For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
+#' @note
+#' For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
+#'
+#' @section Citation:
+#' Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
+#' R package version 1.1.1.
+#' \url{https://CRAN.R-project.org/package=ChineseNames}
+#'
+#' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
+#' Novel evidence for the increasing prevalence of unique names in China:
+#' A reply to Ogihara (2020). \emph{Frontiers in Psychology, 12}, 731244.
+#' \url{https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full}
 #'
 #' @examples
-#' ## Prepare
+#' ## Prepare ##
 #' sn=familyname$surname[1:12]
 #' gn=c(top100name.year$name.all.1960[1:6],
 #'      top100name.year$name.all.2000[1:6],
@@ -201,12 +219,13 @@ NULL
 #' demodata=data.frame(name=paste0(sn, gn),
 #'                     birth=c(1960:1965, 2000:2005,
 #'                             1960:1965, 2000:2005))
+#' # View(demodata)
 #'
-#' ## Compute
+#' ## Compute ##
 #' newdata=compute_name_index(demodata,
 #'                            var.fullname="name",
 #'                            var.birthyear="birth")
-#' # use View(newdata) to see the results
+#' # View(newdata)
 #'
 #' @import data.table
 #' @importFrom bruceR dtime Print MEAN LOOKUP
@@ -243,7 +262,7 @@ compute_name_index=function(data=NULL,
   ref6=data.table(char=givenname$character, code=6, ppm=givenname$ppm.2000_2008)
   ref.long=rbind(ref0, ref1, ref2, ref3, ref4, ref5, ref6)
 
-  ## Debug ##
+  ## Initialize ##
 
   `.`=NULL
   NLen=SNU=SNI=NU=CCU=NG=NV=NW=NC=NULL
@@ -383,30 +402,31 @@ compute_name_index=function(data=NULL,
 }
 
 
+#' @importFrom bruceR LOOKUP
 compute_NU_char=function(data, ref.long, var.char, var.year=NULL, approx=TRUE) {
   ppm1=ppm2=weight1=weight2=NULL
   if(is.null(var.year)) {
-    ppm=bruceR::LOOKUP(data, var.char,
-                       ChineseNames::givenname, "character", "name.ppm",
-                       return="new.value")
+    ppm=LOOKUP(data, var.char,
+               ChineseNames::givenname, "character", "name.ppm",
+               return="new.value")
   } else {
     d=as.data.frame(data)[c(var.char, var.year)]
     names(d)=c("char", "year")
-    d$code=bruceR::RECODE(
+    d$code=car::recode(
       d$year, "lo:1929=1; 1930:1959=1; 1960:1969=2; 1970:1979=3; 1980:1989=4; 1990:1999=5; 2000:2009=6; else=0")
-    d$code1=bruceR::RECODE(
+    d$code1=car::recode(
       d$year, "lo:1954=1; 1955:1964=1; 1965:1974=2; 1975:1984=3; 1985:1994=4; 1995:2004=5; 2005:2009=6; else=0")
-    d$code2=bruceR::RECODE(
+    d$code2=car::recode(
       d$year, "lo:1954=1; 1955:1964=2; 1965:1974=3; 1975:1984=4; 1985:1994=5; 1995:2004=6; 2005:2009=6; else=0")
     d$weight1=5-(d$year%%10)
     d$weight1=ifelse(d$weight1>0, d$weight1, 10+d$weight1)
     d$weight1=ifelse(is.na(d$weight1), 5, d$weight1)
     d$weight2=10-d$weight1
     if(approx==FALSE) {
-      d$ppm=bruceR::LOOKUP(d, c("char", "code"), ref.long, c("char", "code"), "ppm", return="new.value")
+      d$ppm=LOOKUP(d, c("char", "code"), ref.long, c("char", "code"), "ppm", return="new.value")
     } else {
-      d$ppm1=bruceR::LOOKUP(d, c("char", "code1"), ref.long, c("char", "code"), "ppm", return="new.value")
-      d$ppm2=bruceR::LOOKUP(d, c("char", "code2"), ref.long, c("char", "code"), "ppm", return="new.value")
+      d$ppm1=LOOKUP(d, c("char", "code1"), ref.long, c("char", "code"), "ppm", return="new.value")
+      d$ppm2=LOOKUP(d, c("char", "code2"), ref.long, c("char", "code"), "ppm", return="new.value")
       d=dplyr::mutate(d, ppm=(ppm1*weight1+ppm2*weight2)/10)
     }
   }

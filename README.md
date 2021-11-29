@@ -1,10 +1,10 @@
-# ChineseNames <a href="https://github.com/psychbruce/ChineseNames/tree/master/logo"><img src="https://raw.githubusercontent.com/psychbruce/ChineseNames/master/logo/ChineseNames-logo-min.png" align="right" height="240px"/></a>
+# ChineseNames <a href="https://github.com/psychbruce/ChineseNames/tree/master/logo"><img src="https://raw.githubusercontent.com/psychbruce/ChineseNames/master/logo/ChineseNames-logo-min.png" align="right" height="180px"/></a>
 
 **Chinese Name Database 1930-2008**
 
 A database of Chinese surnames and Chinese given names (1930-2008). This database contains nationwide frequency statistics of 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple features of Chinese surnames and Chinese given names for scientific research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
 
-[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://travis-ci.com/psychbruce/ChineseNames) [![Logo-Designer](https://img.shields.io/badge/Logo%20Designer-Meijia%20Li-blueviolet?logo=github-sponsors)](https://github.com/Stellapros) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
+[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://app.travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://app.travis-ci.com/github/psychbruce/ChineseNames) [![Logo-Designer](https://img.shields.io/badge/Logo%20Designer-Meijia%20Li-blueviolet?logo=github-sponsors)](https://github.com/Stellapros) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
 
 <img src="https://s1.ax1x.com/2020/07/28/aAjUJg.jpg" width="120px" height="42px"/>
 
@@ -20,7 +20,8 @@ Website: [psychbruce.github.io](https://psychbruce.github.io)
 
 ## Citation
 
--   Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 1.0.0. <https://CRAN.R-project.org/package=ChineseNames> or <https://github.com/psychbruce/ChineseNames>
+-   Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 1.1.1. <https://CRAN.R-project.org/package=ChineseNames>
+-   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara (2020). *Frontiers in Psychology, 12*, 731244. <https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full>
 
 ## Install
 

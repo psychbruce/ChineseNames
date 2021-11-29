@@ -8,6 +8,6 @@ citEntry(entry = "Misc",
    textVersion =
    paste("Bao, H.-W.-S. (2021).",
          "ChineseNames: Chinese Name Database 1930-2008.",
-         "R package version 1.0.0.",
+         "R package version 1.1.1.",
          "https://CRAN.R-project.org/package=ChineseNames")
 )

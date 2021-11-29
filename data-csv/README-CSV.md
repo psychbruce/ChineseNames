@@ -2,9 +2,9 @@
 
 ### Description
 
-**`ChineseNames`** (v1.0.0) is an R package published on CRAN (<https://CRAN.R-project.org/package=ChineseNames>). To use the datasets in this package, it is highly recommended to use [R software](https://www.r-project.org/), normally within its IDE [RStudio](https://www.rstudio.com/products/rstudio/download/preview/), and install this package.
+**`ChineseNames`** is an R package published on CRAN (<https://CRAN.R-project.org/package=ChineseNames>). To use the datasets of this package, it is highly recommended to use [R software](https://www.r-project.org/), normally within its IDE [RStudio](https://www.rstudio.com/products/rstudio/download/preview/), and install this package.
 
-``` {.r}
+``` r
 ## Install from CRAN
 install.packages("ChineseNames")
 
@@ -28,10 +28,11 @@ For detailed description, see [README.md](https://github.com/psychbruce/ChineseN
 
 ### Citation
 
--   Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 1.0.0. <https://CRAN.R-project.org/package=ChineseNames> or <https://github.com/psychbruce/ChineseNames>
+-   Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 1.1.1. <https://CRAN.R-project.org/package=ChineseNames>
+-   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara (2020). *Frontiers in Psychology, 12*, 731244. <https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full>
 
 ### Supplementary Information
 
-Example usage and application based on this name database can be found in:
+An example of the usage based on this name database can be found in:
 
 -   [What can we tell from the evolution of Han Chinese names? - by Isabella Chua (March 12, 2021)](https://kontinentalist.com/stories/a-cultural-history-of-han-chinese-names-for-girls-and-boys-in-china)
