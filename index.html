@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.7/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Chinese Name Database 1930-2008">
@@ -101,14 +101,14 @@
 <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a>
 </h2>
 <p>Han-Wu-Shuang (Bruce) Bao 包寒吴霜</p>
-<p>Email: <a href="mailto:baohws@foxmail.com">baohws@foxmail.com</a></p>
-<p>Homepage: <a href="https://psychbruce.github.io" class="external-link">psychbruce.github.io</a></p>
+<p>📬 <a href="mailto:baohws@foxmail.com">baohws@foxmail.com</a></p>
+<p>📋 <a href="https://psychbruce.github.io" class="external-link">psychbruce.github.io</a></p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <ul>
-<li>Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 2021.12. <a href="https://CRAN.R-project.org/package=ChineseNames" class="external-link uri">https://CRAN.R-project.org/package=ChineseNames</a>
+<li>Bao, H.-W.-S. (2021). <em>ChineseNames: Chinese Name Database 1930-2008</em>. R package version 2021.12. <a href="https://CRAN.R-project.org/package=ChineseNames" class="external-link uri">https://CRAN.R-project.org/package=ChineseNames</a>
 </li>
 <li>Bao, H.-W.-S., Cai, H., Jing, Y., &amp; Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. <em>Frontiers in Psychology, 12</em>, 731244. <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full" class="external-link uri">https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full</a>
 </li>
@@ -165,7 +165,7 @@
 <p><strong>Use the <code><a href="reference/compute_name_index.html">compute_name_index()</a></code> function.</strong> This function computes multiple indices of Chinese surnames and given names for scientific research. Just input a data frame with full names (and birth years, if necessary), then it returns a new data frame with all name indices appended.</p>
 <p><strong>Examples:</strong></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psychbruce/ChineseNames" class="external-link">ChineseNames</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://psychbruce.github.io/ChineseNames/">ChineseNames</a></span><span class="op">)</span></span>
 <span><span class="op">?</span><span class="va">compute_name_index</span>  <span class="co"># see detailed usage in help page</span></span>
 <span></span>
 <span><span class="co">## Usage 1</span></span>

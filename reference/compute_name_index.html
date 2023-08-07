@@ -15,7 +15,7 @@ Usage 2: Input a data frame of data
 
 
 Caution. Name-character uniqueness (NU) for birth year &amp;gt;= 2010
-is estimated by forecasting and thereby may not be accurate."><title>Compute multiple features of surnames and given names. — compute_name_index • ChineseNames</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.7/font.css" rel="stylesheet"><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute multiple features of surnames and given names. — compute_name_index"><meta property="og:description" content="Compute all available name features (indices) based on
+is estimated by forecasting and thereby may not be accurate."><title>Compute multiple features of surnames and given names. — compute_name_index • ChineseNames</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.7/font.css" rel="stylesheet"><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute multiple features of surnames and given names. — compute_name_index"><meta property="og:description" content="Compute all available name features (indices) based on
 familyname and givenname.
 You can either input a data frame
 with a variable of Chinese full names
@@ -200,7 +200,7 @@ R package version 2021.12.
 <p>Bao, H.-W.-S., Cai, H., Jing, Y., &amp; Wang, J. (2021).
 Novel evidence for the increasing prevalence of unique names in China:
 A reply to Ogihara. <em>Frontiers in Psychology, 12</em>, 731244.
-<a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full" class="external-link">https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full</a></p>
+<a href="https://doi.org/10.3389/fpsyg.2021.731244" class="external-link">doi:10.3389/fpsyg.2021.731244</a></p>
     </div>
 
     <div class="section level2">
@@ -214,13 +214,90 @@ A reply to Ogihara. <em>Frontiers in Psychology, 12</em>, 731244.
 <span class="r-in"><span><span class="va">demodata</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">sn</span>, <span class="va">gn</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                      birth<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1960</span><span class="op">:</span><span class="fl">1965</span>, <span class="fl">2000</span><span class="op">:</span><span class="fl">2005</span>,</span></span>
 <span class="r-in"><span>                              <span class="fl">1960</span><span class="op">:</span><span class="fl">1965</span>, <span class="fl">2000</span><span class="op">:</span><span class="fl">2005</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># View(demodata)</span></span></span>
+<span class="r-in"><span><span class="va">demodata</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      name birth</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  王秀英  1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    李军  1961</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    张平  1962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  刘建华  1963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    陈伟  1964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    杨勇  1965</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    黄鑫  2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    赵杰  2001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    吴涛  2002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   周浩  2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   徐宇  2004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 孙俊杰  2005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 王秀花  1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 李新华  1961</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 张雪梅  1962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   刘荣  1963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   陈峰  1964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 杨春花  1965</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   黄娟  2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 赵志豪  2001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 吴天宇  2002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 周文博  2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 徐子怡  2004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   孙灿  2005</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Compute ##</span></span></span>
 <span class="r-in"><span><span class="va">newdata</span> <span class="op">=</span> <span class="fu">compute_name_index</span><span class="op">(</span><span class="va">demodata</span>,</span></span>
 <span class="r-in"><span>                             var.fullname<span class="op">=</span><span class="st">"name"</span>,</span></span>
 <span class="r-in"><span>                             var.birthyear<span class="op">=</span><span class="st">"birth"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># View(newdata)</span></span></span>
+<span class="r-in"><span><span class="va">newdata</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       name birth name0 name1 name2 name3 NLen    SNU SNI     NU    CCU      NG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1: 王秀英  1960    王    秀    英          3 1.1257  23 1.3158 3.5975 -0.8840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2:   李军  1961    李    军                2 1.1325  12 1.8763 3.0228  0.8241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3:   张平  1962    张    平                2 1.1529  26 1.6493 2.9196  0.1704</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4: 刘建华  1963    刘    建    华          3 1.2753  12 1.5465 3.1711  0.2838</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5:   陈伟  1964    陈    伟                2 1.3415   3 2.0655 3.8865  0.6859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6:   杨勇  1965    杨    勇                2 1.4725  25 2.2930 3.8916  0.9313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7:   黄鑫  2000    黄    鑫                2 1.6292   8 1.9089 5.2161  0.4574</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8:   赵杰  2001    赵    杰                2 1.6754  26 1.7429 4.1740  0.5029</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9:   吴涛  2002    吴    涛                2 1.6992  23 2.0333 4.4778  0.8763</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10:   周浩  2003    周    浩                2 1.7071  26 1.8644 4.4124  0.8955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11:   徐宇  2004    徐    宇                2 1.8247  24 1.5635 4.0210  0.5025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12: 孙俊杰  2005    孙    俊    杰          3 1.8370  19 1.7784 4.3870  0.4234</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13: 王秀花  1960    王    秀    花          3 1.1257  23 1.6076 3.4917 -0.9282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14: 李新华  1961    李    新    华          3 1.1325  12 1.6567 3.1363  0.1740</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15: 张雪梅  1962    张    雪    梅          3 1.1529  26 1.9998 3.8696 -0.8495</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16:   刘荣  1963    刘    荣                2 1.2753  12 1.6599 3.8888 -0.1303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17:   陈峰  1964    陈    峰                2 1.3415   3 2.4063 4.1185  0.8346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18: 杨春花  1965    杨    春    花          3 1.4725  25 1.7471 3.3374 -0.5918</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19:   黄娟  2000    黄    娟                2 1.6292   8 2.2167 4.7391 -0.9959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20: 赵志豪  2001    赵    志    豪          3 1.6754  26 1.9377 3.7412  0.7828</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21: 吴天宇  2002    吴    天    宇          3 1.6992  23 1.8800 3.3503  0.5210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22: 周文博  2003    周    文    博          3 1.7071  26 1.7989 3.4332  0.5658</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23: 徐子怡  2004    徐    子    怡          3 1.8247  24 1.8541 3.7488 -0.2639</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24:   孙灿  2005    孙    灿                2 1.8370  19 2.7219 4.7010  0.4339</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       name birth name0 name1 name2 name3 NLen    SNU SNI     NU    CCU      NG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         NV   NW   NC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1: 4.0938 3.80 3.50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2: 3.9375 3.40 3.70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3: 3.6875 3.30 3.10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4: 4.2188 3.65 3.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5: 4.2500 3.50 3.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6: 4.1875 3.60 3.80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7: 3.9375 3.20 3.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8: 4.6250 3.90 4.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9: 3.7500 3.80 3.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10: 4.2500 3.90 3.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11: 3.7500 3.70 3.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12: 4.5625 3.85 3.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13: 3.8438 3.80 3.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14: 4.1250 3.50 3.20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15: 3.8750 3.25 3.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16: 4.1875 3.90 3.80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17: 4.1250 3.40 3.80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18: 3.9375 3.80 2.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19: 4.1250 3.60 2.80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20: 4.2812 3.75 3.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21: 3.7812 3.60 3.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22: 4.5312 3.80 3.80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23: 3.6875 3.45 2.90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24: 4.1875 4.20 3.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         NV   NW   NC</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
