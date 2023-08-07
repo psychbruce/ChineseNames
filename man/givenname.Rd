@@ -30,5 +30,5 @@ data(givenname)
 2,614 Chinese characters used in given names and nationwide frequency.
 }
 \details{
-\url{https://github.com/psychbruce/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames}
 }

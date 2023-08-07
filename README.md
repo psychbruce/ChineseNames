@@ -81,11 +81,11 @@ library(ChineseNames)
 compute_name_index(name="包寒吴霜", birth=1995)
 
 ## Usage 2
-demodata=data.frame(
-  name=c("包寒吴霜", "陈俊霖", "张伟", "张炜", "欧阳修", "欧阳", "易烊千玺", "张艺谋", "王的"),
-  birth=c(1995, 1995, 1985, 1988, 1968, 2009, 2000, 1950, 2005))
+demodata = data.frame(
+  name = c("包寒吴霜", "陈俊霖", "张伟", "张炜", "欧阳修", "欧阳", "易烊千玺", "张艺谋", "王的"),
+  birth = c(1995, 1995, 1985, 1988, 1968, 2009, 2000, 1950, 2005))
 
-newdata=compute_name_index(
+newdata = compute_name_index(
   demodata,
   var.fullname="name",  # full name
   var.birthyear="birth")  # adjusted for birth year

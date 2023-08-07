@@ -21,7 +21,7 @@ name uniqueness, name gender, name valence, and name warmth/competence).
 }
 \details{
 Details are described in
-\url{https://github.com/psychbruce/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames}
 }
 \note{
 This database does not contain any individual-level information

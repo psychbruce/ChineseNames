@@ -49,7 +49,7 @@ By default, it computes all available name indices:
   \item \code{NC}: name competence (1~5).
 }
 
-For details, see \url{https://github.com/psychbruce/ChineseNames}}
+For details, see \url{https://psychbruce.github.io/ChineseNames}}
 
 \item{NU.approx}{Whether to \emph{approximately} compute name-character uniqueness (NU)
 using \emph{the nearest two birth cohorts with relative weights}
@@ -91,7 +91,7 @@ or just input a vector of full names
 is estimated by forecasting and thereby may not be accurate.
 }
 \note{
-For details and examples, see \url{https://github.com/psychbruce/ChineseNames}
+For details and examples, see \url{https://psychbruce.github.io/ChineseNames}
 }
 \section{Citation}{
 

@@ -22,5 +22,5 @@ data(familyname)
 1,806 Chinese surnames and nationwide frequency.
 }
 \details{
-\url{https://github.com/psychbruce/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames}
 }

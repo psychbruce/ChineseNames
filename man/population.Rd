@@ -10,5 +10,5 @@ data(population)
 Population statistics for the Chinese name database.
 }
 \details{
-\url{https://github.com/psychbruce/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames}
 }

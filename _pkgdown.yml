@@ -1,0 +1,7 @@
+url: https://psychbruce.github.io/ChineseNames
+template:
+  bootstrap: 5
+  bootswatch: simplex
+  bslib:
+    heading_font: {google: "Source Sans Pro"}
+    base_font: {google: "Source Sans Pro"}

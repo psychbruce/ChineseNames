@@ -10,5 +10,5 @@ data(top1000name.prov)
 Top 1,000 given names in 31 Chinese mainland provinces.
 }
 \details{
-\url{https://github.com/psychbruce/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames}
 }
