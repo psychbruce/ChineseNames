@@ -21,7 +21,7 @@ name uniqueness, name gender, name valence, and name warmth/competence).
 }
 \details{
 Details are described in
-\url{https://psychbruce.github.io/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames/}
 }
 \note{
 This database does not contain any individual-level information
@@ -31,8 +31,8 @@ Extremely rare characters are not included.
 }
 \section{Citation}{
 
-Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-R package version 2021.12.
+Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
+R package version 2023.8.
 \url{https://CRAN.R-project.org/package=ChineseNames}
 
 Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).

@@ -49,7 +49,7 @@ By default, it computes all available name indices:
   \item \code{NC}: name competence (1~5).
 }
 
-For details, see \url{https://psychbruce.github.io/ChineseNames}}
+For details, see \url{https://psychbruce.github.io/ChineseNames/}}
 
 \item{NU.approx}{Whether to \emph{approximately} compute name-character uniqueness (NU)
 using \emph{the nearest two birth cohorts with relative weights}
@@ -91,12 +91,12 @@ or just input a vector of full names
 is estimated by forecasting and thereby may not be accurate.
 }
 \note{
-For details and examples, see \url{https://psychbruce.github.io/ChineseNames}
+For details and examples, see \url{https://psychbruce.github.io/ChineseNames/}
 }
 \section{Citation}{
 
-Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-R package version 2021.12.
+Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
+R package version 2023.8.
 \url{https://CRAN.R-project.org/package=ChineseNames}
 
 Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).

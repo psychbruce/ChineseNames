@@ -1,6 +1,6 @@
 Package: ChineseNames
 Title: Chinese Name Database 1930-2008
-Version: 2021.12
+Version: 2023.8
 Date: 2023-08-07
 Authors@R:
     c(person(given = "Han-Wu-Shuang",

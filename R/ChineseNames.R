@@ -13,7 +13,7 @@
 #'
 #' @details
 #' Details are described in
-#' \url{https://psychbruce.github.io/ChineseNames}
+#' \url{https://psychbruce.github.io/ChineseNames/}
 #'
 #' @note
 #' This database does not contain any individual-level information
@@ -26,8 +26,8 @@
 #' originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 #'
 #' @section Citation:
-#' Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-#' R package version 2021.12.
+#' Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
+#' R package version 2023.8.
 #' \url{https://CRAN.R-project.org/package=ChineseNames}
 #'
 #' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
@@ -54,9 +54,9 @@ NULL
 
   "),
   "\n",
-  "Bao, H.-W.-S. (2021). ",
+  "Bao, H.-W.-S. (2023). ",
   "ChineseNames: Chinese Name Database 1930-2008. ",
-  "R package version 2021.12. ",
+  "R package version 2023.8. ",
   "https://CRAN.R-project.org/package=ChineseNames\n",
   "\n",
   "Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). ",
@@ -82,7 +82,7 @@ NULL
 #'   \item{\code{ppm.1930_2008}}{proportion in population (ppm = parts per million)}
 #'   \item{\code{surname.uniqueness}}{surname uniqueness}
 #' }
-#' @details \url{https://psychbruce.github.io/ChineseNames}
+#' @details \url{https://psychbruce.github.io/ChineseNames/}
 NULL
 
 
@@ -108,35 +108,35 @@ NULL
 #'   \item{\code{name.warmth}}{name warmth/morality (based on subjective ratings from 10 raters, ICC = 0.774)}
 #'   \item{\code{name.competence}}{name competence/assertiveness (based on subjective ratings from 10 raters, ICC = 0.712)}
 #' }
-#' @details \url{https://psychbruce.github.io/ChineseNames}
+#' @details \url{https://psychbruce.github.io/ChineseNames/}
 NULL
 
 
 #' Population statistics for the Chinese name database.
 #' @name population
 #' @usage data(population)
-#' @details \url{https://psychbruce.github.io/ChineseNames}
+#' @details \url{https://psychbruce.github.io/ChineseNames/}
 NULL
 
 
 #' Top 1,000 given names in 31 Chinese mainland provinces.
 #' @name top1000name.prov
 #' @usage data(top1000name.prov)
-#' @details \url{https://psychbruce.github.io/ChineseNames}
+#' @details \url{https://psychbruce.github.io/ChineseNames/}
 NULL
 
 
 #' Top 100 given names in 6 birth cohorts.
 #' @name top100name.year
 #' @usage data(top100name.year)
-#' @details \url{https://psychbruce.github.io/ChineseNames}
+#' @details \url{https://psychbruce.github.io/ChineseNames/}
 NULL
 
 
 #' Top 50 given-name characters in 6 birth cohorts.
 #' @name top50char.year
 #' @usage data(top50char.year)
-#' @details \url{https://psychbruce.github.io/ChineseNames}
+#' @details \url{https://psychbruce.github.io/ChineseNames/}
 NULL
 
 
@@ -190,7 +190,7 @@ NULL
 #'   \item \code{NC}: name competence (1~5).
 #' }
 #'
-#' For details, see \url{https://psychbruce.github.io/ChineseNames}
+#' For details, see \url{https://psychbruce.github.io/ChineseNames/}
 #' @param NU.approx Whether to \emph{approximately} compute name-character uniqueness (NU)
 #' using \emph{the nearest two birth cohorts with relative weights}
 #' (which would be more precise than just using a single birth cohort).
@@ -208,11 +208,11 @@ NULL
 #' \code{name1}, \code{name2}, and \code{name3} (given-name characters).
 #'
 #' @note
-#' For details and examples, see \url{https://psychbruce.github.io/ChineseNames}
+#' For details and examples, see \url{https://psychbruce.github.io/ChineseNames/}
 #'
 #' @section Citation:
-#' Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008.
-#' R package version 2021.12.
+#' Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
+#' R package version 2023.8.
 #' \url{https://CRAN.R-project.org/package=ChineseNames}
 #'
 #' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).

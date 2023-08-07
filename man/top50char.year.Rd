@@ -10,5 +10,5 @@ data(top50char.year)
 Top 50 given-name characters in 6 birth cohorts.
 }
 \details{
-\url{https://psychbruce.github.io/ChineseNames}
+\url{https://psychbruce.github.io/ChineseNames/}
 }

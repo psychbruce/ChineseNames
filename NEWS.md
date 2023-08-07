@@ -1,6 +1,6 @@
 **Please check the [latest news (change log)](https://psychbruce.github.io/bruceR/news/index.html) and keep this package updated.**
 
-# ChineseNames 2021.12
+# ChineseNames 2023.8
 
 -   Now use "YYYY.M" as package version number.
 
