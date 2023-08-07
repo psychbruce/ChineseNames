@@ -102,7 +102,7 @@ R package version 2021.12.
 Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
 Novel evidence for the increasing prevalence of unique names in China:
 A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-\url{https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full}
+\doi{10.3389/fpsyg.2021.731244}
 }
 
 \examples{
@@ -115,12 +115,12 @@ gn = c(top100name.year$name.all.1960[1:6],
 demodata = data.frame(name=paste0(sn, gn),
                       birth=c(1960:1965, 2000:2005,
                               1960:1965, 2000:2005))
-# View(demodata)
+demodata
 
 ## Compute ##
 newdata = compute_name_index(demodata,
                              var.fullname="name",
                              var.birthyear="birth")
-# View(newdata)
+newdata
 
 }

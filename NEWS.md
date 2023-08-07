@@ -1,4 +1,12 @@
-**If you are viewing this file on CRAN, please check [latest news on GitHub](https://github.com/psychbruce/ChineseNames/blob/master/NEWS.md) where the formatting is also better.**
+**Please check the [latest news (change log)](https://psychbruce.github.io/bruceR/news/index.html) and keep this package updated.**
+
+# ChineseNames 2021.12
+
+-   Now use "YYYY.M" as package version number.
+
+# ChineseNames 1.1.1 (Nov 2021)
+
+-   Added new reference ([Bao et al., 2021](https://doi.org/10.3389/fpsyg.2021.731244)).
 
 # ChineseNames 1.1.0 (June 2021)
 

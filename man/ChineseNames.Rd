@@ -38,6 +38,6 @@ R package version 2021.12.
 Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
 Novel evidence for the increasing prevalence of unique names in China:
 A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-\url{https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full}
+\doi{10.3389/fpsyg.2021.731244}
 }
 

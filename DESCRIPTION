@@ -22,9 +22,9 @@ Description:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/psychbruce/ChineseNames
+URL: https://psychbruce.github.io/ChineseNames/
 BugReports: https://github.com/psychbruce/ChineseNames/issues
 Depends: R (>= 4.0.0)
 Imports: bruceR, data.table
-Suggests: babynames, car, dplyr
+Suggests: babynames, car, dplyr, glue
 RoxygenNote: 7.2.3

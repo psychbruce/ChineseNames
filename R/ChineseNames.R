@@ -33,7 +33,7 @@
 #' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
 #' Novel evidence for the increasing prevalence of unique names in China:
 #' A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-#' \url{https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full}
+#' \doi{10.3389/fpsyg.2021.731244}
 #'
 #' @docType package
 #' @name ChineseNames
@@ -41,16 +41,27 @@ NULL
 
 
 .onAttach = function(libname, pkgname) {
-  packageStartupMessage(
-    "\nTo use the `ChineseNames` package in publications, please cite:\n\n",
-    "Bao, H.-W.-S. (2021). ",
-    "ChineseNames: Chinese Name Database 1930-2008. ",
-    "R package version 2021.12. ",
-    "https://CRAN.R-project.org/package=ChineseNames\n\n",
-    "Other references:\n\n",
-    "Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). ",
-    "Novel evidence for the increasing prevalence of unique names in China: ",
-    "A reply to Ogihara. Frontiers in Psychology, 12, 731244.\n")
+  inst.ver = as.character(utils::packageVersion("ChineseNames"))
+  packageStartupMessage(glue::glue_col("
+
+  {magenta ChineseNames (v{inst.ver})}
+  {blue Chinese Name Database 1930-2008}
+
+  {magenta Online documentation:}
+  {underline https://psychbruce.github.io/ChineseNames}
+
+  {magenta To use this package in publications, please cite:}
+
+  "),
+  "\n",
+  "Bao, H.-W.-S. (2021). ",
+  "ChineseNames: Chinese Name Database 1930-2008. ",
+  "R package version 2021.12. ",
+  "https://CRAN.R-project.org/package=ChineseNames\n",
+  "\n",
+  "Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). ",
+  "Novel evidence for the increasing prevalence of unique names in China: ",
+  "A reply to Ogihara. Frontiers in Psychology, 12, 731244.\n")
 }
 
 
@@ -207,7 +218,7 @@ NULL
 #' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
 #' Novel evidence for the increasing prevalence of unique names in China:
 #' A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-#' \url{https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full}
+#' \doi{10.3389/fpsyg.2021.731244}
 #'
 #' @examples
 #' ## Prepare ##
@@ -219,13 +230,13 @@ NULL
 #' demodata = data.frame(name=paste0(sn, gn),
 #'                       birth=c(1960:1965, 2000:2005,
 #'                               1960:1965, 2000:2005))
-#' # View(demodata)
+#' demodata
 #'
 #' ## Compute ##
 #' newdata = compute_name_index(demodata,
 #'                              var.fullname="name",
 #'                              var.birthyear="birth")
-#' # View(newdata)
+#' newdata
 #'
 #' @import data.table
 #' @importFrom bruceR dtime Print MEAN LOOKUP

@@ -1,20 +1,20 @@
 ## News
 
-In this version (1.1.1), I have fixed a bug related to an update of `bruceR` (thanks to Prof. Brian Ripley) and modified citation information.
-
+Minor changes.
 
 ## Test environments
 
-* Windows 10 (local installation), R 4.1.2
-* Mac OS 11.2 (user installation), R 4.0.4
-* Ubuntu 16.04 (on travis-ci.com), R 4.0.2
+-   Windows 11 (local installation), R 4.3.0
+-   Mac OS 13.3 (check_mac_release), R 4.3.0
 
+## Package check results
+
+passing `devtools::check_win_devel()`
 
 ## R CMD check results
 
-There were no ERRORs, WARNINGs, or NOTEs.
+passing (0 errors | 0 warnings | 0 notes)
 
+## Reverse dependencies
 
-## Downstream dependencies
-
-No reverse dependency currently.
+No reverse dependency.
