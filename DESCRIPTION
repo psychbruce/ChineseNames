@@ -1,13 +1,13 @@
 Package: ChineseNames
 Title: Chinese Name Database 1930-2008
-Version: 1.1.1
-Date: 2021-11-29
+Version: 2021.12
+Date: 2023-08-07
 Authors@R:
     c(person(given = "Han-Wu-Shuang",
              family = "Bao",
              role = c("aut", "cre"),
-             email = "baohws@foxmail.com"))
-Author: Han-Wu-Shuang Bao [aut, cre]
+             email = "baohws@foxmail.com",
+             comment = c(ORCID = "0000-0003-3043-710X")))
 Maintainer: Han-Wu-Shuang Bao <baohws@foxmail.com>
 Description:
   A database of Chinese surnames and Chinese given names (1930-2008).
@@ -24,7 +24,7 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/psychbruce/ChineseNames
 BugReports: https://github.com/psychbruce/ChineseNames/issues
-Depends: R (>= 3.6.0)
+Depends: R (>= 4.0.0)
 Imports: bruceR, data.table
 Suggests: babynames, car, dplyr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3

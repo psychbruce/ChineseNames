@@ -1,27 +1,29 @@
-# ChineseNames <a href="https://github.com/psychbruce/ChineseNames/tree/master/logo"><img src="https://raw.githubusercontent.com/psychbruce/ChineseNames/master/logo/ChineseNames-logo-min.png" align="right" height="180px"/></a>
+# ChineseNames <img src="man/figures/logo.png" align="right" width="160"/>
 
 **Chinese Name Database 1930-2008**
 
 A database of Chinese surnames and Chinese given names (1930-2008). This database contains nationwide frequency statistics of 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple features of Chinese surnames and Chinese given names for scientific research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
 
-[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://app.travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://app.travis-ci.com/github/psychbruce/ChineseNames) [![Logo-Designer](https://img.shields.io/badge/Logo%20Designer-Meijia%20Li-blueviolet?logo=github-sponsors)](https://github.com/Stellapros) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
+<!-- badges: start -->
+
+[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![Travis-Build-Status](https://app.travis-ci.com/psychbruce/ChineseNames.svg?branch=master)](https://app.travis-ci.com/github/psychbruce/ChineseNames) [![Logo-Designer](https://img.shields.io/badge/Logo%20Designer-Meijia%20Li-blueviolet?logo=github-sponsors)](https://github.com/Stellapros) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers) [![R-CMD-check](https://github.com/psychbruce/ChineseNames/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/psychbruce/ChineseNames/actions/workflows/R-CMD-check.yaml)
+
+<!-- badges: end -->
 
 <img src="https://s1.ax1x.com/2020/07/28/aAjUJg.jpg" width="120px" height="42px"/>
 
 ## Author
 
-[包寒吴霜 \| Bao H.-W.-S.](https://psychbruce.github.io)
+Han-Wu-Shuang (Bruce) Bao 包寒吴霜
 
-E-mail: [baohws\@foxmail.com](mailto:baohws@foxmail.com)
+Email: [baohws\@foxmail.com](mailto:baohws@foxmail.com)
 
-Website: [psychbruce.github.io](https://psychbruce.github.io)
-
-[ResearchGate](https://www.researchgate.net/profile/Han-Wu-Shuang-Bao) \| [GitHub](https://github.com/psychbruce) \| [知乎](https://www.zhihu.com/people/psychbruce)
+Homepage: [psychbruce.github.io](https://psychbruce.github.io)
 
 ## Citation
 
--   Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 1.1.1. <https://CRAN.R-project.org/package=ChineseNames>
--   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara (2020). *Frontiers in Psychology, 12*, 731244. <https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full>
+-   Bao, H.-W.-S. (2021). ChineseNames: Chinese Name Database 1930-2008. R package version 2021.12. <https://CRAN.R-project.org/package=ChineseNames>
+-   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, 731244. <https://www.frontiersin.org/articles/10.3389/fpsyg.2021.731244/full>
 
 ## Install
 
@@ -55,7 +57,7 @@ This package includes five datasets (`data.frame` in R). You can access them usi
 -   **`givenname`**: 2,614 Chinese characters in given names with their frequencies in the Han Chinese population.
 
     -   separate frequencies and proportions for each gender and each of 6 birth cohorts (pre-1960s, 1960-1969, 1970-1979, 1980-1989, 1990-1999, and 2000-2008)
-    -   including usage in all single-character and multi-character given names (e.g., the character "伟" in all "张伟", "张伟\_\_", "张\_\_伟", "王伟", "王伟\_\_", "王\_\_伟", …)
+    -   including usage in all single-character and multi-character given names (e.g., the character "伟" in all "张伟", "张伟\_\_", "张\_\_伟", "王伟", "王伟\_\_", "王\_\_伟", ...)
 
 -   **`top1000name.prov`**: Top 1,000 given names in 31 Chinese mainland provinces.
 
@@ -90,16 +92,18 @@ newdata=compute_name_index(
 View(newdata)
 ```
 
-    #        name birth name0 name1 name2 name3 NLen    SNU SNI     NU    CCU      NG     NV     NW     NC
-    # 1: 包寒吴霜  1995    包    寒    吴    霜    4 3.0595   2 3.6042 4.1178 -0.2187 3.3542 2.6667 3.2333
-    # 2:   陈俊霖  1995    陈    俊    霖          3 1.3415   3 2.4619 4.7688  0.4081 4.3125 3.6500 3.6500
-    # 3:     张伟  1985    张    伟                2 1.1529  26 1.6611 3.8865  0.6859 4.2500 3.5000 3.4000
-    # 4:     张炜  1988    张    炜                2 1.1529  26 3.0547 5.8583  0.6025 3.9375 3.4000 3.5000
-    # 5:   欧阳修  1968  欧阳    修                3 3.1645  15 2.9816 3.5510  0.5047 3.0625 3.5000 3.3000
-    # 6:     欧阳  2009    欧    阳                2 2.9694  15 2.0389 3.4574  0.5103 4.3750 4.1000 3.7000
-    # 7: 易烊千玺  2000    易    烊    千    玺    4 2.8689  25 3.8743 4.8944  0.4619 3.1875 3.2000 3.1667
-    # 8:   张艺谋  1950    张    艺    谋          3 1.1529  26 3.8808 3.6611  0.3183 3.5938 3.5500 3.3500
-    # 9:     王的  2005    王    的                2 1.1257  23 5.1893 1.3110 -0.5325 2.1250 2.5000 2.2000
+```         
+#        name birth name0 name1 name2 name3 NLen    SNU SNI     NU    CCU      NG     NV     NW     NC
+# 1: 包寒吴霜  1995    包    寒    吴    霜    4 3.0595   2 3.6042 4.1178 -0.2187 3.3542 2.6667 3.2333
+# 2:   陈俊霖  1995    陈    俊    霖          3 1.3415   3 2.4619 4.7688  0.4081 4.3125 3.6500 3.6500
+# 3:     张伟  1985    张    伟                2 1.1529  26 1.6611 3.8865  0.6859 4.2500 3.5000 3.4000
+# 4:     张炜  1988    张    炜                2 1.1529  26 3.0547 5.8583  0.6025 3.9375 3.4000 3.5000
+# 5:   欧阳修  1968  欧阳    修                3 3.1645  15 2.9816 3.5510  0.5047 3.0625 3.5000 3.3000
+# 6:     欧阳  2009    欧    阳                2 2.9694  15 2.0389 3.4574  0.5103 4.3750 4.1000 3.7000
+# 7: 易烊千玺  2000    易    烊    千    玺    4 2.8689  25 3.8743 4.8944  0.4619 3.1875 3.2000 3.1667
+# 8:   张艺谋  1950    张    艺    谋          3 1.1529  26 3.8808 3.6611  0.3183 3.5938 3.5500 3.3500
+# 9:     王的  2005    王    的                2 1.1257  23 5.1893 1.3110 -0.5325 2.1250 2.5000 2.2000
+```
 
 -   **NLen: full-name length**
 
@@ -113,10 +117,10 @@ View(newdata)
 
     -   1\~6
 
-    -   SNU = –log<sub>10</sub>(P<sub>surname</sub> + 10<sup>–6</sup>)
+    -   SNU = --log<sub>10</sub>(P<sub>surname</sub> + 10<sup>--6</sup>)
 
         -   P<sub>surname</sub> = the percentage of a surname held by people in the Han Chinese population.
-        -   A small constant (10<sup>–6</sup>) is added to adjust for skewness and limit the maximum of SNU to 6.00.
+        -   A small constant (10<sup>--6</sup>) is added to adjust for skewness and limit the maximum of SNU to 6.00.
         -   SNU = 2 and 3 mean that 1/100 and 1/1000 of people had this surname, respectively.
         -   The diversity of surnames is limited in China: the top 25 most common Chinese surnames have covered about 60% (0.7 billion) of the Han Chinese population (1.2 billion).
 
@@ -130,10 +134,10 @@ View(newdata)
 
     -   1\~6
 
-    -   NU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
+    -   NU = --log<sub>10</sub>(P<sub>character</sub> + 10<sup>--6</sup>)
 
         -   P<sub>character</sub> = the percentage of a character used in all single-character and multi-character given names in the Han Chinese population *within a specific birth year* (an approximate estimate using the nearest two birth cohorts with relative weights, which would be more precise than just using a single birth cohort).
-        -   A small constant (10<sup>–6</sup>) is added to adjust for skewness and limit the maximum of NU to 6.00.
+        -   A small constant (10<sup>--6</sup>) is added to adjust for skewness and limit the maximum of NU to 6.00.
         -   NU = 2 and 3 mean that 1/100 and 1/1000 of people used this character in given name (in their birth year), respectively.
         -   For data without birth-year information, the `compute_name_index()` function returns NU based on the average percentage across all six birth cohorts.
 
@@ -141,18 +145,18 @@ View(newdata)
 
     -   1\~6
 
-    -   CCU = –log<sub>10</sub>(P<sub>character</sub> + 10<sup>–6</sup>)
+    -   CCU = --log<sub>10</sub>(P<sub>character</sub> + 10<sup>--6</sup>)
 
         -   P<sub>character</sub> = the percentage of a character in a contemporary Chinese corpus.
         -   CCU should be distinguished from NU because daily language usage is distinct from naming practices. Some characters rarely used in personal names may instead be frequently used in daily language (and vice versa).
 
 -   **NG: name gender (difference in proportions of a character used by male vs. female)**
 
-    -   –1\~1
+    -   --1\~1
 
-    -   NG = (*N*<sub>male</sub> – *N*<sub>female</sub>) / (*N*<sub>male</sub> + *N*<sub>female</sub>)
+    -   NG = (*N*<sub>male</sub> -- *N*<sub>female</sub>) / (*N*<sub>male</sub> + *N*<sub>female</sub>)
 
-        -   NG ranges from –1 (completely feminine; 100% used by female) through 0 (gender-neutral; half by female and half by male) to 1 (completely masculine; 100% used by male).
+        -   NG ranges from --1 (completely feminine; 100% used by female) through 0 (gender-neutral; half by female and half by male) to 1 (completely masculine; 100% used by male).
 
 -   **NV: name valence (positivity of character meaning)**
 
