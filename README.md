@@ -25,7 +25,7 @@ Han-Wu-Shuang (Bruce) Bao 包寒吴霜
 -   Bao, H.-W.-S. (2023). *ChineseNames: Chinese Name Database 1930-2008*. R package version 2023.8. <https://CRAN.R-project.org/package=ChineseNames>
 -   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, 731244. <https://doi.org/10.3389/fpsyg.2021.731244>
 
-## Install
+## Installation
 
 ``` r
 ## Method 1: Install from CRAN

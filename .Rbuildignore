@@ -1,6 +1,7 @@
 data-raw
 data-csv
 logo
+docs
 ^.Rhistory$
 ^.*\.Rproj$
 ^\.Rproj\.user$
