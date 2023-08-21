@@ -25,23 +25,12 @@
 #' This database was provided by Beijing Meiming Science and Technology Company (in collaboration) and
 #' originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 #'
-#' @section Citation:
-#' Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
-#' R package version 2023.8.
-#' \url{https://CRAN.R-project.org/package=ChineseNames}
-#'
-#' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
-#' Novel evidence for the increasing prevalence of unique names in China:
-#' A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-#' \doi{10.3389/fpsyg.2021.731244}
-#'
-#' @docType package
-#' @name ChineseNames
-NULL
+"_PACKAGE"
 
 
 .onAttach = function(libname, pkgname) {
   inst.ver = as.character(utils::packageVersion("ChineseNames"))
+  pkg.date = substr(utils::packageDate("ChineseNames"), 1, 4)
   packageStartupMessage(glue::glue_col("
 
   {magenta ChineseNames (v{inst.ver})}
@@ -51,17 +40,11 @@ NULL
   {underline https://psychbruce.github.io/ChineseNames}
 
   {magenta To use this package in publications, please cite:}
-
-  "),
-  "\n",
-  "Bao, H.-W.-S. (2023). ",
-  "ChineseNames: Chinese Name Database 1930-2008. ",
-  "R package version 2023.8. ",
-  "https://CRAN.R-project.org/package=ChineseNames\n",
-  "\n",
-  "Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). ",
-  "Novel evidence for the increasing prevalence of unique names in China: ",
-  "A reply to Ogihara. Frontiers in Psychology, 12, 731244.\n")
+  Bao, H.-W.-S. ({pkg.date}). "),
+  glue::glue_col("{italic ChineseNames: Chinese Name Database 1930-2008}"),
+  glue::glue_col(" (Version {inst.ver}) [Computer software]. "),
+  glue::glue_col("{underline https://CRAN.R-project.org/package=ChineseNames}"),
+  "\n")
 }
 
 
@@ -209,16 +192,6 @@ NULL
 #'
 #' @note
 #' For details and examples, see \url{https://psychbruce.github.io/ChineseNames/}
-#'
-#' @section Citation:
-#' Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
-#' R package version 2023.8.
-#' \url{https://CRAN.R-project.org/package=ChineseNames}
-#'
-#' Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
-#' Novel evidence for the increasing prevalence of unique names in China:
-#' A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-#' \doi{10.3389/fpsyg.2021.731244}
 #'
 #' @examples
 #' ## Prepare ##

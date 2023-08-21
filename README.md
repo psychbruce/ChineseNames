@@ -6,7 +6,7 @@ A database of Chinese surnames and Chinese given names (1930-2008). This databas
 
 <!-- badges: start -->
 
-[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![R-CMD-check](https://github.com/psychbruce/ChineseNames/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/psychbruce/ChineseNames/actions/workflows/R-CMD-check.yaml) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![Logo-Designer](https://img.shields.io/badge/Logo%20Designer-Meijia%20Li-blueviolet?logo=github-sponsors)](https://github.com/Stellapros) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
+[![CRAN-Version](https://www.r-pkg.org/badges/version/ChineseNames?color=red)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Version](https://img.shields.io/github/r-package/v/psychbruce/ChineseNames?label=GitHub&color=orange)](https://github.com/psychbruce/ChineseNames) [![R-CMD-check](https://github.com/psychbruce/ChineseNames/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/psychbruce/ChineseNames/actions/workflows/R-CMD-check.yaml) [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChineseNames)](https://CRAN.R-project.org/package=ChineseNames) [![GitHub-Stars](https://img.shields.io/github/stars/psychbruce/ChineseNames?style=social)](https://github.com/psychbruce/ChineseNames/stargazers)
 
 <!-- badges: end -->
 
@@ -22,8 +22,9 @@ Han-Wu-Shuang (Bruce) Bao 包寒吴霜
 
 ## Citation
 
--   Bao, H.-W.-S. (2023). *ChineseNames: Chinese Name Database 1930-2008*. R package version 2023.8. <https://CRAN.R-project.org/package=ChineseNames>
--   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, 731244. <https://doi.org/10.3389/fpsyg.2021.731244>
+-   Bao, H.-W.-S. (2023). *ChineseNames: Chinese Name Database 1930-2008* (Version 2023.8) [Computer software]. <https://CRAN.R-project.org/package=ChineseNames>
+-   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, Article 731244. <https://doi.org/10.3389/fpsyg.2021.731244>
+-   Bao, H.-W.-S., Lu, H., & Luo, Y. L. L. (in press). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. *European Journal of Social Psychology*.
 
 ## Installation
 

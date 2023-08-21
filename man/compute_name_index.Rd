@@ -93,18 +93,6 @@ is estimated by forecasting and thereby may not be accurate.
 \note{
 For details and examples, see \url{https://psychbruce.github.io/ChineseNames/}
 }
-\section{Citation}{
-
-Bao, H.-W.-S. (2023). ChineseNames: Chinese Name Database 1930-2008.
-R package version 2023.8.
-\url{https://CRAN.R-project.org/package=ChineseNames}
-
-Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021).
-Novel evidence for the increasing prevalence of unique names in China:
-A reply to Ogihara. \emph{Frontiers in Psychology, 12}, 731244.
-\doi{10.3389/fpsyg.2021.731244}
-}
-
 \examples{
 ## Prepare ##
 sn = familyname$surname[1:12]
