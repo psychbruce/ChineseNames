@@ -1,45 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/404.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/index.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/ChineseNames-package.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/compute_name_index.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/familyname.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/givenname.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/population.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/top1000name.prov.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/top100name.year.html</loc>
-  </url>
-  <url>
-    <loc>https://psychbruce.github.io/ChineseNames/reference/top50char.year.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://psychbruce.github.io/ChineseNames/404.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/LICENSE-text.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/authors.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/index.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/news/index.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/ChineseNames-package.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/compute_name_index.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/familyname.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/givenname.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/index.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/population.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/top1000name.prov.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/top100name.year.html</loc></url>
+<url><loc>https://psychbruce.github.io/ChineseNames/reference/top50char.year.html</loc></url>
 </urlset>
+
