@@ -203,4 +203,3 @@ For a Chinese given name with multiple characters, name indices are averaged acr
 -   Chinese baby names 1930-2008: [`ChineseNames`](https://CRAN.R-project.org/package=ChineseNames)
 -   French baby names 1900-2020: [`prenoms`](https://github.com/ThinkR-open/prenoms) (GitHub)
 -   Israel baby names 1948-2022: [`babynamesIL`](https://CRAN.R-project.org/package=babynamesIL)
-
