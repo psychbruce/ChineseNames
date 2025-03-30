@@ -10,7 +10,7 @@ A database of Chinese surnames and Chinese given names (1930-2008). This databas
 
 <!-- badges: end -->
 
-<img src="https://s1.ax1x.com/2020/07/28/aAjUJg.jpg" width="120px" height="42px"/>
+<img src="https://psychbruce.github.io/img/CC-BY-NC-SA.jpg" width="120px" height="42px"/>
 
 ## Author
 
@@ -23,10 +23,10 @@ Han-Wu-Shuang (Bruce) Bao 包寒吴霜
 ## Citation
 
 -   Bao, H.-W.-S. (2021). *ChineseNames: Chinese Name Database 1930-2008*. <https://CRAN.R-project.org/package=ChineseNames>
-    -   *Note*: This is the original citation format. Please refer to the information when you `library(ChineseNames)` for the APA-7 format of your installed version.
+    -   *Note*: This is the original citation. Please refer to the information when you `library(ChineseNames)` for the APA-7 format of the version you installed.
 -   Bao, H.-W.-S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, Article 731244. <https://doi.org/10.3389/fpsyg.2021.731244>
--   Bao, H.-W.-S., Cai, H., & Jing, Y. (in press). Understanding the rise of unique names: The emphasis on uniqueness matters. *Acta Psychologica Sinica (心理学报)*.
--   Bao, H.-W.-S., Lu, H., & Luo, Y. L. L. (in press). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. *European Journal of Social Psychology*. Advance online publication. <https://doi.org/10.1002/ejsp.2994>
+-   Bao, H.-W.-S., Cai, H., & Jing, Y. (2024). Understanding the rise of unique names: The emphasis on uniqueness matters. *Acta Psychologica Sinica (心理学报), 56*(7), 954–963. <https://doi.org/10.3724/SP.J.1041.2024.00954>
+-   Bao, H.-W.-S., Lu, H., & Luo, Y. L. L. (2023). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. *European Journal of Social Psychology, 53*(7), 1524–1541. <https://doi.org/10.1002/ejsp.2994>
 
 ## Installation
 
@@ -43,11 +43,13 @@ devtools::install_github("psychbruce/ChineseNames")
 
 ### Data Source
 
-This Chinese name database was provided by Beijing Meiming Science and Technology Company (in collaboration) and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
+This Chinese name database was provided by Beijing Meiming Science and Technology Company (through collaboration) and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 
 It contains nationwide frequency statistics of almost all Chinese surnames and given-name characters, which have covered about **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). It also contains subjective rating indices of given-name characters. To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
 
 Note that this database does not contain any individual-level information (so it does not leak personal privacy). All data are at the name level or character level. Extremely rare characters are not included.
+
+Neither I nor the Company have all the information about all Chinese people. Year-level and county-level data were not accessible. All data we could provide has been compiled into this package.
 
 ### Datasets
 
@@ -185,7 +187,7 @@ View(newdata)
 >
 > Imagine that you are about to meet a person whose given name contains each of the following characters. Please judge how likely he/she is to have traits related to "warmth" ("competence"). If you feel uncertain, please use your intuition and make your best guess.
 
-### A Note on Multi-Character Given Names
+### Notes on Multi-Character Given Names
 
 For a Chinese given name with multiple characters, name indices are averaged across characters. In other words, name indices are computed based on ***characters*** rather than ***character combinations***. Here are main reasons.
 
@@ -193,3 +195,12 @@ For a Chinese given name with multiple characters, name indices are averaged acr
 2.  As evidenced by our research, NU computed by averaging across characters (objective NU) was positively correlated with people's perception of the uniqueness of their given names (subjective NU): *r* = 0.32, *p* \< 0.001, *N* = 672.
 3.  As evidenced by our research, among four measures of name uniqueness (two at the character level and two at the character-combination level), only name-character uniqueness (i.e., NU) was positively associated with cultural-level individualism.
 4.  In linguistics, a *name* (word) is to English what a *name character* (single character) is to Chinese.
+
+## R Packages for Baby Names
+
+-   US baby names 1880-2017: [`babynames`](https://CRAN.R-project.org/package=babynames)
+-   UK baby names 1974-2020: [`ukbabynames`](https://CRAN.R-project.org/package=ukbabynames)
+-   Chinese baby names 1930-2008: [`ChineseNames`](https://CRAN.R-project.org/package=ChineseNames)
+-   French baby names 1900-2020: [`prenoms`](https://github.com/ThinkR-open/prenoms) (GitHub)
+-   Israel baby names 1948-2022: [`babynamesIL`](https://CRAN.R-project.org/package=babynamesIL)
+
