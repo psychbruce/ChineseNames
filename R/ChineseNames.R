@@ -40,7 +40,7 @@
   {underline https://psychbruce.github.io/ChineseNames}
 
   {magenta To use this package in publications, please cite:}
-  Bao, H.-W.-S. ({pkg.date}). "),
+  Bao, H. W. S. ({pkg.date}). "),
   glue::glue_col("{italic ChineseNames: Chinese Name Database 1930-2008}"),
   glue::glue_col(" (Version {inst.ver}) [Computer software]. "),
   glue::glue_col("{underline https://CRAN.R-project.org/package=ChineseNames}"),
