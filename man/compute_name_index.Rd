@@ -2,7 +2,7 @@
 % Please edit documentation in R/ChineseNames.R
 \name{compute_name_index}
 \alias{compute_name_index}
-\title{Compute multiple features of surnames and given names.}
+\title{Compute multiple indices of surnames and given names.}
 \usage{
 compute_name_index(
   data = NULL,
@@ -38,35 +38,33 @@ compute_name_index(
 
 By default, it computes all available name indices:
 \itemize{
-  \item \code{NLen}: full-name length (2~4).
-  \item \code{SNU}: surname uniqueness (1~6).
-  \item \code{SNI}: surname initial (1~26).
-  \item \code{NU}: name-character uniqueness (1~6).
-  \item \code{CCU}: character-corpus uniqueness (1~6).
-  \item \code{NG}: name gender (-1~1).
-  \item \code{NV}: name valence (1~5).
-  \item \code{NW}: name warmth (1~5).
-  \item \code{NC}: name competence (1~5).
-}
-
-For details, see \url{https://psychbruce.github.io/ChineseNames/}}
+\item \code{NLen}: full-name length (2~4).
+\item \code{SNU}: surname uniqueness (1~6).
+\item \code{SNI}: surname initial (1~26).
+\item \code{NU}: name-character uniqueness (1~6).
+\item \code{CCU}: character-corpus uniqueness (1~6).
+\item \code{NG}: name gender (-1~1).
+\item \code{NV}: name valence (1~5).
+\item \code{NW}: name warmth (1~5).
+\item \code{NC}: name competence (1~5).
+}}
 
 \item{NU.approx}{Whether to \emph{approximately} compute name-character uniqueness (NU)
 using \emph{the nearest two birth cohorts with relative weights}
 (which would be more precise than just using a single birth cohort).
-Default is \code{TRUE}.}
+Defaults to \code{TRUE}.}
 
-\item{digits}{Number of decimal places. Default is \code{4}.}
+\item{digits}{Number of decimal places. Defaults to \code{4}.}
 
 \item{return.namechar}{Whether to return separate name characters.
-Default is \code{TRUE}.}
+Defaults to \code{TRUE}.}
 
 \item{return.all}{Whether to return all temporary variables
 in the computation of the final variables.
-Default is \code{FALSE}.}
+Defaults to \code{FALSE}.}
 }
 \value{
-A new data frame (of class \code{data.table}) with name indices appended.
+A new data frame (class \code{data.table}) with name indices appended.
 Full names are split into \code{name0} (surnames, with compound surnames automatically detected),
 \code{name1}, \code{name2}, and \code{name3} (given-name characters).
 }
@@ -78,20 +76,19 @@ with a variable of Chinese full names
 (and a variable of birth years, if necessary)
 or just input a vector of full names
 (and a vector of birth years, if necessary).
-
 \itemize{
-  \item Usage 1: Input a single value or a vector of \code{name} [and \code{birth}, if necessary].
-  \item Usage 2: Input a data frame of \code{data}
-  and the variable name of
-  \code{var.fullname} (or \code{var.surname} and/or \code{var.givenname})
-  [and \code{var.birthyear}, if necessary].
+\item Usage 1: Input a single value or a vector of \code{name} (and \code{birth}, if necessary).
+\item Usage 2: Input a data frame of \code{data}
+and the variable name of
+\code{var.fullname} (or \code{var.surname} and/or \code{var.givenname})
+(and \code{var.birthyear}, if necessary).
 }
 
-\emph{Caution.} Name-character uniqueness (NU) for birth year >= 2010
+\emph{Caution}: Name-character uniqueness (NU) for birth year >= 2010
 is estimated by forecasting and thereby may not be accurate.
 }
-\note{
-For details and examples, see \url{https://psychbruce.github.io/ChineseNames/}
+\details{
+\url{https://psychbruce.github.io/ChineseNames/}
 }
 \examples{
 ## Prepare ##

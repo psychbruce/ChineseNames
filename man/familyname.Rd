@@ -6,13 +6,13 @@
 \format{
 A data frame with 7 variables:
 \describe{
-  \item{\code{surname}}{surname (in Chinese)}
-  \item{\code{compound}}{0 = single surname, 1 = compound surname}
-  \item{\code{initial}}{initial letter (a-z)}
-  \item{\code{initial.rank}}{initial order (1-26)}
-  \item{\code{n.1930_2008}}{total counts in the database}
-  \item{\code{ppm.1930_2008}}{proportion in population (ppm = parts per million)}
-  \item{\code{surname.uniqueness}}{surname uniqueness}
+\item{\code{surname}}{surname (in Chinese)}
+\item{\code{compound}}{0 = single surname, 1 = compound surname}
+\item{\code{initial}}{initial letter (a-z)}
+\item{\code{initial.rank}}{initial order (1-26)}
+\item{\code{n.1930_2008}}{total counts in the database}
+\item{\code{ppm.1930_2008}}{proportion in population (ppm = parts per million)}
+\item{\code{surname.uniqueness}}{surname uniqueness}
 }
 }
 \usage{

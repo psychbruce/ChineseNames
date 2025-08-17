@@ -2,7 +2,7 @@
 
 **Chinese Name Database 1930-2008**
 
-A database of Chinese surnames and Chinese given names (1930-2008). This database contains nationwide frequency statistics of 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple features of Chinese surnames and Chinese given names for scientific research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
+A database of Chinese surnames and given names (1930-2008). This database contains nationwide frequency statistics of 1,806 Chinese surnames and 2,614 Chinese characters used in given names, covering about 1.2 billion Han Chinese population (96.8% of the Han Chinese household-registered population born from 1930 to 2008 and still alive in 2008). This package also contains a function for computing multiple indices of Chinese surnames and given names for social science research (e.g., name uniqueness, name gender, name valence, and name warmth/competence).
 
 <!-- badges: start -->
 
@@ -22,10 +22,10 @@ Bruce H. W. S. Bao 包寒吴霜
 
 ## Citation
 
--   Bao, H. W. S. (2021). *ChineseNames: Chinese Name Database 1930-2008*. <https://CRAN.R-project.org/package=ChineseNames>
+-   Bao, H. W. S. (2021). *ChineseNames: Chinese Name Database 1930-2008*. <https://doi.org/10.32614/CRAN.package.ChineseNames>
 -   Bao, H. W. S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, Article 731244. <https://doi.org/10.3389/fpsyg.2021.731244>
--   Bao, H. W. S., Cai, H., & Jing, Y. (2024). Understanding the rise of unique names: The emphasis on uniqueness matters. *Acta Psychologica Sinica (心理学报), 56*(7), 954–963. <https://doi.org/10.3724/SP.J.1041.2024.00954>
 -   Bao, H. W. S., Lu, H., & Luo, Y. L. L. (2023). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. *European Journal of Social Psychology, 53*(7), 1524–1541. <https://doi.org/10.1002/ejsp.2994>
+-   Bao, H. W. S., Cai, H., & Jing, Y. (2024). Understanding the rise of unique names: The emphasis on uniqueness matters. *Acta Psychologica Sinica (心理学报), 56*(7), 954–963. <https://doi.org/10.3724/SP.J.1041.2024.00954>
 
 ## Installation
 
@@ -42,13 +42,13 @@ devtools::install_github("psychbruce/ChineseNames")
 
 ### Data Source
 
-This Chinese name database was provided by Beijing Meiming Science and Technology Company (through collaboration) and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
+This Chinese name database was provided by Beijing Meiming Science and Technology Company (through private collaboration) and originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 
 It contains nationwide frequency statistics of almost all Chinese surnames and given-name characters, which have covered about **1.2 billion Han Chinese population** (96.8% of the Han Chinese population born from 1930 to 2008 and still alive in 2008, i.e., the *living household-registered population*). It also contains subjective rating indices of given-name characters. To our knowledge, this is the most comprehensive and accurate Chinese name database up to now.
 
 Note that this database does not contain any individual-level information (so it does not leak personal privacy). All data are at the name level or character level. Extremely rare characters are not included.
 
-Neither I nor the Company have all the information about all Chinese people. Year-level and county-level data were not accessible. All data we could provide has been compiled into this package.
+Neither the Company nor myself has all information about all Chinese people. Year-level and county-level data were not accessible. All data we could provide have been compiled in this package.
 
 ### Datasets
 

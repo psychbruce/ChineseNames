@@ -1,5 +1,9 @@
 **Please check the [latest news (change log)](https://psychbruce.github.io/ChineseNames/news/index.html) and keep this package updated.**
 
+# ChineseNames 2025.8
+
+-   Minor changes with unified coding style.
+
 # ChineseNames 2023.8
 
 -   Now use "YYYY.M" as package version number.

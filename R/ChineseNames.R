@@ -1,50 +1,35 @@
 #' ChineseNames: Chinese Name Database 1930-2008
 #'
-#' @description
-#' A database of Chinese surnames and Chinese given names (1930-2008).
-#' This database contains nationwide frequency statistics of
-#' 1,806 Chinese surnames and 2,614 Chinese characters used in given names,
-#' covering about 1.2 billion Han Chinese population
-#' (96.8\% of the Han Chinese household-registered population
-#' born from 1930 to 2008 and still alive in 2008).
-#' This package also contains a function for computing multiple features of
-#' Chinese surnames and Chinese given names for scientific research (e.g.,
-#' name uniqueness, name gender, name valence, and name warmth/competence).
-#'
-#' @details
-#' Details are described in
-#' \url{https://psychbruce.github.io/ChineseNames/}
-#'
-#' @note
-#' This database does not contain any individual-level information
-#' (so it does not leak personal privacy).
-#' All data are at the name level or character level.
-#' Extremely rare characters are not included.
-#'
 #' @source
-#' This database was provided by Beijing Meiming Science and Technology Company (in collaboration) and
+#' This database was provided by Beijing Meiming Science and Technology Company (through private collaboration) and
 #' originally obtained from the National Citizen Identity Information Center (NCIIC) of China in 2008.
 #'
+#' @keywords internal
 "_PACKAGE"
 
 
 .onAttach = function(libname, pkgname) {
   inst.ver = as.character(utils::packageVersion("ChineseNames"))
-  pkg.date = substr(utils::packageDate("ChineseNames"), 1, 4)
-  packageStartupMessage(glue::glue_col("
+  # pkg.date = substr(utils::packageDate("ChineseNames"), 1, 4)
+  packageStartupMessage(
+    glue::glue_col("
 
-  {magenta ChineseNames (v{inst.ver})}
-  {blue Chinese Name Database 1930-2008}
+    {magenta ChineseNames (v{inst.ver})}
+    {blue Chinese Name Database 1930-2008}
 
-  {magenta Online documentation:}
-  {underline https://psychbruce.github.io/ChineseNames}
+    {magenta Online documentation:}
+    {underline https://psychbruce.github.io/ChineseNames}
 
-  {magenta To use this package in publications, please cite:}
-  Bao, H. W. S. ({pkg.date}). "),
-  glue::glue_col("{italic ChineseNames: Chinese Name Database 1930-2008}"),
-  glue::glue_col(" (Version {inst.ver}) [Computer software]. "),
-  glue::glue_col("{underline https://CRAN.R-project.org/package=ChineseNames}"),
-  "\n")
+    {magenta To use this package in publications, please cite:}
+    Bao, H. W. S. (2021). {italic ChineseNames: Chinese Name Database 1930-2008} (Version {inst.ver}) [Computer software]. {underline https://doi.org/10.32614/CRAN.package.ChineseNames}
+
+    Bao, H. W. S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. {italic Frontiers in Psychology, 12}, Article 731244. {underline https://doi.org/10.3389/fpsyg.2021.731244}
+
+    Bao, H. W. S., Lu, H., & Luo, Y. L. L. (2023). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. {italic European Journal of Social Psychology, 53}(7), 1524-1541. {underline https://doi.org/10.1002/ejsp.2994}
+
+    Bao, H. W. S., Cai, H., & Jing, Y. (2024). Understanding the rise of unique names: The emphasis on uniqueness matters. {italic Acta Psychologica Sinica, 56}(7), 954-963. {underline https://doi.org/10.3724/SP.J.1041.2024.00954}
+
+    "))
 }
 
 
@@ -57,15 +42,15 @@
 #' @usage data(familyname)
 #' @format A data frame with 7 variables:
 #' \describe{
-#'   \item{\code{surname}}{surname (in Chinese)}
-#'   \item{\code{compound}}{0 = single surname, 1 = compound surname}
-#'   \item{\code{initial}}{initial letter (a-z)}
-#'   \item{\code{initial.rank}}{initial order (1-26)}
-#'   \item{\code{n.1930_2008}}{total counts in the database}
-#'   \item{\code{ppm.1930_2008}}{proportion in population (ppm = parts per million)}
-#'   \item{\code{surname.uniqueness}}{surname uniqueness}
+#'   \item{`surname`}{surname (in Chinese)}
+#'   \item{`compound`}{0 = single surname, 1 = compound surname}
+#'   \item{`initial`}{initial letter (a-z)}
+#'   \item{`initial.rank`}{initial order (1-26)}
+#'   \item{`n.1930_2008`}{total counts in the database}
+#'   \item{`ppm.1930_2008`}{proportion in population (ppm = parts per million)}
+#'   \item{`surname.uniqueness`}{surname uniqueness}
 #' }
-#' @details \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 NULL
 
 
@@ -75,51 +60,51 @@ NULL
 #' @usage data(givenname)
 #' @format A data frame with 25 variables:
 #' \describe{
-#'   \item{\code{character}}{character used in given names (in Chinese)}
-#'   \item{\code{pinyin}}{pinyin (pronunciation)}
-#'   \item{\code{bihua}}{number of strokes in a character}
-#'   \item{\code{n.male}}{total counts in male}
-#'   \item{\code{n.female}}{total counts in female}
-#'   \item{\code{name.gender}}{difference in proportions of a character used by male vs. female}
-#'   \item{\code{n.1930_1959}, \code{n.1960_1969}, \code{n.1970_1979}, \code{n.1980_1989}, \code{n.1990_1999}, \code{n.2000_2008}}{total counts in a birth cohort}
-#'   \item{\code{ppm.1930_1959}, \code{ppm.1960_1969}, \code{ppm.1970_1979}, \code{ppm.1980_1989}, \code{ppm.1990_1999}, \code{ppm.2000_2008}}{proportion (parts per million) in a birth cohort}
-#'   \item{\code{name.ppm}}{average ppm (parts per million) across all cohorts}
-#'   \item{\code{name.uniqueness}}{name-character uniqueness (in naming practices)}
-#'   \item{\code{corpus.ppm}}{proportion (parts per million) in contemporary Chinese corpus}
-#'   \item{\code{corpus.uniqueness}}{character-corpus uniqueness (in contemporary Chinese corpus)}
-#'   \item{\code{name.valence}}{name valence (positivity of character meaning) (based on subjective ratings from 16 raters, ICC = 0.921)}
-#'   \item{\code{name.warmth}}{name warmth/morality (based on subjective ratings from 10 raters, ICC = 0.774)}
-#'   \item{\code{name.competence}}{name competence/assertiveness (based on subjective ratings from 10 raters, ICC = 0.712)}
+#'   \item{`character`}{character used in given names (in Chinese)}
+#'   \item{`pinyin`}{pinyin (pronunciation)}
+#'   \item{`bihua`}{number of strokes in a character}
+#'   \item{`n.male`}{total counts in male}
+#'   \item{`n.female`}{total counts in female}
+#'   \item{`name.gender`}{difference in proportions of a character used by male vs. female}
+#'   \item{`n.1930_1959`, `n.1960_1969`, `n.1970_1979`, `n.1980_1989`, `n.1990_1999`, `n.2000_2008`}{total counts in a birth cohort}
+#'   \item{`ppm.1930_1959`, `ppm.1960_1969`, `ppm.1970_1979`, `ppm.1980_1989`, `ppm.1990_1999`, `ppm.2000_2008`}{proportion (parts per million) in a birth cohort}
+#'   \item{`name.ppm`}{average ppm (parts per million) across all cohorts}
+#'   \item{`name.uniqueness`}{name-character uniqueness (in naming practices)}
+#'   \item{`corpus.ppm`}{proportion (parts per million) in contemporary Chinese corpus}
+#'   \item{`corpus.uniqueness`}{character-corpus uniqueness (in contemporary Chinese corpus)}
+#'   \item{`name.valence`}{name valence (positivity of character meaning) (based on subjective ratings from 16 raters, ICC = 0.921)}
+#'   \item{`name.warmth`}{name warmth/morality (based on subjective ratings from 10 raters, ICC = 0.774)}
+#'   \item{`name.competence`}{name competence/assertiveness (based on subjective ratings from 10 raters, ICC = 0.712)}
 #' }
-#' @details \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 NULL
 
 
 #' Population statistics for the Chinese name database.
 #' @name population
 #' @usage data(population)
-#' @details \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 NULL
 
 
 #' Top 1,000 given names in 31 Chinese mainland provinces.
 #' @name top1000name.prov
 #' @usage data(top1000name.prov)
-#' @details \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 NULL
 
 
 #' Top 100 given names in 6 birth cohorts.
 #' @name top100name.year
 #' @usage data(top100name.year)
-#' @details \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 NULL
 
 
 #' Top 50 given-name characters in 6 birth cohorts.
 #' @name top50char.year
 #' @usage data(top50char.year)
-#' @details \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 NULL
 
 
@@ -129,69 +114,62 @@ NULL
 `%>%` = dplyr::`%>%`
 
 
-#' Compute multiple features of surnames and given names.
+#' Compute multiple indices of surnames and given names.
 #'
 #' @description
 #' Compute all available name features (indices) based on
-#' \code{\link{familyname}} and \code{\link{givenname}}.
+#' [`familyname`] and [`givenname`].
 #' You can either input a data frame
 #' with a variable of Chinese full names
 #' (and a variable of birth years, if necessary)
 #' or just input a vector of full names
 #' (and a vector of birth years, if necessary).
 #'
-#' \itemize{
-#'   \item Usage 1: Input a single value or a vector of \code{name} [and \code{birth}, if necessary].
-#'   \item Usage 2: Input a data frame of \code{data}
+#' - Usage 1: Input a single value or a vector of `name` (and `birth`, if necessary).
+#' - Usage 2: Input a data frame of `data`
 #'   and the variable name of
-#'   \code{var.fullname} (or \code{var.surname} and/or \code{var.givenname})
-#'   [and \code{var.birthyear}, if necessary].
-#' }
+#'   `var.fullname` (or `var.surname` and/or `var.givenname`)
+#'   (and `var.birthyear`, if necessary).
 #'
-#' \emph{Caution.} Name-character uniqueness (NU) for birth year >= 2010
+#' *Caution*: Name-character uniqueness (NU) for birth year >= 2010
 #' is estimated by forecasting and thereby may not be accurate.
 #'
 #' @param data Data frame.
-#' @param var.fullname Variable name of Chinese full names (e.g., \code{"name"}).
-#' @param var.surname Variable name of Chinese surnames (e.g., \code{"surname"}).
-#' @param var.givenname Variable name of Chinese given names (e.g., \code{"givenname"}).
-#' @param var.birthyear Variable name of birth year (e.g., \code{"birth"}).
-#' @param name If no \code{data}, you can just input a vector of full name(s).
-#' @param birth If no \code{data}, you can just input a vector of birth year(s).
+#' @param var.fullname Variable name of Chinese full names (e.g., `"name"`).
+#' @param var.surname Variable name of Chinese surnames (e.g., `"surname"`).
+#' @param var.givenname Variable name of Chinese given names (e.g., `"givenname"`).
+#' @param var.birthyear Variable name of birth year (e.g., `"birth"`).
+#' @param name If no `data`, you can just input a vector of full name(s).
+#' @param birth If no `data`, you can just input a vector of birth year(s).
 #' @param index Which indices to compute?
 #'
 #' By default, it computes all available name indices:
-#' \itemize{
-#'   \item \code{NLen}: full-name length (2~4).
-#'   \item \code{SNU}: surname uniqueness (1~6).
-#'   \item \code{SNI}: surname initial (1~26).
-#'   \item \code{NU}: name-character uniqueness (1~6).
-#'   \item \code{CCU}: character-corpus uniqueness (1~6).
-#'   \item \code{NG}: name gender (-1~1).
-#'   \item \code{NV}: name valence (1~5).
-#'   \item \code{NW}: name warmth (1~5).
-#'   \item \code{NC}: name competence (1~5).
-#' }
-#'
-#' For details, see \url{https://psychbruce.github.io/ChineseNames/}
-#' @param NU.approx Whether to \emph{approximately} compute name-character uniqueness (NU)
-#' using \emph{the nearest two birth cohorts with relative weights}
+#' - `NLen`: full-name length (2~4).
+#' - `SNU`: surname uniqueness (1~6).
+#' - `SNI`: surname initial (1~26).
+#' - `NU`: name-character uniqueness (1~6).
+#' - `CCU`: character-corpus uniqueness (1~6).
+#' - `NG`: name gender (-1~1).
+#' - `NV`: name valence (1~5).
+#' - `NW`: name warmth (1~5).
+#' - `NC`: name competence (1~5).
+#' @param NU.approx Whether to *approximately* compute name-character uniqueness (NU)
+#' using *the nearest two birth cohorts with relative weights*
 #' (which would be more precise than just using a single birth cohort).
-#' Default is \code{TRUE}.
-#' @param digits Number of decimal places. Default is \code{4}.
+#' Defaults to `TRUE`.
+#' @param digits Number of decimal places. Defaults to `4`.
 #' @param return.namechar Whether to return separate name characters.
-#' Default is \code{TRUE}.
+#' Defaults to `TRUE`.
 #' @param return.all Whether to return all temporary variables
 #' in the computation of the final variables.
-#' Default is \code{FALSE}.
+#' Defaults to `FALSE`.
 #'
 #' @return
-#' A new data frame (of class \code{data.table}) with name indices appended.
-#' Full names are split into \code{name0} (surnames, with compound surnames automatically detected),
-#' \code{name1}, \code{name2}, and \code{name3} (given-name characters).
+#' A new data frame (class `data.table`) with name indices appended.
+#' Full names are split into `name0` (surnames, with compound surnames automatically detected),
+#' `name1`, `name2`, and `name3` (given-name characters).
 #'
-#' @note
-#' For details and examples, see \url{https://psychbruce.github.io/ChineseNames/}
+#' @details <https://psychbruce.github.io/ChineseNames/>
 #'
 #' @examples
 #' ## Prepare ##
@@ -215,20 +193,20 @@ NULL
 #' @importFrom bruceR dtime Print MEAN LOOKUP
 #' @export
 compute_name_index = function(
-    data=NULL,
-    var.fullname=NULL,
-    var.surname=NULL,
-    var.givenname=NULL,
-    var.birthyear=NULL,
-    name=NA, birth=NA,
-    index=c("NLen",
-            "SNU", "SNI",
-            "NU", "CCU", "NG",
-            "NV", "NW", "NC"),
-    NU.approx=TRUE,
-    digits=4,
-    return.namechar=TRUE,
-    return.all=FALSE
+    data = NULL,
+    var.fullname = NULL,
+    var.surname = NULL,
+    var.givenname = NULL,
+    var.birthyear = NULL,
+    name = NA, birth = NA,
+    index = c("NLen",
+              "SNU", "SNI",
+              "NU", "CCU", "NG",
+              "NV", "NW", "NC"),
+    NU.approx = TRUE,
+    digits = 4,
+    return.namechar = TRUE,
+    return.all = FALSE
 ) {
   ## Prepare ##
 
