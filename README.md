@@ -24,8 +24,8 @@ Bruce H. W. S. Bao 包寒吴霜
 
 -   Bao, H. W. S. (2021). *ChineseNames: Chinese Name Database 1930-2008*. <https://doi.org/10.32614/CRAN.package.ChineseNames>
 -   Bao, H. W. S., Cai, H., Jing, Y., & Wang, J. (2021). Novel evidence for the increasing prevalence of unique names in China: A reply to Ogihara. *Frontiers in Psychology, 12*, Article 731244. <https://doi.org/10.3389/fpsyg.2021.731244>
--   Bao, H. W. S., Lu, H., & Luo, Y. L. L. (2023). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. *European Journal of Social Psychology, 53*(7), 1524–1541. <https://doi.org/10.1002/ejsp.2994>
 -   Bao, H. W. S., Cai, H., & Jing, Y. (2024). Understanding the rise of unique names: The emphasis on uniqueness matters. *Acta Psychologica Sinica (心理学报), 56*(7), 954–963. <https://doi.org/10.3724/SP.J.1041.2024.00954>
+-   Bao, H. W. S., Lu, H., & Luo, Y. L. L. (2023). Do unique names fit people for creative work? Implications for job recruitment, name change, and product evaluation. *European Journal of Social Psychology, 53*(7), 1524–1541. <https://doi.org/10.1002/ejsp.2994>
 
 ## Installation
 

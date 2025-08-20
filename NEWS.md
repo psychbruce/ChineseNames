@@ -2,7 +2,7 @@
 
 # ChineseNames 2025.8
 
--   Minor changes with unified coding style.
+-   Refined help pages in the style of Roxygen markdown.
 
 # ChineseNames 2023.8
 
